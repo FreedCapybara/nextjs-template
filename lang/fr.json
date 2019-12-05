@@ -1,0 +1,8 @@
+{
+  "title": "React Intl Next.js Exemple",
+  "nav-home": "Hoame",
+  "nav-zeit": "ZEIT",
+  "nav-github": "GeetHoob",
+  "description": "Un exemple d'application intégrant React Intl avec Next.js",
+  "greeting": "Bonjour le monde!"
+}

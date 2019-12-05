@@ -1,14 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-
-const links = [
-  { href: 'https://zeit.co/now', label: 'ZEIT' },
-  { href: 'https://github.com/zeit/next.js', label: 'GitHub' },
-].map(link => {
-  link.key = `nav-link-${link.href}-${link.label}`;
-  return link;
-});
 
 export class Nav extends React.Component {
   render() {
@@ -17,14 +10,21 @@ export class Nav extends React.Component {
         <ul>
           <li>
             <Link href="/">
-              <a>{this.props.title || 'Home'}</a>
+              <a>
+                <FormattedMessage id="nav-home" defaultMessage="Home" description="Home navigation link" />
+              </a>
             </Link>
           </li>
-          {links.map(({ key, href, label }) => (
-            <li key={key}>
-              <a href={href}>{label}</a>
-            </li>
-          ))}
+          <li>
+            <a href="https://zeit.co/now">
+              <FormattedMessage id="nav-zeit" defaultMessage="ZEIT" description="Company navigation link" />
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/zeit/next.js">
+              <FormattedMessage id="nav-github" defaultMessage="GitHub" description="GitHub navigation link" />
+            </a>
+          </li>
         </ul>
 
         <style jsx>{`
