@@ -3,7 +3,7 @@ This is a NextJS boilerplate with all the fixins:
 
 * [Next.js](https://github.com/zeit/next.js)
 * [Redux](https://react-redux.js.org/introduction/quick-start)
-* [Redux-Sagas]() via [next-redux-wrapper](https://github.com/kirill-konshin/next-redux-wrapper) and [next-redux-saga](https://github.com/bmealhouse/next-redux-saga)
+* [Redux-Sagas](https://redux-saga.js.org/) via [next-redux-wrapper](https://github.com/kirill-konshin/next-redux-wrapper) and [next-redux-saga](https://github.com/bmealhouse/next-redux-saga)
 * [PropTypes](https://github.com/facebook/prop-types) for type checking ([React docs](https://reactjs.org/docs/typechecking-with-proptypes.html))
 * [styled-components](https://www.styled-components.com/) because apparently it's all the rage
 * [Isomorphic Unfetch](https://github.com/developit/unfetch/tree/master/packages/isomorphic-unfetch) because Next.js seems to recommend it and why not
