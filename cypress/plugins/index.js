@@ -14,4 +14,10 @@
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+
+  // Ignore examples https://github.com/cypress-io/cypress/issues/5064
+  config.ignoreTestFiles = [
+    '**/examples/*.spec.js'
+  ];
+  return config;
 }
