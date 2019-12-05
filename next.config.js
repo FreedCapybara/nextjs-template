@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 
 // See https://remysharp.com/2019/11/04/nice-imports-with-nextjs
 module.exports = {
