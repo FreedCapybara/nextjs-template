@@ -23,6 +23,11 @@ module.exports = {
     'react',
     'formatjs'
   ],
+  'settings': {
+    'react': {
+      'version': 'detect'
+    }
+  },
   // couldn't get rule overrides to work for spec files
   // wanted no-undef off for *.spec.js
   "globals": {
