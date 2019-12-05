@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { Nav } from './index';
+import { Nav } from '@components/nav';
 
 describe('Nav', () => {
   it('should render without throwing an error', () => {
