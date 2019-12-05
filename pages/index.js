@@ -1,6 +1,6 @@
-import React from 'react'
-import Head from 'next/head'
-import { Nav } from '@components/nav'
+import React from 'react';
+import Head from 'next/head';
+import { Nav } from '@components/nav';
 
 class Home extends React.Component {
   render() {
@@ -89,4 +89,5 @@ class Home extends React.Component {
   }
 }
 
-export default Home
+export default Home;
+
