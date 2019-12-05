@@ -11,7 +11,7 @@ class Home extends React.Component {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <Nav />
+        <Nav title="Logo" />
 
         <div className="hero">
           <h1 className="title">Welcome to Next.js!</h1>

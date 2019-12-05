@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 
 const links = [
   { href: 'https://zeit.co/now', label: 'ZEIT' },
@@ -16,7 +17,7 @@ export class Nav extends React.Component {
         <ul>
           <li>
             <Link href="/">
-              <a>Home</a>
+              <a>{this.props.title || 'Home'}</a>
             </Link>
           </li>
           {links.map(({ key, href, label }) => (
@@ -55,5 +56,9 @@ export class Nav extends React.Component {
       </nav>
     );
   }
+};
+
+Nav.propTypes = {
+  title: PropTypes.string
 };
 
