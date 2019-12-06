@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "e2e": "cypress open"
+    "e2e": "cypress run",
+    "e2e:open": "cypress open"
   },
   "dependencies": {
     "@formatjs/intl-relativetimeformat": "^4.5.1",
@@ -30,6 +31,7 @@
     "enzyme-adapter-react-16": "1.15.1",
     "eslint": "^6.7.2",
     "eslint-plugin-formatjs": "^1.5.4",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
     "jest": "24.9.0",
     "react-test-renderer": "16.12.0"

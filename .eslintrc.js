@@ -6,7 +6,8 @@ module.exports = {
   },
   'extends': [
     'eslint:recommended',
-    'plugin:react/recommended'
+    'plugin:react/recommended',
+    'plugin:jsx-a11y/recommended'
   ],
   'globals': {
     'Atomics': 'readonly',
@@ -21,7 +22,8 @@ module.exports = {
   },
   'plugins': [
     'react',
-    'formatjs'
+    'formatjs',
+    'jsx-a11y'
   ],
   'settings': {
     'react': {
@@ -54,6 +56,7 @@ module.exports = {
     'formatjs/no-emoji': 'error',
     'formatjs/no-multiple-plurals': 'error',
     'formatjs/no-offset': 'error',
-    'formatjs/supported-datetime-skeleton': 'error'
+    'formatjs/supported-datetime-skeleton': 'error',
+    'jsx-a11y/anchor-is-valid': 'off' // the <Link><a /></Link> stuff screws this up
   }
 };

@@ -24,6 +24,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-#i18n
+# i18n
 lang/.messages/
+
+# cypress
+cypress/videos/
+cypress/screenshots/
 
