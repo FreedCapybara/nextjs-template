@@ -9,16 +9,16 @@ const cache = createIntlCache();
 
 export default class $App extends App {
 
-  static async getInitialProps({ Component, context }) {
+  static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
 
     if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(context);
+      pageProps = await Component.getInitialProps(ctx);
     }
 
     // Get the `locale` and `messages` from the request object on the server.
     // In the browser, use the same values that the server serialized.
-    const { req } = context;
+    const { req } = ctx;
     const { locale, messages } = req || window.__NEXT_DATA__.props;
 
     const props = { pageProps, locale, messages };
@@ -27,7 +27,7 @@ export default class $App extends App {
     }
 
     if (!props.messages) {
-      const strings = await import('@lang/strings');
+      const strings = (await import('@lang/strings')).default;
       props.messages = strings[props.locale];
     }
 

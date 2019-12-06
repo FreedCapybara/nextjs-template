@@ -1,0 +1,1 @@
+export default {"en":{"nav-home":"Home","nav-zeit":"ZEIT","nav-github":"GitHub"},"fr":{"title":"React Intl Next.js Exemple","nav-home":"Hoame","nav-zeit":"ZEIT","nav-github":"GeetHoob","description":"Un exemple d'application intégrant React Intl avec Next.js","greeting":"Bonjour le monde!"}}

@@ -14,7 +14,7 @@ export default class $Document extends Document {
     const props = {
       ...pageProps,
       locale: req.locale,
-      localeDataScript: localeDataScript
+      localeDataScript: req.localeDataScript
     };
 
     if (!props.locale) {

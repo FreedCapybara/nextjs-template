@@ -1,17 +1,28 @@
 const { readFileSync, writeFileSync } = require('fs');
-const { resolve } = require('path');
+const { basename, resolve } = require('path');
 const glob = require('glob');
 
-const languageFilenames = glob
-  .sync('./lang/*.json');
-  .map(filename => {
-  })
+const languageFilenames = glob.sync('./lang/*.json');
 
+// build a structure like
+// {
+//   "en": {
+//     "id": "string"
+//   },
+//   "fr": {
+//     "id": "string"
+//   },
+//   ...
+// }
+let data = {};
 for (let filename of languageFilenames) {
-  let locale = basename(filename);
+  let locale = basename(filename, '.json');
   let file = readFileSync(filename, 'utf8');
   let strings = JSON.parse(file);
+  data[locale] = strings;
 }
 
-writeFileSync('./lang/en.json', JSON.stringify(defaultMessages, null, 2));
-console.log(`> Wrote default messages to: "${resolve('./lang/en.json')}"`);
+let fileContents = `export default ${JSON.stringify(data)}`;
+
+writeFileSync('./lang/strings.js', fileContents);
+console.log(`> Wrote strings to: "${resolve('./lang/strings.js')}"`);
