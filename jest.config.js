@@ -10,7 +10,9 @@ module.exports = {
   moduleNameMapper: { // https://alexjover.com/blog/enhance-jest-configuration-with-module-aliases/
     "@components(.*)$": "<rootDir>/components/$1",
     "@pages(.*)$": "<rootDir>/pages/$1",
-    "@public(.*)$": "<rootDir>/public/$1"
+    "@public(.*)$": "<rootDir>/public/$1",
+    "@lang(.*)$": "<rootDir>/lang/$1",
+    "@lib(.*)$": "<rootDir>/lib/$1"
   },
   coverageThreshold: {
     global: {
