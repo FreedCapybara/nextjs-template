@@ -22,7 +22,7 @@ for (let filename of languageFilenames) {
   data[locale] = strings;
 }
 
-let fileContents = `export default ${JSON.stringify(data)}`;
+let fileContents = `export default ${JSON.stringify(data)};`;
 
 writeFileSync('./lang/strings.js', fileContents);
 console.log(`> Wrote strings to: "${resolve('./lang/strings.js')}"`);

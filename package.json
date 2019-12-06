@@ -25,6 +25,7 @@
     "react-intl": "^3.9.1"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
     "babel-plugin-react-intl": "^5.1.11",
     "cypress": "^3.7.0",
     "enzyme": "3.10.0",
