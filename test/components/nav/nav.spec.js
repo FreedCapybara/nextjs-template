@@ -1,17 +1,18 @@
 import React from 'react';
-import { shallowWithIntl, mountWithIntl } from '@lib/i18n';
+
+import { shallowWrapped, mountWrapped } from '@lib/tests';
 
 import { Nav } from '@components/nav';
 
 describe('Nav', () => {
 
   it('should render without throwing an error', () => {
-    const component = shallowWithIntl(<Nav />);
+    const component = shallowWrapped(<Nav />);
     expect(component).toBeDefined();
   });
 
   it('should have a home link', () => {
-    const component = mountWithIntl(<Nav />);
+    const component = mountWrapped(<Nav />);
     expect(component.find('a').first().text()).toBe('Home');
   });
 });

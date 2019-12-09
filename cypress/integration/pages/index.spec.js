@@ -13,6 +13,6 @@ describe('Home page', () => {
   });
 
   it('should have a title', () => {
-    cy.get('h1.title').should('have.length', 1);
+    cy.get('h1').should('have.length', 1);
   });
 });

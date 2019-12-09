@@ -1,15 +1,17 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
+import { ServerStyleSheet } from 'styled-components';
+
 import { getServerLocale } from '@lib/i18n';
 
 // The document (which is SSR-only) needs to be customized to expose the locale
 // data for the user's locale for React Intl to work in the browser.
 export default class $Document extends Document {
 
-  static async getInitialProps(context) {
-    const pageProps = await super.getInitialProps(context);
+  static async getInitialProps(ctx) {
+    const pageProps = await super.getInitialProps(ctx);
 
-    const { req } = context;
+    const { req } = ctx;
 
     const props = {
       ...pageProps,
@@ -17,8 +19,33 @@ export default class $Document extends Document {
       localeDataScript: req.localeDataScript
     };
 
+    // locale fallback
+    // Gets the locale from the Accept-Language header in scenarios where server.js isn't running
+    // (like in a serverless Zeit/Now deployment)
     if (!props.locale) {
       props.locale = getServerLocale(req);
+    }
+
+    // styled-components SSR
+    // See https://github.com/zeit/next.js/tree/master/examples/with-styled-components
+    const styleSheet = new ServerStyleSheet();
+
+    const originalRenderPage = ctx.renderPage;
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: App => props => styleSheet.collectStyles(<App {...props} />)
+        });
+
+      props.styles = (
+        <>
+          { pageProps.styles }
+          { styleSheet.getStyleElement() }
+        </>
+      );
+    } finally {
+      styleSheet.seal();
     }
 
     return props;

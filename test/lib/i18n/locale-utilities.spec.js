@@ -18,13 +18,13 @@ describe('Locale utilities', () => {
 
   it('should get browser locale from navigator language', () => {
     Object.defineProperty(navigator, 'languages', { get: () => null, configurable: true });
-    Object.defineProperty(navigator, 'language', { get: () => 'de', configurable: true });
+    Object.defineProperty(navigator, 'language', { get: () => 'de-DE', configurable: true });
     const result = getBrowserLocale();
     expect(result).toBe('de');
   });
 
   it('should get browser locale from the first navigator language', () => {
-    Object.defineProperty(navigator, 'languages', { get: () => ['es', 'fr'], configurable: true });
+    Object.defineProperty(navigator, 'languages', { get: () => ['es-ES', 'fr'], configurable: true });
     Object.defineProperty(navigator, 'language', { get: () => null, configurable: true });
     const result = getBrowserLocale();
     expect(result).toBe('es');
@@ -43,7 +43,7 @@ describe('Locale utilities', () => {
   it('should get server locale from the request', () => {
     const req = {
       headers: {
-        'accept-language': 'de;q=0.9'
+        'accept-language': 'de-DE, de;q=0.9'
       }
     };
     const result = getServerLocale(req);
