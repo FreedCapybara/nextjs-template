@@ -13,6 +13,7 @@ module.exports = {
     "@public(.*)$": "<rootDir>/public/$1",
     "@lang(.*)$": "<rootDir>/lang/$1",
     "@lib(.*)$": "<rootDir>/lib/$1"
+    "@redux(.*)$": "<rootDir>/redux/$1"
   },
   coverageThreshold: {
     global: {

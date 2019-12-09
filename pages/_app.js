@@ -2,9 +2,13 @@ import React from 'react';
 import App from 'next/app';
 import { createIntl, createIntlCache, RawIntlProvider } from 'react-intl';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import { Provider } from 'react-redux';
+import withRedux from 'next-redux-wrapper';
+import withReduxSaga from 'next-redux-saga';
 
 import { getLocale } from '@lib/i18n';
 import { theme } from '@lib/styles';
+import configureStore from '@redux/store';
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -17,7 +21,7 @@ body {
 // since it prevents memory leak
 const cache = createIntlCache();
 
-export default class $App extends App {
+class $App extends App {
 
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
@@ -49,7 +53,7 @@ export default class $App extends App {
   }
 
   render() {
-    const { Component, pageProps, locale, messages } = this.props;
+    const { Component, pageProps, locale, messages, store } = this.props;
 
     const intl = createIntl(
       {
@@ -62,12 +66,17 @@ export default class $App extends App {
     return (
       <React.Fragment>
         <GlobalStyle />
-        <ThemeProvider theme={theme}>
-          <RawIntlProvider value={intl}>
-            <Component {...pageProps} />
-          </RawIntlProvider>
-        </ThemeProvider>
+        <Provider store={store}>
+          <ThemeProvider theme={theme}>
+            <RawIntlProvider value={intl}>
+              <Component {...pageProps} />
+            </RawIntlProvider>
+          </ThemeProvider>
+        </Provider>
       </React.Fragment>
     );
   }
 }
+
+export default withRedux(configureStore)(withReduxSaga($App));
+

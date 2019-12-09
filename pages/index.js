@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Head from 'next/head';
 import styled from 'styled-components';
+
+import { exampleActions } from '@redux/actions';
 
 import { Nav } from '@components/nav';
 
@@ -57,6 +60,11 @@ const CardDescription = styled.p`
 `;
 
 class Home extends React.Component {
+
+  componentDidMount() {
+    this.props.exampleSaga();
+  }
+
   render() {
     return (
       <div>
@@ -87,11 +95,26 @@ class Home extends React.Component {
               <CardDescription>Find other example boilerplates on the Next.js GitHub.</CardDescription>
             </Card>
           </Row>
+
+          <Row>
+            <Description>Count: {this.props.count}</Description>
+            <button onClick={(e) => this.props.decrement()}>Decrement!</button>
+          </Row>
         </Hero>
       </div>
     );
   }
 }
 
-export default Home;
+const mapStateToProps = state => {
+  return {
+    ...state.exampleReducer
+  };
+};
+
+const mapDispatchToProps = {
+  ...exampleActions
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
 

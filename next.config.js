@@ -8,6 +8,7 @@ module.exports = {
     config.resolve.alias['@public'] = path.resolve(__dirname + '/public');
     config.resolve.alias['@lang'] = path.resolve(__dirname + '/lang');
     config.resolve.alias['@lib'] = path.resolve(__dirname + '/lib');
+    config.resolve.alias['@redux'] = path.resolve(__dirname + '/redux');
     return config;
   }
 };
