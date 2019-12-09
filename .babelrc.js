@@ -1,11 +1,12 @@
-{
+module.exports = {
   "presets": [
     "next/babel"
   ],
   "env": {
     "development": {
       "plugins": [
-        "react-intl"
+        "react-intl",
+        "styled-components"
       ]
     },
     "production": {
@@ -19,4 +20,4 @@
       ]
     }
   }
-}
+};
