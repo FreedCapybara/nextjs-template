@@ -1,5 +1,3 @@
-import { runSaga } from 'redux-saga';
-
 import configureStore from '@redux/store';
 
 describe('Store', () => {

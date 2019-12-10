@@ -1,5 +1,3 @@
-import { runSaga } from 'redux-saga';
-
 import { rootReducer, initialState } from '@redux/root-reducer';
 
 describe('Root reducer', () => {

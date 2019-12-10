@@ -1,5 +1,3 @@
-import { runSaga } from 'redux-saga';
-
 import rootSaga from '@redux/root-saga';
 
 describe('Root saga', () => {

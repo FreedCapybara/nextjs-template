@@ -37,7 +37,7 @@ export class Error extends React.Component {
         <Hero>
           <Title>Error!</Title>
           <Description>
-            Noooooooo! Why was there an error? There shouldn't be errors!
+            Noooooooo! Why was there an error? There shouldn&apos;t be errors!
           </Description>
         </Hero>
       </div>

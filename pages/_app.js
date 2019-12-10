@@ -1,5 +1,6 @@
 import React from 'react';
 import App from 'next/app';
+import Router from 'next/router';
 import { createIntl, createIntlCache, RawIntlProvider } from 'react-intl';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { Provider } from 'react-redux';
@@ -9,6 +10,9 @@ import withReduxSaga from 'next-redux-saga';
 import { getLocale } from '@lib/i18n';
 import { theme } from '@lib/styles';
 import configureStore from '@redux/store';
+import { http } from '@lib/http';
+
+const apiBaseUrl = process.env.API_BASE_URL || 'http://localhost:3000';
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -47,6 +51,31 @@ class $App extends App {
     if (!props.messages) {
       const strings = (await import('@lang/strings')).default;
       props.messages = strings[props.locale];
+    }
+
+    // configure the http client
+    http.setBaseUrl(apiBaseUrl);
+
+    http.addInterceptor(404, () => {
+      Router.push('/not-found');
+    });
+
+    http.addInterceptor(401, () => {
+      Router.push('/login');
+    });
+
+    http.addInterceptor(500, () => {
+      Router.push('/error');
+    });
+
+    // set auth header from the token cookie
+    let token;
+    if (req) {
+    } else {
+    }
+
+    if (token) {
+      http.addHeader('Authorization', `Bearer ${token}`);
     }
 
     return props;
