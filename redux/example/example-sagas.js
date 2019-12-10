@@ -1,6 +1,4 @@
-import { put, delay, call, takeLatest } from 'redux-saga/effects';
-
-import { http } from '@lib/http';
+import { put, delay, takeLatest } from 'redux-saga/effects';
 
 import { exampleActions } from './example-actions';
 

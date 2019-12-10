@@ -20,7 +20,7 @@ describe('Http utilities', () => {
 
   it('should not configure if already configured', () => {
     http.isConfigured = true;
-    const result = Http.configure((client) => {
+    Http.configure(() => {
       // shouldn't run -- assert some contradictions
       expect(true).toBe(false); // skepticism
       expect(false).toBe(true); // wishfulness
