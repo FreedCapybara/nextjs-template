@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Head from 'next/head';
 import styled from 'styled-components';
@@ -33,6 +34,7 @@ const Row = styled.div`
   justify-content: space-around;
 `;
 
+/* istanbul ignore next */
 const Card = styled.a`
   padding: 18px 18px 24px;
   width: 220px;
@@ -46,6 +48,7 @@ const Card = styled.a`
   }
 `;
 
+/* istanbul ignore next */
 const CardTitle = styled.h3`
   margin: 0;
   color: ${({ theme }) => theme.colors.primary};
@@ -59,10 +62,14 @@ const CardDescription = styled.p`
   color: #333;
 `;
 
-class Home extends React.Component {
+export class Home extends React.Component {
 
   componentDidMount() {
     this.props.exampleSaga();
+  }
+
+  decrement = () => {
+    this.props.decrement();
   }
 
   render() {
@@ -98,7 +105,7 @@ class Home extends React.Component {
 
           <Row>
             <Description>Count: {this.props.count}</Description>
-            <button onClick={(e) => this.props.decrement()}>Decrement!</button>
+            <button onClick={this.decrement}>Decrement!</button>
           </Row>
         </Hero>
       </div>
@@ -106,9 +113,16 @@ class Home extends React.Component {
   }
 }
 
+Home.propTypes = {
+  count: PropTypes.number,
+  decrement: PropTypes.func,
+  exampleSaga: PropTypes.func
+};
+
+/* istanbul ignore next */
 const mapStateToProps = state => {
   return {
-    ...state.exampleReducer
+    ...state.exampleState
   };
 };
 

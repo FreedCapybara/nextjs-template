@@ -40,7 +40,8 @@ module.exports = {
     "expect": "readonly",
     "beforeEach": "readonly",
     "afterEach": "readonly",
-    "cy": "readonly"
+    "cy": "readonly",
+    "spyOn": "readonly"
   },
   'ignorePatterns': [
     'node_modules/',

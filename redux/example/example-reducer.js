@@ -2,7 +2,7 @@
 export const exampleInitialState = {
   count: 0,
   error: false
-}
+};
 
 export function exampleReducer(state = exampleInitialState, action) {
 
@@ -26,7 +26,7 @@ export function exampleReducer(state = exampleInitialState, action) {
       };
 
     default:
-      return state
+      return state;
   }
 }
 

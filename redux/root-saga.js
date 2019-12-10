@@ -4,7 +4,7 @@ import { exampleSagas } from './example/example-sagas';
 
 function * rootSaga () {
   yield all([
-    ...exampleSagas()
+    ...exampleSagas
   ]);
 }
 

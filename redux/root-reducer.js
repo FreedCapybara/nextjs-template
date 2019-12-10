@@ -3,10 +3,10 @@ import { combineReducers } from 'redux';
 import { exampleReducer, exampleInitialState } from './example/example-reducer';
 
 export const initialState = {
-  exampleReducer: exampleInitialState
+  exampleState: exampleInitialState
 };
 
 export const rootReducer = () => combineReducers({
-  exampleReducer
+  exampleState: exampleReducer
 });
 

@@ -19,6 +19,7 @@ const NavItem = styled.li`
   padding: 6px 8px;
 `;
 
+/* istanbul ignore next */
 const NavLink = styled.a`
   color: ${({ theme }) => theme.colors.primary};
   text-decoration: none;

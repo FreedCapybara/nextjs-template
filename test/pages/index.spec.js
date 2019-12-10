@@ -1,17 +1,37 @@
 import React from 'react';
 
-import { shallowWrapped, mountWrapped } from '@lib/tests';
+import { shallowWrapped } from '@test/wrapper';
 
-import Home from '@pages/index';
+import { Home } from '@pages/index';
+import { exampleActions } from '@redux/actions';
 
 describe('Home page', () => {
-  it('should render without throwing an error', () => {
-    const component = shallowWrapped(<Home />);
-    expect(component).toBeDefined();
+  let component;
+  let instance;
+
+  let exampleSaga;
+  let decrement;
+
+  beforeEach(() => {
+    exampleSaga = spyOn(exampleActions, 'exampleSaga');
+    decrement = spyOn(exampleActions, 'decrement');
+
+    const actions = { decrement, exampleSaga };
+    component = shallowWrapped(<Home {...actions} />);
+    instance = component.instance();
   });
 
   it('should render without throwing an error', () => {
-    const component = mountWrapped(<Home />);
-    expect(component.find('h1').text()).toBe('Welcome to Next.js!');
+    expect(component).toBeDefined();
+  });
+
+  it('should run exampleSaga on mount', () => {
+    instance.componentDidMount();
+    expect(exampleSaga).toHaveBeenCalled();
+  });
+
+  it('should decrement', () => {
+    instance.decrement();
+    expect(decrement).toHaveBeenCalled();
   });
 });

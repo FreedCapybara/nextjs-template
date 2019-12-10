@@ -14,7 +14,7 @@ const bindMiddleware = middleware => {
     return composeWithDevTools(applyMiddleware(...middleware));
   }
   return applyMiddleware(...middleware);
-}
+};
 
 function configureStore(state = initialState) {
   const sagaMiddleware = createSagaMiddleware();
