@@ -6,11 +6,12 @@ import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
+import cookie from 'cookie';
 
 import { getLocale } from '@lib/i18n';
 import { theme } from '@lib/styles';
 import configureStore from '@redux/store';
-import { http } from '@lib/http';
+import { Http } from '@lib/http';
 
 const apiBaseUrl = process.env.API_BASE_URL || 'http://localhost:3000';
 
@@ -41,6 +42,13 @@ class $App extends App {
 
     const props = { pageProps, locale, messages };
 
+    // This is for setting up the HTTP client in componentDidMount.
+    // Can't set it up here because getInitialProps() only runs once,
+    // but the user might want to do something like click a button to load something,
+    // without having to trigger $App.getInitialProps() by navigating.
+    // (/shrug)
+    this.req = req;
+
     // locale fallbacks
     // for scenarios where server.js isn't running
     // (like in a serverless Zeit/Now deployment)
@@ -53,32 +61,35 @@ class $App extends App {
       props.messages = strings[props.locale];
     }
 
-    // configure the http client
-    http.setBaseUrl(apiBaseUrl);
-
-    http.addInterceptor(404, () => {
-      Router.push('/not-found');
-    });
-
-    http.addInterceptor(401, () => {
-      Router.push('/login');
-    });
-
-    http.addInterceptor(500, () => {
-      Router.push('/error');
-    });
-
-    // set auth header from the token cookie
-    let token;
-    if (req) {
-    } else {
-    }
-
-    if (token) {
-      http.addHeader('Authorization', `Bearer ${token}`);
-    }
-
     return props;
+  }
+
+  componentDidMount() {
+    // configure the http client
+    Http.configure((client) => {
+      client.setBaseUrl(apiBaseUrl);
+
+      client.addInterceptor(404, () => {
+        Router.push('/not-found');
+      });
+
+      client.addInterceptor(401, () => {
+        Router.push('/login');
+      });
+
+      client.addInterceptor(500, () => {
+        Router.push('/error');
+      });
+
+      // set auth header from the token cookie
+      const cookieSource = this.req ? (this.req.headers.cookie || '') : document.cookie;
+      const cookies = cookie.parse(cookieSource);
+      const token = cookies.token;
+
+      if (token) {
+        client.addHeader('Authorization', `Bearer ${token}`);
+      }
+    });
   }
 
   render() {

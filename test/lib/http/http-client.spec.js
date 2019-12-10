@@ -1,10 +1,31 @@
-import { Http } from '@lib/http';
+import { Http, http } from '@lib/http';
 
 describe('Http utilities', () => {
-  let http;
 
   beforeEach(() => {
-    http = new Http();
+    http.isConfigured = false;
+    http.defaults = {
+      baseUrl: '',
+      headers: {},
+      interceptors: {} // 404: (response) => {}
+    };
+  });
+
+  it('should configure', () => {
+    Http.configure((client) => {
+      expect(client).toBeTruthy();
+    });
+    expect(http.isConfigured).toBe(true);
+  });
+
+  it('should not configure if already configured', () => {
+    http.isConfigured = true;
+    const result = Http.configure((client) => {
+      // shouldn't run -- assert some contradictions
+      expect(true).toBe(false); // skepticism
+      expect(false).toBe(true); // wishfulness
+    });
+    expect(http.isConfigured).toBe(true);
   });
 
   it('should set baseUrl', () => {
