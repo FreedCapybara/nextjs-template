@@ -24,8 +24,16 @@ module.exports = {
       lines: 80
     }
   },
+  collectCoverageFrom: [
+    '<rootDir>/pages/**/*.js',
+    '<rootDir>/components/**/*.js',
+    '<rootDir>/lib/**/*.js',
+    '<rootDir>/redux/**/*.js'
+  ],
   coveragePathIgnorePatterns: [
     '<rootDir>/node_modules/',
+    '<rootDir>/pages/_app.js',
+    '<rootDir>/pages/_document.js',
     '<rootDir>/test/wrapper.js',
   ]
 };

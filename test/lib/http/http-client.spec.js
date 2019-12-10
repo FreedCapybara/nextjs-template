@@ -23,7 +23,7 @@ describe('Http utilities', () => {
   });
 
   it('should make requests', () => {
-    const mockResponse = { status: 200, json: () => '' };
+    const mockResponse = { status: 200 };
     const spy = spyOn(http, 'requestFn').and.returnValue(Promise.resolve(mockResponse));
     http.request('/test');
     expect(spy).toHaveBeenCalled();
@@ -64,7 +64,7 @@ describe('Http utilities', () => {
       method: 'GET',
       headers: {}
     };
-    const mockResponse = { status: 200, json: () => '' };
+    const mockResponse = { status: 200 };
     const spy = spyOn(http, 'requestFn').and.returnValue(Promise.resolve(mockResponse));
 
     http.setBaseUrl('http://localhost:3000');
@@ -81,7 +81,7 @@ describe('Http utilities', () => {
         'Authorization': 'test'
       }
     };
-    const mockResponse = { status: 200, json: () => '' };
+    const mockResponse = { status: 200 };
     const spy = spyOn(http, 'requestFn').and.returnValue(Promise.resolve(mockResponse));
 
     http.setBaseUrl('http://localhost:3000');
@@ -92,7 +92,7 @@ describe('Http utilities', () => {
   });
 
   it('should intercept requests', (done) => {
-    const mockResponse = { status: 404, json: () => '' };
+    const mockResponse = { status: 404 };
     spyOn(http, 'requestFn').and.returnValue(Promise.resolve(mockResponse));
 
     http.addInterceptor(404, (response) => {
