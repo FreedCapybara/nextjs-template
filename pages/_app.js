@@ -1,19 +1,16 @@
 import React from 'react';
 import App from 'next/app';
-import Router from 'next/router';
 import { createIntl, createIntlCache, RawIntlProvider } from 'react-intl';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
-import cookie from 'cookie';
 
 import { getLocale } from '@lib/i18n';
 import { theme } from '@lib/styles';
-import configureStore from '@redux/store';
-import { Http } from '@lib/http';
-
-const apiBaseUrl = process.env.API_BASE_URL || 'http://localhost:3000';
+import configureStore from '@config/redux-config';
+import configureHttp from '@config/http-config';
+import configureRouter, { serverRedirect } from '@config/router-config';
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -29,6 +26,15 @@ const cache = createIntlCache();
 class $App extends App {
 
   static async getInitialProps({ Component, ctx }) {
+    const { req, res } = ctx;
+
+    if (req) {
+      if (serverRedirect(req, res)) {
+        return {};
+      }
+    }
+
+    // Get page props
     let pageProps = {};
 
     if (Component.getInitialProps) {
@@ -37,17 +43,9 @@ class $App extends App {
 
     // Get the `locale` and `messages` from the request object on the server.
     // In the browser, use the same values that the server serialized.
-    const { req } = ctx;
     const { locale, messages } = req || window.__NEXT_DATA__.props;
 
     const props = { pageProps, locale, messages };
-
-    // This is for setting up the HTTP client in componentDidMount.
-    // Can't set it up here because getInitialProps() only runs once,
-    // but the user might want to do something like click a button to load something,
-    // without having to trigger $App.getInitialProps() by navigating.
-    // (/shrug)
-    this.req = req;
 
     // locale fallbacks
     // for scenarios where server.js isn't running
@@ -61,35 +59,18 @@ class $App extends App {
       props.messages = strings[props.locale];
     }
 
+    if (req) {
+      // configure the http client (server-only)
+      configureHttp(req);
+    }
+
     return props;
   }
 
+  // note componentDidMount is client-only and runs once
   componentDidMount() {
-    // configure the http client
-    Http.configure((client) => {
-      client.setBaseUrl(apiBaseUrl);
-
-      client.addInterceptor(404, () => {
-        Router.push('/not-found');
-      });
-
-      client.addInterceptor(401, () => {
-        Router.push('/login');
-      });
-
-      client.addInterceptor(500, () => {
-        Router.push('/error');
-      });
-
-      // set auth header from the token cookie
-      const cookieSource = this.req ? (this.req.headers.cookie || '') : document.cookie;
-      const cookies = cookie.parse(cookieSource);
-      const token = cookies.token;
-
-      if (token) {
-        client.addHeader('Authorization', `Bearer ${token}`);
-      }
-    });
+    configureHttp();
+    configureRouter();
   }
 
   render() {
