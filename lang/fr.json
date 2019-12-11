@@ -1,8 +1,21 @@
 {
-  "title": "React Intl Next.js Exemple",
-  "nav-home": "Hoame",
-  "nav-zeit": "ZEIT",
-  "nav-github": "GeetHoob",
-  "description": "Un exemple d'application intégrant React Intl avec Next.js",
-  "greeting": "Bonjour le monde!"
+  "nav.home": "Accueil",
+  "nav.zeit": "ZEIT",
+  "nav.github": "GitHub",
+  "error.title": "Erreur",
+  "error.description": "Noooooooo! Pourquoi y a-t-il eu une erreur? Il ne devrait pas y avoir d'erreurs!",
+  "index.hero-title": "Bienvenue dans Next.js!",
+  "index.hero-description": "Pour commencer, éditez pages / index.js et enregistrez pour recharger.",
+  "index.documentation-title": "Documentation",
+  "index.documentation-description": "En savoir plus sur Next.js dans la documentation.",
+  "index.learn-title": "Next.js Learn",
+  "index.learn-description": "Découvrez Next.js en suivant un didacticiel interactif!",
+  "index.examples-title": "Exemples",
+  "index.examples-description": "Trouvez d'autres exemples de passe-partout sur le Next.js GitHub.",
+  "index.example-saga-label": "Count:",
+  "index.example-saga-button": "Décrémenter!",
+  "login.title": "Login",
+  "login.description": "Prochainement",
+  "not-found.title": "Introuvable!",
+  "not-found.description": "Vous ne trouvez pas? Eh bien, que cherchiez-vous?"
 }

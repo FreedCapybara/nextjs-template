@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import styled from 'styled-components';
 
 import { Nav } from '@components/nav';
@@ -23,6 +23,12 @@ const Description = styled.p`
   text-align: center;
 `;
 
+const pageTitle = {
+  id: 'error.page-title',
+  defaultMessage: 'Error',
+  description: 'Page title',
+};
+
 export class Error extends React.Component {
 
   render() {
@@ -30,7 +36,7 @@ export class Error extends React.Component {
       <div>
         <Head>
           <title>
-            <FormattedMessage id="error.title" defaultMessage="Error" description="Page title" />
+            {this.props.intl.formatMessage(pageTitle)}
           </title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
@@ -50,5 +56,5 @@ export class Error extends React.Component {
   }
 }
 
-export default Error;
+export default injectIntl(Error);
 

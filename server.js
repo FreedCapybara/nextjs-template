@@ -59,7 +59,7 @@ app.prepare().then(() => {
     const locale = accept.language(supportedLanguages) || 'en';
     req.locale = locale;
     req.localeDataScript = getLocaleDataScript(locale);
-    //req.messages = dev ? {} : getMessages(locale); // why only in dev?
+    //req.messages = dev ? {} : getMessages(locale); // why not in dev?
     req.messages = getMessages(locale);
     handle(req, res);
   }).listen(port, err => {

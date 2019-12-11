@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import styled from 'styled-components';
 
 import { Nav } from '@components/nav';
@@ -23,6 +23,12 @@ const Description = styled.p`
   text-align: center;
 `;
 
+const pageTitle = {
+  id: 'not-found.page-title',
+  defaultMessage: 'Not found',
+  description: 'Page title',
+};
+
 export class NotFound extends React.Component {
 
   render() {
@@ -30,7 +36,7 @@ export class NotFound extends React.Component {
       <div>
         <Head>
           <title>
-            <FormattedMessage id="not-found.title" defaultMessage="Not found!" description="Page title" />
+            {this.props.intl.formatMessage(pageTitle)}
           </title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
@@ -50,5 +56,5 @@ export class NotFound extends React.Component {
   }
 }
 
-export default NotFound;
+export default injectIntl(NotFound);
 

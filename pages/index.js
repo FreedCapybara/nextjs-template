@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import Head from 'next/head';
 import styled from 'styled-components';
 
@@ -63,6 +63,12 @@ const CardDescription = styled.p`
   color: #333;
 `;
 
+const pageTitle = {
+  id: 'index.page-title',
+  defaultMessage: 'Home',
+  description: 'Page title',
+};
+
 export class Home extends React.Component {
 
   componentDidMount() {
@@ -78,7 +84,7 @@ export class Home extends React.Component {
       <div>
         <Head>
           <title>
-            <FormattedMessage id="index.title" defaultMessage="Home" description="Page title" />
+            {this.props.intl.formatMessage(pageTitle)}
           </title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
@@ -151,5 +157,5 @@ const mapDispatchToProps = {
   ...exampleActions
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Home));
 

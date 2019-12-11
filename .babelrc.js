@@ -5,7 +5,9 @@ module.exports = {
   "env": {
     "development": {
       "plugins": [
-        "react-intl",
+        ["react-intl", {
+          "messagesDir": "lang/.messages/"
+        }],
         "styled-components"
       ]
     },

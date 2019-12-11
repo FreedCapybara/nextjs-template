@@ -29,7 +29,6 @@ export default class $Document extends Document {
     // styled-components SSR
     // See https://github.com/zeit/next.js/tree/master/examples/with-styled-components
     const styleSheet = new ServerStyleSheet();
-
     const originalRenderPage = ctx.renderPage;
 
     try {
