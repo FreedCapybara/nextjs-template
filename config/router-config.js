@@ -6,7 +6,7 @@ const authenticatedRoutes = [
 ];
 
 function isRestrictedRoute(url) {
-  return _.find(authenticatedRoutes, (pattern) => url.match(pattern))
+  return _.find(authenticatedRoutes, (pattern) => url.match(pattern));
 }
 
 export function serverRedirect(req, res) {
@@ -33,7 +33,7 @@ function clientRedirect(url) {
 
 function configureRouter() {
   Router.events.on('routeChangeStart', clientRedirect);
-};
+}
 
 export default configureRouter;
 
