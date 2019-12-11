@@ -16,5 +16,10 @@ const defaultMessages = glob
     return messages;
   }, {});
 
-writeFileSync('./lang/en.json', JSON.stringify(defaultMessages, null, 2));
+const strings = readFileSync('./lang/en.json', 'utf8');
+const messages = {
+  ...JSON.parse(strings),
+  ...defaultMessages
+};
+writeFileSync('./lang/en.json', JSON.stringify(messages, null, 2));
 console.log(`> Wrote default messages to: "${resolve('./lang/en.json')}"`);
