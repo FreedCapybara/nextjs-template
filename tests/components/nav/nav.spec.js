@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { shallowWrapped } from '@test/wrapper';
+import { shallowWrapped } from '@tests/wrapper';
 
 import { Nav } from '@components/nav';
 

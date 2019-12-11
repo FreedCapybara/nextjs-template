@@ -14,7 +14,7 @@ module.exports = {
     "@lang(.*)$": "<rootDir>/lang/$1",
     "@lib(.*)$": "<rootDir>/lib/$1",
     "@redux(?!-)(.*)$": "<rootDir>/redux/$1",
-    "@test(.*)$": "<rootDir>/test/$1",
+    "@tests(.*)$": "<rootDir>/tests/$1",
     "@config(.*)$": "<rootDir>/config/$1"
   },
   coverageThreshold: {
@@ -36,6 +36,6 @@ module.exports = {
     '<rootDir>/config/',
     '<rootDir>/pages/_app.js',
     '<rootDir>/pages/_document.js',
-    '<rootDir>/test/wrapper.js'
+    '<rootDir>/tests/wrapper.js'
   ]
 };

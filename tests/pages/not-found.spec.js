@@ -1,14 +1,14 @@
 import React from 'react';
 
-import { shallowWrapped } from '@test/wrapper';
+import { shallowWrapped } from '@tests/wrapper';
 
-import { Login } from '@pages/login';
+import { NotFound } from '@pages/not-found';
 
-describe('Login page', () => {
+describe('NotFound page', () => {
   let component;
 
   beforeEach(() => {
-    component = shallowWrapped(<Login />);
+    component = shallowWrapped(<NotFound />);
   });
 
   it('should render without throwing an error', () => {

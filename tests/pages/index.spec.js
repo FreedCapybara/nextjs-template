@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { shallowWrapped } from '@test/wrapper';
+import { shallowWrapped } from '@tests/wrapper';
 
 import { Home } from '@pages/index';
 import { exampleActions } from '@redux/actions';
