@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 
 import { Nav } from '@components/nav';
@@ -28,16 +29,20 @@ export class Error extends React.Component {
     return (
       <div>
         <Head>
-          <title>Error</title>
+          <title>
+            <FormattedMessage id="error.title" defaultMessage="Error" description="Page title" />
+          </title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <Nav title="Home" />
+        <Nav />
 
         <Hero>
-          <Title>Error!</Title>
+          <Title>
+            <FormattedMessage id="error.title" defaultMessage="Error" description="Page title" />
+          </Title>
           <Description>
-            Noooooooo! Why was there an error? There shouldn&apos;t be errors!
+            <FormattedMessage id="error.description" defaultMessage="Noooooooo! Why was there an error? There shouldn't be errors!" description="Page description" />
           </Description>
         </Hero>
       </div>

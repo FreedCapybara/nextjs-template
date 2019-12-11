@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 
 import { Nav } from '@components/nav';
@@ -28,16 +29,20 @@ export class Login extends React.Component {
     return (
       <div>
         <Head>
-          <title>Login</title>
+          <title>
+            <FormattedMessage id="login.title" defaultMessage="Login" description="Page title" />
+          </title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <Nav title="Home" />
+        <Nav />
 
         <Hero>
-          <Title>Login</Title>
+          <Title>
+            <FormattedMessage id="login.title" defaultMessage="Login" description="Page title" />
+          </Title>
           <Description>
-            Coming soon
+            <FormattedMessage id="login.description" defaultMessage="Coming soon" description="Page description" />
           </Description>
         </Hero>
       </div>

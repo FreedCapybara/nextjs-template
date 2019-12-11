@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 
 import { Nav } from '@components/nav';
@@ -28,16 +29,20 @@ export class NotFound extends React.Component {
     return (
       <div>
         <Head>
-          <title>Not found</title>
+          <title>
+            <FormattedMessage id="not-found.title" defaultMessage="Not found!" description="Page title" />
+          </title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <Nav title="Home" />
+        <Nav />
 
         <Hero>
-          <Title>Not found!</Title>
+          <Title>
+            <FormattedMessage id="not-found.title" defaultMessage="Not found!" description="Page title" />
+          </Title>
           <Description>
-            Not found? Well, what were you looking for?
+            <FormattedMessage id="not-found.description" defaultMessage="Not found? Well, what were you looking for?" description="Page description" />
           </Description>
         </Hero>
       </div>

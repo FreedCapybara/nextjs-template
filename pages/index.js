@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 import Head from 'next/head';
 import styled from 'styled-components';
 
@@ -76,36 +77,56 @@ export class Home extends React.Component {
     return (
       <div>
         <Head>
-          <title>Home</title>
+          <title>
+            <FormattedMessage id="index.title" defaultMessage="Home" description="Page title" />
+          </title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <Nav title="Logo" />
+        <Nav />
 
         <Hero>
-          <Title>Welcome to Next.js!</Title>
+          <Title>
+            <FormattedMessage id="index.hero-title" defaultMessage="Welcome to Next.js!" description="Hero title" />
+          </Title>
           <Description>
-            To get started, edit <code>pages/index.js</code> and save to reload.
+            <FormattedMessage id="index.hero-description" defaultMessage="To get started, edit pages/index.js and save to reload." description="Hero description" />
           </Description>
 
           <Row>
             <Card href="https://nextjs.org/docs">
-              <CardTitle>Documentation &rarr;</CardTitle>
-              <CardDescription>Learn more about Next.js in the documentation.</CardDescription>
+              <CardTitle>
+                <FormattedMessage id="index.documentation-title" defaultMessage="Documentation" description="Card title" />
+              </CardTitle>
+              <CardDescription>
+                <FormattedMessage id="index.documentation-description" defaultMessage="Learn more about Next.js in the documentation." description="Card description" />
+              </CardDescription>
             </Card>
             <Card href="https://nextjs.org/learn">
-              <CardTitle>Next.js Learn &rarr;</CardTitle>
-              <CardDescription>Learn about Next.js by following an interactive tutorial!</CardDescription>
+              <CardTitle>
+                <FormattedMessage id="index.learn-title" defaultMessage="Next.js Learn" description="Card title" />
+              </CardTitle>
+              <CardDescription>
+                <FormattedMessage id="index.learn-description" defaultMessage="Learn about Next.js by following an interactive tutorial!" description="Card description" />
+              </CardDescription>
             </Card>
             <Card href="https://github.com/zeit/next.js/tree/master/examples">
-              <CardTitle>Examples &rarr;</CardTitle>
-              <CardDescription>Find other example boilerplates on the Next.js GitHub.</CardDescription>
+              <CardTitle>
+                <FormattedMessage id="index.examples-title" defaultMessage="Examples" description="Card title" />
+              </CardTitle>
+              <CardDescription>
+                <FormattedMessage id="index.examples-description" defaultMessage="Find other example boilerplates on the Next.js GitHub." description="Card description" />
+              </CardDescription>
             </Card>
           </Row>
 
           <Row>
-            <Description>Count: {this.props.count}</Description>
-            <button onClick={this.decrement}>Decrement!</button>
+            <Description>
+              <FormattedMessage id="index.example-saga-label" defaultMessage="Count:" description="Data label" /> {this.props.count}
+            </Description>
+            <button onClick={this.decrement}>
+              <FormattedMessage id="index.example-saga-button" defaultMessage="Decrement!" description="Button text" />
+            </button>
           </Row>
         </Hero>
       </div>

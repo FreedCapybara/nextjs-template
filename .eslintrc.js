@@ -52,6 +52,7 @@ module.exports = {
   ],
   'rules': {
     'semi': [ 'error', 'always' ],
+    'react/jsx-no-literals': 'error',
     'formatjs/enforce-placeholders': 'error',
     'formatjs/blacklist-elements': 'error',
     'formatjs/enforce-description': 'error',
@@ -61,6 +62,6 @@ module.exports = {
     'formatjs/no-multiple-plurals': 'error',
     'formatjs/no-offset': 'error',
     'formatjs/supported-datetime-skeleton': 'error',
-    'jsx-a11y/anchor-is-valid': 'off' // the <Link><a /></Link> stuff screws this up
+    'jsx-a11y/anchor-is-valid': 'off' // the Next.js <Link><a /></Link> screws this up
   }
 };
