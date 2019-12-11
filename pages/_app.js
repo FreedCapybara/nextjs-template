@@ -7,7 +7,7 @@ import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 
 import { getLocale } from '@lib/i18n';
-import { theme } from '@lib/styles';
+import { theme } from '@config/theme';
 import configureStore from '@config/redux-config';
 import configureHttp from '@config/http-config';
 import configureRouter, { serverRedirect } from '@config/router-config';

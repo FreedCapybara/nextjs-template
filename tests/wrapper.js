@@ -13,7 +13,7 @@ import { IntlProvider } from 'react-intl';
 import { mount, shallow } from 'enzyme';
 import { ThemeProvider } from 'styled-components';
 
-import { theme } from '@lib/styles';
+import { theme } from '@config/theme';
 
 // You can pass your messages to the IntlProvider. Optional: remove if unneeded.
 const messages = require('@lang/en'); // en.json
