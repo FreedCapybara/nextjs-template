@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { shallowWrapped } from '@tests/wrapper';
+import { IntlMock } from '@tests/mocks';
 
 import { Home } from '@pages/index';
 import { exampleActions } from '@redux/actions';
@@ -17,7 +18,7 @@ describe('Home page', () => {
     decrement = spyOn(exampleActions, 'decrement');
 
     const actions = { decrement, exampleSaga };
-    component = shallowWrapped(<Home {...actions} />);
+    component = shallowWrapped(<Home {...actions} intl={new IntlMock()} />);
     instance = component.instance();
   });
 

@@ -1,14 +1,15 @@
 import React from 'react';
 
 import { shallowWrapped } from '@tests/wrapper';
+import { IntlMock } from '@tests/mocks';
 
-import { Error } from '@pages/error';
+import { NotFound } from '@pages/_error';
 
-describe('Error page', () => {
+describe('NotFound page', () => {
   let component;
 
   beforeEach(() => {
-    component = shallowWrapped(<Error />);
+    component = shallowWrapped(<NotFound intl={new IntlMock()} />);
   });
 
   it('should render without throwing an error', () => {

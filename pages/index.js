@@ -141,6 +141,7 @@ export class Home extends React.Component {
 }
 
 Home.propTypes = {
+  intl: PropTypes.object,
   count: PropTypes.number,
   decrement: PropTypes.func,
   exampleSaga: PropTypes.func

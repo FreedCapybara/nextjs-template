@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import styled from 'styled-components';
@@ -55,6 +56,10 @@ export class Login extends React.Component {
     );
   }
 }
+
+Login.propTypes = {
+  intl: PropTypes.object
+};
 
 export default injectIntl(Login);
 

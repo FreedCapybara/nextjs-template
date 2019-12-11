@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import styled from 'styled-components';
@@ -24,12 +25,12 @@ const Description = styled.p`
 `;
 
 const pageTitle = {
-  id: 'error.page-title',
-  defaultMessage: 'Error',
+  id: 'not-found.page-title',
+  defaultMessage: 'Not found',
   description: 'Page title',
 };
 
-export class Error extends React.Component {
+export class NotFound extends React.Component {
 
   render() {
     return (
@@ -45,10 +46,10 @@ export class Error extends React.Component {
 
         <Hero>
           <Title>
-            <FormattedMessage id="error.title" defaultMessage="Error" description="Page title" />
+            <FormattedMessage id="not-found.title" defaultMessage="Not found!" description="Page title" />
           </Title>
           <Description>
-            <FormattedMessage id="error.description" defaultMessage="Noooooooo! Why was there an error? There shouldn't be errors!" description="Page description" />
+            <FormattedMessage id="not-found.description" defaultMessage="Not found? Well, what were you looking for?" description="Page description" />
           </Description>
         </Hero>
       </div>
@@ -56,5 +57,9 @@ export class Error extends React.Component {
   }
 }
 
-export default injectIntl(Error);
+NotFound.propTypes = {
+  intl: PropTypes.object
+};
+
+export default injectIntl(NotFound);
 
