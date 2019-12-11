@@ -7,12 +7,9 @@ module.exports = {
   'extends': [
     'eslint:recommended',
     'plugin:react/recommended',
-    'plugin:jsx-a11y/recommended'
+    'plugin:jsx-a11y/recommended',
+    'plugin:security/recommended'
   ],
-  'globals': {
-    'Atomics': 'readonly',
-    'SharedArrayBuffer': 'readonly'
-  },
   'parser': 'babel-eslint',
   'parserOptions': {
     'ecmaFeatures': {
@@ -25,7 +22,8 @@ module.exports = {
   'plugins': [
     'react',
     'formatjs',
-    'jsx-a11y'
+    'jsx-a11y',
+    'security'
   ],
   'settings': {
     'react': {
@@ -35,16 +33,19 @@ module.exports = {
   // couldn't get rule overrides to work for spec files
   // wanted no-undef off for *.spec.js
   "globals": {
-    "describe": "readonly",
-    "it": "readonly",
-    "expect": "readonly",
-    "beforeEach": "readonly",
-    "afterEach": "readonly",
-    "cy": "readonly",
-    "spyOn": "readonly"
+    'Atomics': 'readonly',
+    'SharedArrayBuffer': 'readonly',
+    'describe': 'readonly',
+    'it': 'readonly',
+    'expect': 'readonly',
+    'beforeEach': 'readonly',
+    'afterEach': 'readonly',
+    'cy': 'readonly',
+    'spyOn': 'readonly'
   },
   'ignorePatterns': [
     'node_modules/',
+    'scripts/', // don't actally want this -- but eslint-plugin-disable isn't working for disabling some security warnings
     'cypress/integration/examples/',
     'cypress/plugins/',
     'cypress/support/'

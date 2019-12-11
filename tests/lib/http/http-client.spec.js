@@ -28,21 +28,6 @@ describe('Http utilities', () => {
     expect(http.isConfigured).toBe(true);
   });
 
-  it('should set baseUrl', () => {
-    http.setBaseUrl('http://localhost:3000');
-    expect(http.defaults.baseUrl).toBe('http://localhost:3000');
-  });
-
-  it('should add headers', () => {
-    http.addHeader('Authorization', 'test');
-    expect(http.defaults.headers['Authorization']).toBe('test');
-  });
-
-  it('should add interceptors', () => {
-    http.addInterceptor(404, () => console.log('test'));
-    expect(http.defaults.interceptors[404]).toBeTruthy();
-  });
-
   it('should make requests', () => {
     const mockResponse = { status: 200 };
     const spy = spyOn(http, 'requestFn').and.returnValue(Promise.resolve(mockResponse));
@@ -88,7 +73,7 @@ describe('Http utilities', () => {
     const mockResponse = { status: 200 };
     const spy = spyOn(http, 'requestFn').and.returnValue(Promise.resolve(mockResponse));
 
-    http.setBaseUrl('http://localhost:3000');
+    http.defaults.baseUrl = 'http://localhost:3000';
     http.request('/test', 'GET');
 
     expect(spy).toHaveBeenCalledWith('http://localhost:3000/test', expectedOptions);
@@ -105,8 +90,8 @@ describe('Http utilities', () => {
     const mockResponse = { status: 200 };
     const spy = spyOn(http, 'requestFn').and.returnValue(Promise.resolve(mockResponse));
 
-    http.setBaseUrl('http://localhost:3000');
-    http.addHeader('Authorization', 'test');
+    http.defaults.baseUrl = 'http://localhost:3000';
+    http.defaults.headers['Authorization'] = 'test';
     http.request('/test', 'GET', undefined, { headers: { 'Content-Type': 'application/test' } });
 
     expect(spy).toHaveBeenCalledWith('http://localhost:3000/test', expectedOptions);
@@ -116,10 +101,10 @@ describe('Http utilities', () => {
     const mockResponse = { status: 404 };
     spyOn(http, 'requestFn').and.returnValue(Promise.resolve(mockResponse));
 
-    http.addInterceptor(404, (response) => {
+    http.defaults.interceptors[404] = (response) => {
       expect(response.status).toBe(404);
       done();
-    });
+    };
 
     http.request('/test');
   });

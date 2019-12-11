@@ -7,19 +7,19 @@ const apiBaseUrl = process.env.API_BASE_URL || 'http://localhost:3000';
 function configureHttp(req) {
   // configure the http client
   Http.configure((client) => {
-    client.setBaseUrl(apiBaseUrl);
+    client.defaults.baseUrl = apiBaseUrl;
 
-    client.addInterceptor(404, () => {
+    client.defaults.interceptors[404] = () => {
       Router.push('/not-found');
-    });
+    };
 
-    client.addInterceptor(401, () => {
+    client.defaults.interceptors[401] = () => {
       Router.push('/login');
-    });
+    };
 
-    client.addInterceptor(500, () => {
+    client.defaults.interceptors[500] = () => {
       Router.push('/error');
-    });
+    };
 
     // set auth header from the token cookie
     const cookieSource = req ? (req.headers.cookie || '') : document.cookie;

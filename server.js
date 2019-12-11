@@ -40,7 +40,17 @@ const getLocaleDataScript = locale => {
 // locale. These will only be used in production, in dev the `defaultMessage` in
 // each message description in the source code will be used.
 const getMessages = locale => {
-  return require(`./lang/${locale}.json`);
+  // tedious, but fixes security warnings about non-literal arguments to require()
+  // and doesn't replace them with warnings about generic object injection.
+  switch (locale) {
+    case 'en':
+      return require('./lang/en.json');
+    case 'fr':
+      return require('./lang/fr.json');
+    default:
+      return undefined;
+  }
+  //return require(`./lang/${locale}.json`);
 };
 
 app.prepare().then(() => {
