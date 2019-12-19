@@ -18,8 +18,10 @@ function configureHttp(req) {
     };
 
     client.defaults.interceptors[500] = () => {
-      Router.push('/error');
+      Router.push('/server-error');
     };
+
+    client.defaults.headers['Content-Type'] = 'application/json';
 
     // set auth header from the token cookie
     const cookieSource = req ? (req.headers.cookie || '') : document.cookie;
@@ -27,7 +29,7 @@ function configureHttp(req) {
     const token = cookies.token;
 
     if (token) {
-      client.addHeader('Authorization', `Bearer ${token}`);
+      client.defaults.headers['Authorization'] = `Bearer ${token}`;
     }
   });
 }
