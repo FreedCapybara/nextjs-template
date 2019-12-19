@@ -42,7 +42,7 @@ export class NotFound extends React.Component {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <Nav />
+        <Nav intl={this.props.intl} />
 
         <Hero>
           <Title>
