@@ -1,6 +1,7 @@
 import { Http } from '@lib/http';
-import cookie from 'cookie';
 import Router from 'next/router';
+import cookie from 'cookie';
+import Cookies from 'js-cookie';
 
 const apiBaseUrl = process.env.API_BASE_URL || 'http://localhost:3000';
 
@@ -14,6 +15,12 @@ function configureHttp(req) {
     };
 
     client.defaults.interceptors[401] = () => {
+      Cookies.remove('token');
+      Router.push('/login');
+    };
+
+    client.defaults.interceptors[403] = () => {
+      Cookies.remove('token');
       Router.push('/login');
     };
 
