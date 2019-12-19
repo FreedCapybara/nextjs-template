@@ -31,7 +31,7 @@ describe('Auth sagas', () => {
     const sagaOptions = {
       dispatch: (action) => dispatched.push(action)
     };
-    const result = await runSaga(sagaOptions, loginSaga, {}).toPromise();
+    await runSaga(sagaOptions, loginSaga, {}).toPromise();
 
     expect(dispatched).toContainEqual(authActions.setUser(mockUser));
   });
@@ -51,7 +51,7 @@ describe('Auth sagas', () => {
     const sagaOptions = {
       dispatch: (action) => dispatched.push(action)
     };
-    const result = await runSaga(sagaOptions, loginSaga, {}).toPromise();
+    await runSaga(sagaOptions, loginSaga, {}).toPromise();
 
     expect(dispatched).toContainEqual(authActions.setError(true));
   });
@@ -64,7 +64,7 @@ describe('Auth sagas', () => {
     const sagaOptions = {
       dispatch: (action) => dispatched.push(action)
     };
-    const result = await runSaga(sagaOptions, logoutSaga, {}).toPromise();
+    await runSaga(sagaOptions, logoutSaga, {}).toPromise();
 
     expect(dispatched).toContainEqual(authActions.setUser({}));
   });
@@ -84,7 +84,7 @@ describe('Auth sagas', () => {
     const sagaOptions = {
       dispatch: (action) => dispatched.push(action)
     };
-    const result = await runSaga(sagaOptions, getUserSaga, {}).toPromise();
+    await runSaga(sagaOptions, getUserSaga, {}).toPromise();
 
     expect(dispatched).toContainEqual(authActions.setUser(mockUser));
   });
