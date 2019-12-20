@@ -35,6 +35,18 @@ class $App extends App {
       }
     }
 
+    if (req) {
+      // configure the http client (server-only)
+      configureHttp(req);
+
+      // preload user data -- pretty sure this is only required on the server
+      // because:
+      //   1. if the user is authenticated, the server sends the user state as initial props
+      //   2. if the user is not authenticated, then they have to log in, which populates the user state
+      //   3. if the user refreshes the page after logging in, we're back at scenario #1
+      store.dispatch(authActions.getUser());
+    }
+
     // Get page props
     let pageProps = {};
 
@@ -58,18 +70,6 @@ class $App extends App {
     if (!props.messages) {
       const strings = (await import('@lang/strings')).default;
       props.messages = strings[props.locale];
-    }
-
-    if (req) {
-      // configure the http client (server-only)
-      configureHttp(req);
-
-      // preload user data -- pretty sure this is only required on the server
-      // because:
-      //   1. if the user is authenticated, the server sends the user state as initial props
-      //   2. if the user is not authenticated, then they have to log in, which populates the user state
-      //   3. if the user refreshes the page after logging in, we're back at scenario #1
-      store.dispatch(authActions.getUser());
     }
 
     return props;
