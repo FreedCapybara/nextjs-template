@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import styled from 'styled-components';
 
 import { Nav } from '@components/nav';
@@ -24,20 +24,24 @@ const Description = styled.p`
   text-align: center;
 `;
 
-const pageTitle = {
-  id: 'error.page-title',
-  defaultMessage: 'Error',
-  description: 'Page title',
-};
+const messages = defineMessages({
+  pageTitle: {
+    id: 'error.page-title',
+    defaultMessage: 'Error',
+    description: 'Page title',
+  }
+});
 
 export class ServerError extends React.Component {
 
   render() {
+    const { formatMessage } = this.props.intl;
+
     return (
       <div>
         <Head>
           <title>
-            {this.props.intl.formatMessage(pageTitle)}
+            {formatMessage(pageTitle)}
           </title>
           <link rel="icon" href="/favicon.ico" />
         </Head>

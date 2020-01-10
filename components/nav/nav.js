@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, defineMessages } from 'react-intl';
 import styled from 'styled-components';
 
 const NavBar = styled.nav`
@@ -26,21 +26,26 @@ const NavLink = styled.a`
   font-size: 13px;
 `;
 
-const homeLink = {
-  id: 'nav.home',
-  defaultMessage: 'Home',
-  description: 'Home navigation link',
-};
+const messages = defineMessages({
+  homeLink: {
+    id: 'nav.home',
+    defaultMessage: 'Home',
+    description: 'Home navigation link',
+  }
+});
 
 export class Nav extends React.Component {
+
   render() {
+    const { formatMessage } = this.props.intl;
+
     return (
       <NavBar>
         <NavItems>
           <NavItem>
             <Link href="/" passHref>
               <NavLink>
-                {this.props.intl.formatMessage(homeLink)}
+                {formatMessage(messages.homeLink)}
               </NavLink>
             </Link>
           </NavItem>
