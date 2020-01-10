@@ -11,7 +11,7 @@ import { theme } from '@config/theme';
 import configureStore from '@config/redux-config';
 import configureHttp from '@config/http-config';
 import configureRouter, { serverRedirect } from '@config/router-config';
-import { authActions } from '@redux/actions';
+import { authActions } from '@redux/actions'; // eslint-disable-line no-unused-vars
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -27,7 +27,7 @@ const cache = createIntlCache();
 class $App extends App {
 
   static async getInitialProps({ Component, ctx }) {
-    const { req, res, store } = ctx;
+    const { req, res, store } = ctx; // eslint-disable-line no-unused-vars
 
     if (req) {
       if (serverRedirect(req, res)) {

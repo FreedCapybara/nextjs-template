@@ -41,7 +41,7 @@ export class ServerError extends React.Component {
       <div>
         <Head>
           <title>
-            {formatMessage(pageTitle)}
+            {formatMessage(messages.pageTitle)}
           </title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
