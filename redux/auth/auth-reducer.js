@@ -1,7 +1,7 @@
 
 export const authInitialState = {
   user: {},
-  error: false
+  authError: false
 };
 
 export function authReducer(state = authInitialState, action) {
@@ -19,7 +19,7 @@ export function authReducer(state = authInitialState, action) {
       return {
         ...state,
         ...{
-          error: action.error
+          authError: action.authError
         }
       };
 
