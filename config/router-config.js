@@ -3,28 +3,36 @@ import cookie from 'cookie';
 import _ from 'lodash';
 
 const authenticatedRoutes = [
+  '^((?!(/login|/server-error|/not-found|/create-account)).)*$'
 ];
 
-function isRestrictedRoute(url) {
-  return _.find(authenticatedRoutes, (pattern) => url.match(pattern));
+function isRestrictedRoute(url, routes) {
+  return _.find((routes || authenticatedRoutes), (pattern) => url.match(pattern));
+}
+
+export function createRedirect(res, location) {
+  res.writeHead(302, {
+    Location: location
+  });
+  res.end();
 }
 
 export function serverRedirect(req, res) {
   const cookies = cookie.parse(req.headers.cookie || '');
+
   const isAuthenticated = !!cookies.token;
-  const shouldRedirect = !isAuthenticated && isRestrictedRoute(req.url);
-  if (shouldRedirect) {
+  if (!isAuthenticated && isRestrictedRoute(req.url)) {
     // See https://github.com/zeit/next.js/wiki/Redirecting-in-%60getInitialProps%60
-    res.writeHead(302, {
-      Location: '/login'
-    });
-    res.end();
+    createRedirect(res, '/login');
+    return true;
   }
-  return shouldRedirect;
+
+  return false; // did not redirect
 }
 
 function clientRedirect(url) {
   const cookies = cookie.parse(document.cookie || '');
+
   const isAuthenticated = !!cookies.token;
   if (!isAuthenticated && isRestrictedRoute(url)) {
     window.location.replace('/login');
