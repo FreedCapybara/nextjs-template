@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Head from 'next/head';
 
-import { Nav } from '@components/nav';
 import { LoadingSpinner, Modal } from '@components/elements';
 
 /* istanbul ignore next */

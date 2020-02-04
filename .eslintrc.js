@@ -41,7 +41,8 @@ module.exports = {
     'beforeEach': 'readonly',
     'afterEach': 'readonly',
     'cy': 'readonly',
-    'spyOn': 'readonly'
+    'spyOn': 'readonly',
+    'jest': 'readonly'
   },
   'ignorePatterns': [
     'node_modules/',

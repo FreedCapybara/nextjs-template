@@ -1,7 +1,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Head from 'next/head';
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import Link from 'next/link';
 import styled from 'styled-components';

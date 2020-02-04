@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
-import Head from 'next/head';
 import Link from 'next/link';
 import styled from 'styled-components';
 
 import { authActions } from '@redux/actions';
 import { CenteredLayout } from '@components/layout';
-import { Logo, FormField, LoadingSpinner, Button } from '@components/elements';
+import { Logo, FormField, Button } from '@components/elements';
 
 /* istanbul ignore next */
 const LoginForm = styled.form`

@@ -27,6 +27,8 @@ export class Logo extends React.Component {
 }
 
 Logo.propTypes = {
-  src: PropTypes.string
+  src: PropTypes.string,
+  height: PropTypes.string,
+  desktopHeight: PropTypes.string
 };
 

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, FormattedMessage, defineMessages } from 'react-intl';
-import _ from 'lodash';
 
 import { MainLayout } from '@components/layout';
 
@@ -22,9 +21,9 @@ export class Home extends React.Component {
     return (
       <MainLayout title={formatMessage(messages.pageTitleText)}>
 
-        <h2>
+        <h1>
           <FormattedMessage id="home.title" defaultMessage="Home" description="Home page title" />
-        </h2>
+        </h1>
 
       </MainLayout>
     );
