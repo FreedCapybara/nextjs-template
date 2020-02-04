@@ -5,8 +5,8 @@ import Cookies from 'js-cookie';
 
 import { createRedirect } from '@config/router-config';
 
-const apiBaseUrl = process.env.API_BASE_URL || 'https://localhost:3000';
 const dev = process.env.NODE_ENV !== 'production';
+const apiBaseUrl = process.env.API_BASE_URL || (dev ? 'https://localhost:3000' : 'https://prod-url');
 
 function universalRedirect(res, location) {
   if (res) {
