@@ -28,7 +28,7 @@ const Description = styled.p`
 `;
 
 const messages = defineMessages({
-  pageTitle: {
+  pageTitleText: {
     id: 'not-found.page-title',
     defaultMessage: 'Not found',
     description: 'Page title',

@@ -1,9 +1,9 @@
 import { http } from '@lib/http';
 
 export const authApi = {
-  login: (credentials) => http.post(`/api/auth/login`, credentials),
-  register: (credentials) => http.post(`/api/auth/register`, credentials),
-  logout: () => http.post(`/api/auth/logout`),
-  getUser: () => http.get(`/api/auth/user`)
+  login: (credentials) => http.post(`/auth/login`, credentials),
+  register: (credentials) => http.post(`/auth/register`, credentials),
+  logout: () => http.post(`/auth/logout`),
+  getUser: () => http.get(`/auth/user`)
 };
 
