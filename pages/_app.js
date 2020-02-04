@@ -16,7 +16,11 @@ import { authActions } from '@redux/actions'; // eslint-disable-line no-unused-v
 const GlobalStyle = createGlobalStyle`
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, Avenir Next, Avenir, Helvetica, sans-serif;
 }
 `;
 
@@ -37,7 +41,7 @@ class $App extends App {
 
     if (req) {
       // configure the http client (server-only)
-      configureHttp(req);
+      configureHttp(req, res);
 
       // preload user data -- pretty sure this is only required on the server
       // because:
