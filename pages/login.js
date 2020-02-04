@@ -1,69 +1,143 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Head from 'next/head';
+import { connect } from 'react-redux';
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
+import Head from 'next/head';
+import Link from 'next/link';
 import styled from 'styled-components';
 
-import { Nav } from '@components/nav';
+import { authActions } from '@redux/actions';
+import { CenteredLayout } from '@components/layout';
+import { Logo, FormField, LoadingSpinner, Button } from '@components/elements';
 
-const Hero = styled.div`
+/* istanbul ignore next */
+const LoginForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  color: #333;
+  max-width: 420px;
+  margin: 0 auto;
+
+  input {
+    margin-left: 0 !important;
+  }
 `;
 
-const Title = styled.h1`
-  margin: 0;
-  width: 100%;
-  padding-top: 80px;
-  line-height: 1.15;
-  font-size: 48px;
-  text-align: center;
-`;
-
-const Description = styled.p`
-  text-align: center;
+/* istanbul ignore next */
+const ErrorMessage = styled.p`
+  color: ${({ theme }) => theme.colors.red};
 `;
 
 const messages = defineMessages({
-  pageTitle: {
+  pageTitleText: {
     id: 'login.page-title',
     defaultMessage: 'Login',
     description: 'Page title',
+  },
+  createAccount: {
+    id: 'login.create-account',
+    defaultMessage: 'or create account',
+    description: 'Sign up link'
+  },
+  emailLabelText: {
+    id: 'login.email',
+    defaultMessage: 'Email',
+    description: 'Form field label'
+  },
+  passwordLabelText: {
+    id: 'login.password',
+    defaultMessage: 'Password',
+    description: 'Form field label'
   }
 });
 
 export class Login extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: '',
+      password: ''
+    };
+  }
+
+  handleInputChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
+  submit = (e) => {
+    e.preventDefault();
+    const credentials = {
+      ...this.state
+    };
+    this.props.login(credentials);
+  }
+
   render() {
     const { formatMessage } = this.props.intl;
 
     return (
-      <div>
-        <Head>
-          <title>
-            {formatMessage(messages.pageTitle)}
-          </title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
+      <CenteredLayout title={formatMessage(messages.pageTitleText)}>
+        <LoginForm onSubmit={this.submit}>
+          <Logo />
 
-        <Nav intl={this.props.intl} />
-
-        <Hero>
-          <Title>
+          <h2>
             <FormattedMessage id="login.title" defaultMessage="Login" description="Page title" />
-          </Title>
-          <Description>
-            <FormattedMessage id="login.description" defaultMessage="Coming soon" description="Page description" />
-          </Description>
-        </Hero>
-      </div>
+          </h2>
+
+          <Link href="/onboarding/create-account">
+            <a>
+              {formatMessage(messages.createAccount)}
+            </a>
+          </Link>
+
+          <FormField label={formatMessage(messages.emailLabelText)}>
+            <input type="email" id="email" name="email"
+              onChange={this.handleInputChange} value={this.state.email} />
+          </FormField>
+
+          <FormField label={formatMessage(messages.passwordLabelText)}>
+            <input type="password" id="password" name="password"
+              onChange={this.handleInputChange} value={this.state.password} />
+          </FormField>
+
+          {this.props.authError &&
+              <ErrorMessage id="login-error">
+                <FormattedMessage id="login.error" defaultMessage="Login failed" description="Login error message" />
+              </ErrorMessage>
+          }
+
+          <Button type="submit">
+            <FormattedMessage id="login.submit" defaultMessage="Login" description="Login submit button" />
+          </Button>
+        </LoginForm>
+      </CenteredLayout>
     );
   }
 }
 
 Login.propTypes = {
-  intl: PropTypes.object
+  intl: PropTypes.object,
+  authError: PropTypes.bool,
+  loading: PropTypes.bool,
+  login: PropTypes.func
 };
 
-export default injectIntl(Login);
+/* istanbul ignore next */
+const mapStateToProps = state => {
+  return {
+    ...state.appState,
+    ...state.authState
+  };
+};
+
+const mapDispatchToProps = {
+  ...authActions
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Login));
 
