@@ -1,9 +1,14 @@
+import { login } from '../../utilities';
 
 describe('Home page', () => {
+
   /*
    * Visits the page before each test
    */
   beforeEach(() => {
+    cy.log(`Logging in`);
+    login();
+
     cy.log(`Visiting http://localhost:3000`);
     cy.visit('/');
   });
