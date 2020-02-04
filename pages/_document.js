@@ -57,7 +57,12 @@ export default class $Document extends Document {
 
     return (
       <html lang={this.props.locale}>
-        <Head />
+        <Head>
+          {/* probably want to figure out how to load this asynchronously
+            https://stackoverflow.com/questions/32759272/how-to-load-css-asynchronously
+            or get a css loader to work with Next.js */}
+          <link rel="stylesheet" href="/themify-icons/themify-icons.css" />
+        </Head>
         <body>
           <Main />
           <script src={polyfill} />
