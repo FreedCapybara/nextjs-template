@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import { theme } from '@config/theme';
+
 /* istanbul ignore next */
 const LogoImg = styled.img`
   ${({ height }) => height ? `height: ${height};` : ''}
@@ -17,7 +19,7 @@ export class Logo extends React.Component {
   render() {
     return (
       <LogoImg
-        src={this.props.src || 'https://via.placeholder.com/150'}
+        src={this.props.src || theme.logo.src}
         height={this.props.height}
         desktopHeight={this.props.desktopHeight}
         alt="Logo"

@@ -41,11 +41,6 @@ const messages = defineMessages({
 
 export class NotFound extends React.Component {
 
-  static async getInitialProps(context) {
-    const { store } = context;
-    store.dispatch(appActions.setError(false));
-  }
-
   render() {
     const { formatMessage } = this.props.intl;
 

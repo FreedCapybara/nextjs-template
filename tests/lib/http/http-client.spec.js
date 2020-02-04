@@ -108,5 +108,19 @@ describe('Http utilities', () => {
 
     http.request('/test');
   });
+
+  it('should reject errors', (done) => {
+    spyOn(http, 'requestFn').and.returnValue(Promise.reject());
+    http.request('/test')
+      .then(() => done.fail())
+      .catch(() => done());
+  });
+
+  it('should call onFail', (done) => {
+    http.onFail = () => done();
+    spyOn(http, 'requestFn').and.returnValue(Promise.reject('TypeError: Failed to fetch'));
+    http.request('/test')
+      .catch(() => {});
+  });
 });
 

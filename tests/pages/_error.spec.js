@@ -6,13 +6,10 @@ import { IntlMock } from '@tests/mocks';
 import { NotFound } from '@pages/_error';
 
 describe('NotFound page', () => {
-  let component;
-
-  beforeEach(() => {
-    component = shallowWrapped(<NotFound intl={new IntlMock()} />);
-  });
+  const intl = new IntlMock();
 
   it('should render without throwing an error', () => {
+    const component = shallowWrapped(<NotFound intl={intl} />);
     expect(component).toBeDefined();
   });
 });

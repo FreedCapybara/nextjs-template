@@ -24,6 +24,9 @@ export const theme = {
     tan: '#c9a690',
     red: '#f20000'
   },
+  logo: {
+    src: 'https://via.placeholder.com/150'
+  },
   shadows: {
     textShadow: '0 2px 3px rgba(0,0,0,0.2)',
     boxShadowSmall: '0 2px 1px rgba(0,0,0,0.3)',
