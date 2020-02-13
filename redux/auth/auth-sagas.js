@@ -62,7 +62,6 @@ export function * logoutSaga() {
   Cookies.remove('token');
 
   // clear state and navigate
-  yield put(authActions.setUser({}));
   yield call(Router.push, '/login');
 
   try
@@ -70,6 +69,8 @@ export function * logoutSaga() {
     // logout from the server
     yield call([authApi, 'logout']);
   } catch { /* not much to be done about it /shrug */ } // eslint-disable-line no-empty
+
+  yield put(authActions.setUser({}));
 
   // remove the Authorization header
   delete http.defaults.headers['Authorization'];
