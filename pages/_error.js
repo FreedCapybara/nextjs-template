@@ -5,8 +5,6 @@ import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { appActions } from '@redux/actions';
-
 import { CenteredLayout } from '@components/layout';
 import { Logo, LinkButton } from '@components/elements';
 
