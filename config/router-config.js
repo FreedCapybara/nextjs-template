@@ -2,12 +2,15 @@ import Router from 'next/router';
 import cookie from 'cookie';
 import _ from 'lodash';
 
-const authenticatedRoutes = [
-  '^((?!(/login|/server-error|/not-found|/create-account)).)*$'
+const anonymousRoutes = [
+  '^/login$',
+  '^/create-account',
+  '^/server-error$',
+  '^/not-found$'
 ];
 
 function isRestrictedRoute(url, routes) {
-  return _.find((routes || authenticatedRoutes), (pattern) => url.match(pattern));
+  return !_.find((routes || anonymousRoutes), (pattern) => url.match(pattern));
 }
 
 export function createRedirect(res, location) {
