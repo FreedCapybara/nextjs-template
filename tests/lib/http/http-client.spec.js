@@ -28,6 +28,12 @@ describe('Http utilities', () => {
     expect(http.isConfigured).toBe(true);
   });
 
+  it('should set auth', () => {
+    Http.setAuth((client) => {
+      expect(client).toBeTruthy();
+    });
+  });
+
   it('should make requests', () => {
     const mockResponse = { status: 200 };
     const spy = spyOn(http, 'requestFn').and.returnValue(Promise.resolve(mockResponse));
