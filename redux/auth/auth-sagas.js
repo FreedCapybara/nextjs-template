@@ -11,6 +11,7 @@ import { authActions } from './auth-actions';
 import { authApi } from './auth-api';
 
 export function * loginSaga(action) {
+  yield put(authActions.setAuthError(false));
   const response = yield call([authApi, 'login'], action.credentials); // see https://github.com/redux-saga/redux-saga/issues/1389
 
   const data = yield response.json();
@@ -31,6 +32,7 @@ export function * loginSaga(action) {
 }
 
 export function * registerSaga(action) {
+  yield put(authActions.setAuthError(false));
   let response;
   try {
     response = yield call([authApi, 'register'], action.credentials);
