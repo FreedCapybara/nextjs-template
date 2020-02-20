@@ -52,7 +52,7 @@ export class NotFound extends React.Component {
           </h2>
 
           <Description>
-            <FormattedMessage id="not-found.description" defaultMessage="Not found? Well, what were you looking for?" description="Page description" />
+            <FormattedMessage id="not-found.description" defaultMessage="We were unable to find the requested page." description="Page description" />
           </Description>
 
           <Link href="/" passHref>
