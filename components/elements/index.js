@@ -8,4 +8,5 @@ export * from './logo';
 export * from './modal';
 export * from './progress-bar';
 export * from './swatch';
+export * from './toggle-switch';
 
