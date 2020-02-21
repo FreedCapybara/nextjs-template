@@ -13,11 +13,6 @@ describe('ForgotPassword page', () => {
     expect(component).toBeDefined();
   });
 
-  it('should render loading', () => {
-    const component = shallowWrapped(<ForgotPassword intl={intl} loading={true} />);
-    expect(component).toBeDefined();
-  });
-
   it('should handleInputChange', () => {
     const props = {
     };

@@ -30,18 +30,18 @@ describe('Auth api', () => {
   it('should updateProfile', () => {
     let spy = spyOn(http, 'post');
     authApi.updateProfile({});
-    expect(spy).toHaveBeenCalledWith(`/api/auth/profile`, {});
+    expect(spy).toHaveBeenCalledWith(`/auth/profile`, {});
   });
 
   it('should forgotPassword', () => {
     let spy = spyOn(http, 'post');
     authApi.forgotPassword({});
-    expect(spy).toHaveBeenCalledWith(`/api/auth/forgotpassword`, {});
+    expect(spy).toHaveBeenCalledWith(`/auth/forgotpassword`, {});
   });
 
   it('should resetPassword', () => {
     let spy = spyOn(http, 'post');
     authApi.resetPassword({});
-    expect(spy).toHaveBeenCalledWith(`/api/auth/setpassword`, {});
+    expect(spy).toHaveBeenCalledWith(`/auth/setpassword`, {});
   });
 });

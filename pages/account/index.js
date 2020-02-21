@@ -14,7 +14,6 @@ import { LinkButton } from '@components/elements';
 
 /* istanbul ignore next */
 const ProfileImage = styled.img`
-  display: block;
   width: 200px;
   height: 200px;
   margin: 20px 0;
@@ -23,7 +22,7 @@ const ProfileImage = styled.img`
 const messages = defineMessages({
   defaultUserTitleText: {
     id: 'account.title',
-    defaultMessage: 'Workflow',
+    defaultMessage: 'Your profile',
     description: 'Page title'
   },
   editButtonText: {
@@ -60,9 +59,11 @@ export class Account extends React.Component {
           <FormattedMessage id="account.edit-profile-image" defaultMessage="Change picture" description="Profile image link text" /> <span className="ti-new-window" />
         </LinkButton>
 
-        <a href="https://en.gravatar.com/" target="_blank" rel="noopener noreferrer">
-          <ProfileImage src={this.gravatarUrl} alt={`Avatar image for ${user.email}`} />
-        </a>
+        <div>
+          <a href="https://en.gravatar.com/" target="_blank" rel="noopener noreferrer">
+            <ProfileImage src={this.gravatarUrl} alt={`Avatar image for ${user.email}`} />
+          </a>
+        </div>
 
         <div>
           <h2>

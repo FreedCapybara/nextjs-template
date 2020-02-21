@@ -1,19 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
-import Head from 'next/head';
 import Link from 'next/link';
-import styled from 'styled-components';
 
-/* istanbul ignore next */
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  min-height: 100vh;
-  padding: 120px 20px;
-`;
+import { CenteredLayout } from '@components/layout';
+import { Logo, LinkButton } from '@components/elements';
 
 const messages = defineMessages({
   pageTitleText: {
@@ -34,25 +25,19 @@ export class ForgotPasswordSuccess extends React.Component {
     const { formatMessage } = this.props.intl;
 
     return (
-      <Wrapper>
-        <Head>
-          <title>
-            {formatMessage(messages.pageTitleText)}
-          </title>
-        </Head>
-
-        <img src="/images/logo-blue.png" alt="Logo" />
+      <CenteredLayout title={formatMessage(messages.pageTitleText)}>
+        <Logo height="108px" />
 
         <h2>
           <FormattedMessage id="forgot-password-success.title" defaultMessage="Success!" description="Page title" />
         </h2>
 
-        <Link href="/">
-          <a className="button">
+        <Link href="/" passHref>
+          <LinkButton>
             {formatMessage(messages.backText)}
-          </a>
+          </LinkButton>
         </Link>
-      </Wrapper>
+      </CenteredLayout>
     );
   }
 }

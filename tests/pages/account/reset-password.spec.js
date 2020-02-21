@@ -13,11 +13,6 @@ describe('ResetPassword page', () => {
     expect(component).toBeDefined();
   });
 
-  it('should render loading', () => {
-    const component = shallowWrapped(<ResetPassword intl={intl} loading={true} />);
-    expect(component).toBeDefined();
-  });
-
   it('should render errors', () => {
     const component = shallowWrapped(<ResetPassword intl={intl} authError={true} />);
     expect(component).toBeDefined();

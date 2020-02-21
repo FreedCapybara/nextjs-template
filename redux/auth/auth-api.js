@@ -5,8 +5,8 @@ export const authApi = {
   register: (credentials) => http.post(`/auth/register`, credentials),
   logout: () => http.post(`/auth/logout`),
   getUser: () => http.get(`/auth/user`),
-  updateProfile: (profile) => http.post(`/api/auth/profile`, profile),
-  forgotPassword: (model) => http.post(`/api/auth/forgotpassword`, model),
-  resetPassword: (model) => http.post(`/api/auth/setpassword`, model)
+  updateProfile: (profile) => http.post(`/auth/profile`, profile),
+  forgotPassword: (model) => http.post(`/auth/forgotpassword`, model),
+  resetPassword: (model) => http.post(`/auth/setpassword`, model)
 };
 

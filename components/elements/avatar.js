@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import md5 from 'js-md5';
+
+import { gravatarUrl } from '@lib/gravatar';
 
 /* istanbul ignore next */
 const AvatarImage = styled.img`
@@ -14,8 +15,7 @@ export class Avatar extends React.Component {
 
   get gravatarUrl() {
     const { email } = this.props;
-    const hash = email ? md5(email.toLowerCase()) : '00000000000000000000000000000000';
-    return `https://www.gravatar.com/avatar/${hash}?default=mp`;
+    return gravatarUrl(email);
   }
 
   render() {
