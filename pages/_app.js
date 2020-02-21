@@ -16,11 +16,12 @@ import { authActions } from '@redux/actions'; // eslint-disable-line no-unused-v
 const GlobalStyle = createGlobalStyle`
 body {
   margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color: ${theme.colors.textColor};
 }
 
 * {
   box-sizing: border-box;
-  font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, Avenir Next, Avenir, Helvetica, sans-serif;
 }
 `;
 
