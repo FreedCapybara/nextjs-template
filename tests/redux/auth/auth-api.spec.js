@@ -26,4 +26,22 @@ describe('Auth api', () => {
     authApi.getUser();
     expect(spy).toHaveBeenCalledWith(`/auth/user`);
   });
+
+  it('should updateProfile', () => {
+    let spy = spyOn(http, 'post');
+    authApi.updateProfile({});
+    expect(spy).toHaveBeenCalledWith(`/api/auth/profile`, {});
+  });
+
+  it('should forgotPassword', () => {
+    let spy = spyOn(http, 'post');
+    authApi.forgotPassword({});
+    expect(spy).toHaveBeenCalledWith(`/api/auth/forgotpassword`, {});
+  });
+
+  it('should resetPassword', () => {
+    let spy = spyOn(http, 'post');
+    authApi.resetPassword({});
+    expect(spy).toHaveBeenCalledWith(`/api/auth/setpassword`, {});
+  });
 });

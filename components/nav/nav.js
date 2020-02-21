@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 import { theme } from '@config/theme';
 import { authActions } from '@redux/actions';
-import { Button, LinkButton, Logo } from '@components/elements';
+import { Avatar, Button, LinkButton, Logo } from '@components/elements';
 
 import { Menu } from './menu';
 
@@ -54,6 +54,13 @@ const NavLink = styled.a`
   display: flex;
 `;
 
+/* istanbul ignore next */
+const AvatarWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+`;
+
 const messages = defineMessages({
   accountLinkText: {
     id: 'nav.account',
@@ -69,6 +76,7 @@ export class NavComponent extends React.Component {
   }
 
   render() {
+    const { user } = this.props;
     const { formatMessage } = this.props.intl;
 
     return (
@@ -82,7 +90,10 @@ export class NavComponent extends React.Component {
             </Link>
           </NavItem>
           <NavItem>
-            <Menu title={this.props.user.email} align="right">
+            <AvatarWrapper>
+              <Avatar email={user.email} />
+            </AvatarWrapper>
+            <Menu title={user.email} align="right">
               <Link href="/account">
                 <LinkButton>
                   {formatMessage(messages.accountLinkText)}

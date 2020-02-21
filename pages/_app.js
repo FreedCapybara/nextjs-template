@@ -56,7 +56,7 @@ class $App extends App {
       //   1. if the user is authenticated, the server sends the user state as initial props
       //   2. if the user is not authenticated, then they have to log in, which populates the user state
       //   3. if the user refreshes the page after logging in, we're back at scenario #1
-      //store.dispatch(authActions.getUser());
+      store.dispatch(authActions.getUser());
     } else {
       // client-only
       trackPage(ctx.asPath); // also in the constructor -- for some reason GA wasn't picking up tracking requests from the server /shrug

@@ -6,6 +6,8 @@ const anonymousRoutes = [
   '^/login$',
   '^/create-account',
   '^/server-error$',
+  '^/account/forgot-password.*$',
+  '^/account/reset-password.*$',
   '^/not-found$'
 ];
 

@@ -24,6 +24,24 @@ describe('Auth actions', () => {
     expect(result.type).toBe('GET_USER_SAGA');
   });
 
+  it('should updateProfile', () => {
+    const result = authActions.updateProfile({});
+    expect(result.type).toBe('UPDATE_PROFILE_SAGA');
+    expect(result.profile).toBeTruthy();
+  });
+
+  it('should forgotPassword', () => {
+    const result = authActions.forgotPassword({});
+    expect(result.type).toBe('FORGOT_PASSWORD_SAGA');
+    expect(result.model).toBeTruthy();
+  });
+
+  it('should resetPassword', () => {
+    const result = authActions.resetPassword({});
+    expect(result.type).toBe('RESET_PASSWORD_SAGA');
+    expect(result.model).toBeTruthy();
+  });
+
   it('should setUser', () => {
     const result = authActions.setUser({});
     expect(result.type).toBe('SET_USER');

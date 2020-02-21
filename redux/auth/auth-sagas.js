@@ -86,10 +86,35 @@ export function * getUserSaga() {
   yield put(authActions.setUser(data));
 }
 
+export function * updateProfileSaga(action) {
+  const response = yield call([authApi, 'updateProfile'], action.profile);
+  const data = yield response.json();
+  yield put(authActions.setUser(data));
+  yield call(Router.push, '/account');
+}
+
+export function * forgotPasswordSaga(action) {
+  yield call([authApi, 'forgotPassword'], action.model);
+  yield call(Router.push, '/account/forgot-password-success');
+}
+
+export function * resetPasswordSaga(action) {
+  try {
+    yield call([authApi, 'resetPassword'], action.model);
+  } catch {
+    yield put(authActions.setAuthError(true));
+    return;
+  }
+  yield call(Router.push, '/account/reset-password-success');
+}
+
 export const authSagas = [
   takeLatest('LOGIN_SAGA', wrap(loginSaga)),
   takeLatest('REGISTER_SAGA', wrap(registerSaga)),
   takeLatest('LOGOUT_SAGA', logoutSaga),
-  takeLatest('GET_USER_SAGA', wrap(getUserSaga))
+  takeLatest('GET_USER_SAGA', wrap(getUserSaga)),
+  takeLatest('UPDATE_PROFILE_SAGA', wrap(updateProfileSaga)),
+  takeLatest('FORGOT_PASSWORD_SAGA', wrap(forgotPasswordSaga)),
+  takeLatest('RESET_PASSWORD_SAGA', wrap(resetPasswordSaga))
 ];
 

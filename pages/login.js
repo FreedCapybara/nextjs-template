@@ -28,13 +28,18 @@ const ErrorMessage = styled.p`
   color: ${({ theme }) => theme.colors.red};
 `;
 
+/* istanbul ignore next */
+const ForgotPasswordLink = styled.a`
+  transform: translateY(-24px);
+`;
+
 const messages = defineMessages({
   pageTitleText: {
     id: 'login.page-title',
     defaultMessage: 'Login',
     description: 'Page title',
   },
-  createAccount: {
+  createAccountText: {
     id: 'login.create-account',
     defaultMessage: 'or create account',
     description: 'Sign up link'
@@ -48,6 +53,11 @@ const messages = defineMessages({
     id: 'login.password',
     defaultMessage: 'Password',
     description: 'Form field label'
+  },
+  forgotPasswordText: {
+    id: 'login.forgot-password',
+    defaultMessage: 'Forgot password?',
+    description: 'Forgot password link'
   }
 });
 
@@ -90,7 +100,7 @@ export class Login extends React.Component {
 
           <Link href="/onboarding/create-account">
             <a>
-              {formatMessage(messages.createAccount)}
+              {formatMessage(messages.createAccountText)}
             </a>
           </Link>
 
@@ -103,6 +113,12 @@ export class Login extends React.Component {
             <input type="password" id="password" name="password"
               onChange={this.handleInputChange} value={this.state.password} />
           </FormField>
+
+          <Link href="/account/forgot-password" passHref>
+            <ForgotPasswordLink>
+              {formatMessage(messages.forgotPasswordText)}
+            </ForgotPasswordLink>
+          </Link>
 
           {this.props.authError &&
               <ErrorMessage id="login-error">
