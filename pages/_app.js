@@ -6,12 +6,17 @@ import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 
-import { getLocale } from '@lib/i18n';
 import { theme } from '@config/theme';
 import configureStore from '@config/redux-config';
 import configureHttp from '@config/http-config';
 import configureRouter, { serverRedirect } from '@config/router-config';
+
+import { getLocale } from '@lib/i18n';
+import { initTracker, trackPage } from '@lib/analytics';
+
 import { authActions } from '@redux/actions'; // eslint-disable-line no-unused-vars
+
+const trackingCode = process.env.GA_TRACKING_CODE || 'UA-XXXXXXXXX-X';
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -28,6 +33,8 @@ body {
 // This is optional but highly recommended
 // since it prevents memory leak
 const cache = createIntlCache();
+
+const isServer = typeof(window) === 'undefined';
 
 class $App extends App {
 
@@ -50,6 +57,9 @@ class $App extends App {
       //   2. if the user is not authenticated, then they have to log in, which populates the user state
       //   3. if the user refreshes the page after logging in, we're back at scenario #1
       //store.dispatch(authActions.getUser());
+    } else {
+      // client-only
+      trackPage(ctx.asPath); // also in the constructor -- for some reason GA wasn't picking up tracking requests from the server /shrug
     }
 
     // Get page props
@@ -78,6 +88,17 @@ class $App extends App {
     }
 
     return props;
+  }
+
+  // server: runs after getInitialProps
+  // client: runs once at load (getInitialProps does not run at load)
+  constructor(props) {
+    super(props);
+
+    if (!isServer) {
+      initTracker(trackingCode);
+      trackPage(props.router.asPath);
+    }
   }
 
   // note componentDidMount is client-only and runs once
