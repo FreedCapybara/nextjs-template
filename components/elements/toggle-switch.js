@@ -8,9 +8,9 @@ const SwitchBackground = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 20px;
-  width: 42px;
-  height: 18px;
+  border-radius: 50px;
+  width: 48px;
+  height: 24px;
   background-color: ${({ theme, value }) => value ? theme.colors.primary : 'transparent'};
   border: 1px solid ${({ theme }) => theme.colors.primary};
   cursor: pointer;
@@ -19,11 +19,11 @@ const SwitchBackground = styled.div`
 
 /* istanbul ignore next */
 const Switch = styled.div`
-  width: 12px;
-  height: 12px;
+  width: 18px;
+  height: 18px;
   background-color: ${({ theme, value }) => value ? 'white' : theme.colors.primary};
   border-radius: 100%;
-  transform: translateX(${({ value }) => value ? '10px' : '-10px'});
+  transform: translateX(${({ value }) => value ? '12px' : '-12px'});
   transition: all .3s;
 `;
 
