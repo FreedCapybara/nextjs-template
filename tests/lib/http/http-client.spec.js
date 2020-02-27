@@ -128,5 +128,20 @@ describe('Http utilities', () => {
     http.request('/test')
       .catch(() => {});
   });
+
+  it('should delete content-type for FormData', () => {
+    const expectedOptions = {
+      method: 'POST',
+      headers: {},
+      body: new FormData()
+    };
+    const mockResponse = { status: 200 };
+    const spy = spyOn(http, 'requestFn').and.returnValue(Promise.resolve(mockResponse));
+
+    http.defaults.baseUrl = 'http://localhost:3000';
+    http.request('/test', 'POST', new FormData(), { headers: { 'Content-Type': 'application/json' } });
+
+    expect(spy).toHaveBeenCalledWith('http://localhost:3000/test', expectedOptions);
+  });
 });
 
