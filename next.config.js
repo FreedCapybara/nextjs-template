@@ -1,5 +1,7 @@
 const path = require('path');
 
+const dev = process.env.NODE_ENV !== 'production';
+
 // See https://remysharp.com/2019/11/04/nice-imports-with-nextjs
 module.exports = {
   webpack: config => {
@@ -11,5 +13,8 @@ module.exports = {
     config.resolve.alias['@redux'] = path.resolve(__dirname + '/redux');
     config.resolve.alias['@config'] = path.resolve(__dirname + '/config');
     return config;
+  },
+  publicRuntimeConfig: {
+    apiBaseUrl: process.env.API_BASE_URL || (dev ? 'https://localhost:3000' : 'https://prod-url')
   }
 };

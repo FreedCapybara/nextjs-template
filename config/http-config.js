@@ -2,11 +2,12 @@ import { Http } from '@lib/http';
 import Router from 'next/router';
 import cookie from 'cookie';
 import Cookies from 'js-cookie';
+import getConfig from 'next/config';
 
 import { createRedirect } from '@config/router-config';
 
 const dev = process.env.NODE_ENV !== 'production';
-const apiBaseUrl = process.env.API_BASE_URL || (dev ? 'https://localhost:3000' : 'https://prod-url');
+const apiBaseUrl = getConfig().publicRuntimeConfig.apiBaseUrl;
 
 function universalRedirect(res, location) {
   if (res) {
