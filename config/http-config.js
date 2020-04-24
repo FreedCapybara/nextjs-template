@@ -90,8 +90,8 @@ function configureHttp(req, res) {
   // I verified that I would actually see the error if it threw by making it look for the user logged into the browser window (I got 1000 console errors).
   Http.setAuth((client) => {
     // set auth header from the token cookie
-    const cookieSource = req ? (req.headers.cookie || '') : document.cookie;
-    const cookies = cookie.parse(cookieSource);
+    const cookieSource = req ? req.headers.cookie : document.cookie;
+    const cookies = cookie.parse(cookieSource || '');
     const token = cookies.token;
 
     if (token) {

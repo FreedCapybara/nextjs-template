@@ -46,6 +46,7 @@ module.exports = {
   },
   'ignorePatterns': [
     'node_modules/',
+    '*.config.js',
     'scripts/', // don't actally want this -- but eslint-plugin-disable isn't working for disabling some security warnings
     'cypress/integration/examples/',
     'cypress/plugins/',
