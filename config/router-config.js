@@ -3,7 +3,7 @@ import cookie from 'cookie';
 import _ from 'lodash';
 
 const anonymousRoutes = [
-  '^/login$',
+  '^/login',
   '^/create-account',
   '^/server-error$',
   '^/account/forgot-password.*$',
@@ -28,7 +28,7 @@ export function serverRedirect(req, res) {
   const isAuthenticated = !!cookies.token;
   if (!isAuthenticated && isRestrictedRoute(req.url)) {
     // See https://github.com/zeit/next.js/wiki/Redirecting-in-%60getInitialProps%60
-    createRedirect(res, '/login');
+    createRedirect(res, `/login?redirect=${encodeURIComponent(req.url)}`);
     return true;
   }
 
@@ -40,8 +40,11 @@ function clientRedirect(url) {
 
   const isAuthenticated = !!cookies.token;
   if (!isAuthenticated && isRestrictedRoute(url)) {
-    window.location.replace('/login');
+    window.location.replace(`/login?redirect=${encodeURIComponent(url)}`);
+    return true;
   }
+
+  return false; // did not redirect
 }
 
 function configureRouter() {

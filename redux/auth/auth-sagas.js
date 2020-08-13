@@ -25,7 +25,7 @@ export function * loginSaga(action) {
 
     // update state and navigate
     yield put(authActions.setUser(data));
-    yield call(Router.push, '/');
+    yield call(Router.push, action.redirect || '/');
   } else {
     yield put(authActions.setAuthError(true));
   }

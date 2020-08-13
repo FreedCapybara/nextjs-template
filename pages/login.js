@@ -63,6 +63,11 @@ const messages = defineMessages({
 
 export class Login extends React.Component {
 
+  static async getInitialProps(context) {
+    const { redirect } = context.query;
+    return { redirect };
+  }
+
   constructor(props) {
     super(props);
 
@@ -80,10 +85,11 @@ export class Login extends React.Component {
 
   submit = (e) => {
     e.preventDefault();
+    const { redirect } = this.props;
     const credentials = {
       ...this.state
     };
-    this.props.login(credentials);
+    this.props.login(credentials, redirect);
   }
 
   render() {
@@ -137,6 +143,7 @@ export class Login extends React.Component {
 
 Login.propTypes = {
   intl: PropTypes.object,
+  redirect: PropTypes.string,
   authError: PropTypes.bool,
   loading: PropTypes.bool,
   login: PropTypes.func

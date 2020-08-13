@@ -1,6 +1,6 @@
 
 export const authActions = {
-  login: (credentials) => ({ type: 'LOGIN_SAGA', credentials }),
+  login: (credentials, redirect) => ({ type: 'LOGIN_SAGA', credentials, redirect }),
   register: (credentials) => ({ type: 'REGISTER_SAGA', credentials }),
   logout: () => ({ type: 'LOGOUT_SAGA' }),
   getUser: () => ({ type: 'GET_USER_SAGA' }),
