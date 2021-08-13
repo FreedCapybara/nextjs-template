@@ -24,7 +24,7 @@
     "js-md5": "^0.7.3",
     "lodash": "^4.17.21",
     "moment": "^2.24.0",
-    "next": "9.3.2",
+    "next": "11.1.0",
     "next-redux-saga": "^4.1.2",
     "next-redux-wrapper": "^4.0.1",
     "prop-types": "^15.7.2",
