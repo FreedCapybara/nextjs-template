@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -33,34 +32,6 @@ const ForgotPasswordLink = styled.a`
   transform: translateY(-24px);
 `;
 
-const messages = defineMessages({
-  pageTitleText: {
-    id: 'login.page-title',
-    defaultMessage: 'Login',
-    description: 'Page title',
-  },
-  createAccountText: {
-    id: 'login.create-account',
-    defaultMessage: 'or create account',
-    description: 'Sign up link'
-  },
-  emailLabelText: {
-    id: 'login.email',
-    defaultMessage: 'Email',
-    description: 'Form field label'
-  },
-  passwordLabelText: {
-    id: 'login.password',
-    defaultMessage: 'Password',
-    description: 'Form field label'
-  },
-  forgotPasswordText: {
-    id: 'login.forgot-password',
-    defaultMessage: 'Forgot password?',
-    description: 'Forgot password link'
-  }
-});
-
 export class Login extends React.Component {
 
   static async getInitialProps(context) {
@@ -81,7 +52,7 @@ export class Login extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-  }
+  };
 
   submit = (e) => {
     e.preventDefault();
@@ -90,50 +61,48 @@ export class Login extends React.Component {
       ...this.state
     };
     this.props.login(credentials, redirect);
-  }
+  };
 
   render() {
-    const { formatMessage } = this.props.intl;
-
     return (
-      <CenteredLayout title={formatMessage(messages.pageTitleText)}>
+      <CenteredLayout title="Login">
         <LoginForm onSubmit={this.submit}>
           <Logo />
 
           <h2>
-            <FormattedMessage id="login.title" defaultMessage="Login" description="Page title" />
+            Login
           </h2>
 
           <Link href="/onboarding/create-account">
             <a>
-              {formatMessage(messages.createAccountText)}
+              or create account
             </a>
           </Link>
 
-          <FormField label={formatMessage(messages.emailLabelText)}>
+          <FormField label="Email">
             <input type="email" id="email" name="email"
               onChange={this.handleInputChange} value={this.state.email} />
           </FormField>
 
-          <FormField label={formatMessage(messages.passwordLabelText)}>
+          <FormField label="Password">
             <input type="password" id="password" name="password"
               onChange={this.handleInputChange} value={this.state.password} />
           </FormField>
 
           <Link href="/account/forgot-password" passHref>
             <ForgotPasswordLink>
-              {formatMessage(messages.forgotPasswordText)}
+              Forgot password?
             </ForgotPasswordLink>
           </Link>
 
           {this.props.authError &&
               <ErrorMessage id="login-error">
-                <FormattedMessage id="login.error" defaultMessage="Login failed" description="Login error message" />
+                Login failed
               </ErrorMessage>
           }
 
           <Button type="submit">
-            <FormattedMessage id="login.submit" defaultMessage="Login" description="Login submit button" />
+            Login
           </Button>
         </LoginForm>
       </CenteredLayout>
@@ -142,7 +111,6 @@ export class Login extends React.Component {
 }
 
 Login.propTypes = {
-  intl: PropTypes.object,
   redirect: PropTypes.string,
   authError: PropTypes.bool,
   loading: PropTypes.bool,
@@ -161,5 +129,5 @@ const mapDispatchToProps = {
   ...authActions
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
 

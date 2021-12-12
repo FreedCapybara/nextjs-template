@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { connect } from 'react-redux';
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import styled from 'styled-components';
 
 import { theme } from '@config/theme';
@@ -61,23 +60,14 @@ const AvatarWrapper = styled.div`
   margin-right: 8px;
 `;
 
-const messages = defineMessages({
-  accountLinkText: {
-    id: 'nav.account',
-    defaultMessage: 'Account',
-    description: 'Account management link'
-  }
-});
-
 export class NavComponent extends React.Component {
 
   logout = () => {
     this.props.logout();
-  }
+  };
 
   render() {
     const { user } = this.props;
-    const { formatMessage } = this.props.intl;
 
     return (
       <NavBar>
@@ -96,11 +86,11 @@ export class NavComponent extends React.Component {
             <Menu title={user.email} align="right">
               <Link href="/account">
                 <LinkButton>
-                  {formatMessage(messages.accountLinkText)}
+                  Account
                 </LinkButton>
               </Link>
               <Button onClick={this.logout}>
-                <FormattedMessage id="nav.logout" defaultMessage="Logout" description="Logout button" />
+                Logout
               </Button>
             </Menu>
           </NavItem>
@@ -129,5 +119,5 @@ const mapDispatchToProps = {
   ...authActions
 };
 
-export const Nav = connect(mapStateToProps, mapDispatchToProps)(injectIntl(NavComponent));
+export const Nav = connect(mapStateToProps, mapDispatchToProps)(NavComponent);
 

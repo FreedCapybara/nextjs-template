@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { FormattedMessage } from 'react-intl';
 import _ from 'lodash';
 
 /* istanbul ignore next */
@@ -69,9 +68,7 @@ export class FormField extends React.Component {
       <Wrapper>
         <FieldLabel htmlFor={_.camelCase(this.props.label)}>
           {_.upperFirst(this.props.label)} {this.props.optional &&
-              <small>
-                <FormattedMessage id="form-field.optional" defaultMessage="(optional)" description="Form field label additional text" />
-              </small>
+              <small>(optional)</small>
           }
         </FieldLabel>
 

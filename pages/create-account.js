@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -28,34 +27,6 @@ const ErrorMessage = styled.p`
   color: ${({ theme }) => theme.colors.red};
 `;
 
-const messages = defineMessages({
-  pageTitleText: {
-    id: 'create-account.page-title',
-    defaultMessage: 'Create account',
-    description: 'Page title',
-  },
-  login: {
-    id: 'create-account.login',
-    defaultMessage: 'or log in',
-    description: 'Login link'
-  },
-  emailLabelText: {
-    id: 'create-account.email',
-    defaultMessage: 'Email',
-    description: 'Form field label'
-  },
-  passwordLabelText: {
-    id: 'create-account.password',
-    defaultMessage: 'Password',
-    description: 'Form field label'
-  },
-  confirmPasswordLabelText: {
-    id: 'create-account.confirm-password',
-    defaultMessage: 'Confirm password',
-    description: 'Form field label'
-  }
-});
-
 export class CreateAccount extends React.Component {
 
   constructor(props) {
@@ -73,58 +44,54 @@ export class CreateAccount extends React.Component {
       [e.target.name]: e.target.value
     });
     this.props.setAuthError(false);
-  }
+  };
 
   submit = (e) => {
     e.preventDefault();
     this.props.register(this.state);
-  }
+  };
 
   render() {
-    const { formatMessage } = this.props.intl;
-
     return (
-      <CenteredLayout title={formatMessage(messages.pageTitleText)}>
+      <CenteredLayout title="Create account">
         <RegisterForm onSubmit={this.submit} autoComplete="off">
           <Logo />
 
           <h2>
-            <FormattedMessage id="create-account.title" defaultMessage="Create account" description="Page title" />
+            Create account
           </h2>
 
           <Link href="/login">
-            <a>
-              {formatMessage(messages.login)}
-            </a>
+            <a>or log in</a>
           </Link>
 
-          <FormField label={formatMessage(messages.emailLabelText)}>
+          <FormField label="Email">
             <input type="email" id="email" name="email" required
               onChange={this.handleInputChange} value={this.state.email} />
           </FormField>
 
-          <FormField label={formatMessage(messages.passwordLabelText)}>
+          <FormField label="Password">
             <input type="password" id="password" name="password" required
               onChange={this.handleInputChange} value={this.state.password} />
           </FormField>
 
-          <FormField label={formatMessage(messages.confirmPasswordLabelText)}>
+          <FormField label="Confirm password">
             <input type="password" id="confirmPassword" name="confirmPassword" required
               onChange={this.handleInputChange} value={this.state.confirmPassword} />
           </FormField>
 
           {this.state.confirmPassword && this.state.password !== this.state.confirmPassword ? (
             <ErrorMessage id="password-match-error">
-              <FormattedMessage id="create-account.password-match" defaultMessage="Passwords must match" description="Password match error message" />
+              Passwords must match
             </ErrorMessage>
           ) : (this.props.authError &&
             <ErrorMessage id="login-error">
-              <FormattedMessage id="create-account.error" defaultMessage="Couldn't create account. Please try again later!" description="Registration error message" />
+              Couldn&apos;t create account. Please try again later!
             </ErrorMessage>
           )}
 
           <Button type="submit" disabled={!this.state.email || this.state.password !== this.state.confirmPassword}>
-            <FormattedMessage id="create-account.submit" defaultMessage="Create account" description="Registration submit button" />
+            Create account
           </Button>
         </RegisterForm>
       </CenteredLayout>
@@ -133,7 +100,6 @@ export class CreateAccount extends React.Component {
 }
 
 CreateAccount.propTypes = {
-  intl: PropTypes.object,
   authError: PropTypes.bool,
   setAuthError: PropTypes.func,
   register: PropTypes.func
@@ -151,5 +117,5 @@ const mapDispatchToProps = {
   ...authActions
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(CreateAccount));
+export default connect(mapStateToProps, mapDispatchToProps)(CreateAccount);
 

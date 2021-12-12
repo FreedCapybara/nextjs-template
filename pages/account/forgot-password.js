@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -31,24 +30,6 @@ const DescriptionText = styled.p`
   text-align: center;
 `;
 
-const messages = defineMessages({
-  pageTitleText: {
-    id: 'forgot-password.page-title',
-    defaultMessage: 'Forgot password',
-    description: 'Page title',
-  },
-  emailLabelText: {
-    id: 'forgot-password.email',
-    defaultMessage: 'Email',
-    description: 'Form field label'
-  },
-  backText: {
-    id: 'forgot-password.back',
-    defaultMessage: 'back to login',
-    description: 'Back link'
-  }
-});
-
 export class ForgotPassword extends React.Component {
 
   constructor(props) {
@@ -63,43 +44,41 @@ export class ForgotPassword extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-  }
+  };
 
   submit = (e) => {
     e.preventDefault();
     this.props.forgotPassword(this.state);
     trackEvent('auth', 'forgot password', 'forgot password form submitted');
-  }
+  };
 
   render() {
-    const { formatMessage } = this.props.intl;
-
     return (
-      <CenteredLayout title={formatMessage(messages.pageTitleText)}>
+      <CenteredLayout title="Forgot password">
         <ForgotPasswordForm onSubmit={this.submit} autoComplete="off">
           <Logo height="108px" />
 
           <h2>
-            <FormattedMessage id="forgot-password.title" defaultMessage="Forgot password" description="Page title" />
+            Forgot password
           </h2>
 
           <Link href="/login">
             <a>
-              {formatMessage(messages.backText)}
+              back to login
             </a>
           </Link>
 
           <DescriptionText>
-            <FormattedMessage id="forgot-password.description" defaultMessage="Please enter your email address. We'll send a link to reset your password." description="Email description text" />
+            Please enter your email address. We&apos;ll send a link to reset your password.
           </DescriptionText>
 
           <FormField>
-            <input type="text" id="email" name="email" required placeholder={formatMessage(messages.emailLabelText)}
+            <input type="text" id="email" name="email" required placeholder="Email"
               onChange={this.handleInputChange} value={this.state.email} />
           </FormField>
 
           <Button type="submit">
-            <FormattedMessage id="forgot-password.submit" defaultMessage="Submit" description="Form submit button" />
+            Submit
           </Button>
         </ForgotPasswordForm>
       </CenteredLayout>
@@ -108,7 +87,6 @@ export class ForgotPassword extends React.Component {
 }
 
 ForgotPassword.propTypes = {
-  intl: PropTypes.object,
   forgotPassword: PropTypes.func
 };
 
@@ -123,5 +101,5 @@ const mapDispatchToProps = {
   ...authActions
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(ForgotPassword));
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotPassword);
 

@@ -1,15 +1,13 @@
 import React from 'react';
 
 import { shallowWrapped } from '@tests/wrapper';
-import { IntlMock } from '@tests/mocks';
 
 import { ForgotPassword } from '@pages/account/forgot-password';
 
 describe('ForgotPassword page', () => {
-  const intl = new IntlMock();
 
   it('should render without throwing an error', () => {
-    const component = shallowWrapped(<ForgotPassword intl={intl} />);
+    const component = shallowWrapped(<ForgotPassword />);
     expect(component).toBeDefined();
   });
 
@@ -23,7 +21,7 @@ describe('ForgotPassword page', () => {
       }
     };
     const component = new ForgotPassword(props);
-    const spy = spyOn(component, 'setState');
+    const spy = jest.spyOn(component, 'setState');
 
     component.handleInputChange(e);
 

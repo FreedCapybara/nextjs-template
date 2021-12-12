@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import styled from 'styled-components';
 
 import { trackEvent } from '@lib/analytics';
@@ -18,24 +17,6 @@ const ProfileImage = styled.img`
   height: 200px;
   margin: 20px 0;
 `;
-
-const messages = defineMessages({
-  pageTitleText: {
-    id: 'profile-edit.page-title',
-    defaultMessage: 'Edit profile',
-    description: 'Page title'
-  },
-  firstNameLabelText: {
-    id: 'profile-edit.first-name',
-    defaultMessage: 'First name',
-    description: 'Form field label'
-  },
-  lastNameLabelText: {
-    id: 'profile-edit.last-name',
-    defaultMessage: 'Last name',
-    description: 'Form field label'
-  },
-});
 
 export class EditProfile extends React.Component {
 
@@ -65,13 +46,12 @@ export class EditProfile extends React.Component {
 
   render() {
     const { user } = this.props;
-    const { formatMessage } = this.props.intl;
 
     return (
-      <MainLayout title={formatMessage(messages.pageTitleText)}>
+      <MainLayout title="Edit profile">
 
         <LinkButton href="https://en.gravatar.com/" target="_blank" rel="noopener noreferrer">
-          <FormattedMessage id="profile-edit.edit-profile-image" defaultMessage="Change picture" description="Profile image link text" /> <span className="ti-new-window" />
+          Change picture
         </LinkButton>
 
         <Form onSubmit={this.submit}>
@@ -80,32 +60,26 @@ export class EditProfile extends React.Component {
             <ProfileImage src={this.gravatarUrl} alt={`Avatar image for ${user.email}`} />
           </a>
 
-          <FormField label={formatMessage(messages.firstNameLabelText)}>
+          <FormField label="First name">
             <input type="text" id="firstName" name="firstName"
               onChange={this.handleInputChange} value={this.state.firstName || ''} required />
 
             <p>
-              <FormattedMessage
-                id="profile-edit.manifesturl-field-description"
-                defaultMessage="Your first name."
-                description="Form field description" />
+                Your first name.
             </p>
           </FormField>
 
-          <FormField label={formatMessage(messages.lastNameLabelText)}>
+          <FormField label="Last name">
             <input type="text" id="lastName" name="lastName"
               onChange={this.handleInputChange} value={this.state.lastName || ''} />
 
             <p>
-              <FormattedMessage
-                id="profile-edit.publickey-field-description"
-                defaultMessage="Your last name."
-                description="Form field description" />
+              Your last name.
             </p>
           </FormField>
 
           <Button type="submit">
-            <FormattedMessage id="profile-edit.submit" defaultMessage="Save" description="Submit button" />
+            Save
           </Button>
         </Form>
       </MainLayout>
@@ -114,7 +88,6 @@ export class EditProfile extends React.Component {
 }
 
 EditProfile.propTypes = {
-  intl: PropTypes.object,
   user: PropTypes.object,
   updateProfile: PropTypes.func
 };
@@ -130,5 +103,5 @@ const mapDispatchToProps = {
   ...authActions
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(EditProfile));
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);
 

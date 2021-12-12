@@ -36,37 +36,37 @@ describe('Http utilities', () => {
 
   it('should make requests', () => {
     const mockResponse = { status: 200 };
-    const spy = spyOn(http, 'requestFn').and.returnValue(Promise.resolve(mockResponse));
+    const spy = jest.spyOn(http, 'requestFn').mockReturnValue(Promise.resolve(mockResponse));
     http.request('/test');
     expect(spy).toHaveBeenCalled();
   });
 
   it('should GET', () => {
-    const spy = spyOn(http, 'request');
+    const spy = jest.spyOn(http, 'request');
     http.get('/test');
     expect(spy).toHaveBeenCalledWith('/test', 'GET', undefined, undefined);
   });
 
   it('should POST', () => {
-    const spy = spyOn(http, 'request');
+    const spy = jest.spyOn(http, 'request');
     http.post('/test', { test: 5 });
     expect(spy).toHaveBeenCalledWith('/test', 'POST', JSON.stringify({ test: 5 }), undefined);
   });
 
   it('should PUT', () => {
-    const spy = spyOn(http, 'request');
+    const spy = jest.spyOn(http, 'request');
     http.put('/test', { test: 5 });
     expect(spy).toHaveBeenCalledWith('/test', 'PUT', JSON.stringify({ test: 5 }), undefined);
   });
 
   it('should PATCH', () => {
-    const spy = spyOn(http, 'request');
+    const spy = jest.spyOn(http, 'request');
     http.patch('/test', { test: 5 });
     expect(spy).toHaveBeenCalledWith('/test', 'PATCH', JSON.stringify({ test: 5 }), undefined);
   });
 
   it('should DELETE', () => {
-    const spy = spyOn(http, 'request');
+    const spy = jest.spyOn(http, 'request');
     http.delete('/test');
     expect(spy).toHaveBeenCalledWith('/test', 'DELETE', undefined, undefined);
   });
@@ -77,7 +77,7 @@ describe('Http utilities', () => {
       headers: {}
     };
     const mockResponse = { status: 200 };
-    const spy = spyOn(http, 'requestFn').and.returnValue(Promise.resolve(mockResponse));
+    const spy = jest.spyOn(http, 'requestFn').mockReturnValue(Promise.resolve(mockResponse));
 
     http.defaults.baseUrl = 'http://localhost:3000';
     http.request('/test', 'GET');
@@ -94,7 +94,7 @@ describe('Http utilities', () => {
       }
     };
     const mockResponse = { status: 200 };
-    const spy = spyOn(http, 'requestFn').and.returnValue(Promise.resolve(mockResponse));
+    const spy = jest.spyOn(http, 'requestFn').mockReturnValue(Promise.resolve(mockResponse));
 
     http.defaults.baseUrl = 'http://localhost:3000';
     http.defaults.headers['Authorization'] = 'test';
@@ -105,7 +105,7 @@ describe('Http utilities', () => {
 
   it('should intercept requests', (done) => {
     const mockResponse = { status: 404 };
-    spyOn(http, 'requestFn').and.returnValue(Promise.resolve(mockResponse));
+    jest.spyOn(http, 'requestFn').mockReturnValue(Promise.resolve(mockResponse));
 
     http.defaults.interceptors[404] = (response) => {
       expect(response.status).toBe(404);
@@ -116,7 +116,7 @@ describe('Http utilities', () => {
   });
 
   it('should reject errors', (done) => {
-    spyOn(http, 'requestFn').and.returnValue(Promise.reject());
+    jest.spyOn(http, 'requestFn').mockReturnValue(Promise.reject());
     http.request('/test')
       .then(() => done.fail())
       .catch(() => done());
@@ -124,7 +124,7 @@ describe('Http utilities', () => {
 
   it('should call onFail', (done) => {
     http.onFail = () => done();
-    spyOn(http, 'requestFn').and.returnValue(Promise.reject('TypeError: Failed to fetch'));
+    jest.spyOn(http, 'requestFn').mockReturnValue(Promise.reject('TypeError: Failed to fetch'));
     http.request('/test')
       .catch(() => {});
   });
@@ -136,7 +136,7 @@ describe('Http utilities', () => {
       body: new FormData()
     };
     const mockResponse = { status: 200 };
-    const spy = spyOn(http, 'requestFn').and.returnValue(Promise.resolve(mockResponse));
+    const spy = jest.spyOn(http, 'requestFn').mockReturnValue(Promise.resolve(mockResponse));
 
     http.defaults.baseUrl = 'http://localhost:3000';
     http.request('/test', 'POST', new FormData(), { headers: { 'Content-Type': 'application/json' } });

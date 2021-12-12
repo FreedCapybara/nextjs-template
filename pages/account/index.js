@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -19,19 +18,6 @@ const ProfileImage = styled.img`
   margin: 20px 0;
 `;
 
-const messages = defineMessages({
-  defaultUserTitleText: {
-    id: 'account.title',
-    defaultMessage: 'Your profile',
-    description: 'Page title'
-  },
-  editButtonText: {
-    id: 'account.edit',
-    defaultMessage: 'Edit profile',
-    description: 'Edit button text'
-  }
-});
-
 export class Account extends React.Component {
 
   get gravatarUrl() {
@@ -41,22 +27,20 @@ export class Account extends React.Component {
 
   render() {
     const { user } = this.props;
-    const { formatMessage } = this.props.intl;
-
     const profile = user.profile || {};
 
     return (
-      <MainLayout title={user.email || formatMessage(messages.defaultUserTitleText)}>
+      <MainLayout title={user.email || 'Your profile'}>
 
         <Link href="/account/edit-profile" passHref>
           <LinkButton>
             <span className="ti-pencil" />
-            {formatMessage(messages.editButtonText)}
+            Edit profile
           </LinkButton>
         </Link>
 
         <LinkButton href="https://en.gravatar.com/" target="_blank" rel="noopener noreferrer">
-          <FormattedMessage id="account.edit-profile-image" defaultMessage="Change picture" description="Profile image link text" /> <span className="ti-new-window" />
+          Change picture
         </LinkButton>
 
         <div>
@@ -81,7 +65,6 @@ export class Account extends React.Component {
 }
 
 Account.propTypes = {
-  intl: PropTypes.object,
   user: PropTypes.object
 };
 
@@ -96,5 +79,5 @@ const mapDispatchToProps = {
   ...authActions
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Account));
+export default connect(mapStateToProps, mapDispatchToProps)(Account);
 

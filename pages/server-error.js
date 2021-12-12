@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -25,19 +23,6 @@ const Description = styled.p`
   margin-bottom: 40px;
 `;
 
-const messages = defineMessages({
-  pageTitleText: {
-    id: 'error.page-title',
-    defaultMessage: 'Error',
-    description: 'Page title',
-  },
-  backToHomeText: {
-    id: 'error.back',
-    defaultMessage: 'Back to home',
-    description: 'Back button text',
-  }
-});
-
 export class ServerError extends React.Component {
 
   static async getInitialProps(context) {
@@ -46,24 +31,22 @@ export class ServerError extends React.Component {
   }
 
   render() {
-    const { formatMessage } = this.props.intl;
-
     return (
-      <CenteredLayout title={formatMessage(messages.pageTitleText)}>
+      <CenteredLayout title="Error">
         <Container>
           <Logo />
 
           <h2>
-            <FormattedMessage id="error.title" defaultMessage="Error" description="Page title" />
+            Error
           </h2>
 
           <Description>
-            <FormattedMessage id="error.description" defaultMessage="The page encountered an error. We've been notified and will hopefully have it fixed soon!" description="Page description" />
+            The page encountered an error. We&apos;ve been notified and will hopefully have it fixed soon!
           </Description>
 
           <Link href="/" passHref>
             <LinkButton>
-              {formatMessage(messages.backToHomeText)}
+              Back to home
             </LinkButton>
           </Link>
         </Container>
@@ -72,9 +55,5 @@ export class ServerError extends React.Component {
   }
 }
 
-ServerError.propTypes = {
-  intl: PropTypes.object
-};
-
-export default injectIntl(ServerError);
+export default ServerError;
 

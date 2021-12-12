@@ -128,13 +128,13 @@ export class Menu extends React.Component {
     this.setState({
       isOpen: true
     });
-  }
+  };
 
   closeMenu = () => {
     this.setState({
       isOpen: false
     });
-  }
+  };
 
   render() {
     return (

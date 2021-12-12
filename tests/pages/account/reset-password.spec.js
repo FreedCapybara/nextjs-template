@@ -1,25 +1,23 @@
 import React from 'react';
 
 import { shallowWrapped } from '@tests/wrapper';
-import { IntlMock } from '@tests/mocks';
 
 import { ResetPassword } from '@pages/account/reset-password';
 
 describe('ResetPassword page', () => {
-  const intl = new IntlMock();
 
   it('should render without throwing an error', () => {
-    const component = shallowWrapped(<ResetPassword intl={intl} />);
+    const component = shallowWrapped(<ResetPassword />);
     expect(component).toBeDefined();
   });
 
   it('should render errors', () => {
-    const component = shallowWrapped(<ResetPassword intl={intl} authError={true} />);
+    const component = shallowWrapped(<ResetPassword authError={true} />);
     expect(component).toBeDefined();
   });
 
   it('should render password match error', () => {
-    const component = shallowWrapped(<ResetPassword intl={intl} />);
+    const component = shallowWrapped(<ResetPassword />);
     component.setState({
       email: 'test@test.net',
       newPassword: 'test',
@@ -50,7 +48,7 @@ describe('ResetPassword page', () => {
       }
     };
     const component = new ResetPassword(props);
-    const spy = spyOn(component, 'setState');
+    const spy = jest.spyOn(component, 'setState');
 
     component.handleInputChange(e);
 

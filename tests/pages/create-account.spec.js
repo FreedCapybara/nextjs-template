@@ -1,30 +1,28 @@
 import React from 'react';
 
 import { shallowWrapped } from '@tests/wrapper';
-import { IntlMock } from '@tests/mocks';
 
 import { CreateAccount } from '@pages/create-account';
 
 describe('CreateAccount page', () => {
-  const intl = new IntlMock();
 
   it('should render without throwing an error', () => {
-    const component = shallowWrapped(<CreateAccount intl={intl} />);
+    const component = shallowWrapped(<CreateAccount />);
     expect(component).toBeDefined();
   });
 
   it('should render loading', () => {
-    const component = shallowWrapped(<CreateAccount intl={intl} loading={true} />);
+    const component = shallowWrapped(<CreateAccount loading={true} />);
     expect(component).toBeDefined();
   });
 
   it('should render errors', () => {
-    const component = shallowWrapped(<CreateAccount intl={intl} authError={true} />);
+    const component = shallowWrapped(<CreateAccount authError={true} />);
     expect(component).toBeDefined();
   });
 
   it('should render password match error', () => {
-    const component = shallowWrapped(<CreateAccount intl={intl} />);
+    const component = shallowWrapped(<CreateAccount />);
     component.setState({
       email: 'test@test.net',
       password: 'test',
@@ -45,7 +43,7 @@ describe('CreateAccount page', () => {
       }
     };
     const component = new CreateAccount(props);
-    const spy = spyOn(component, 'setState');
+    const spy = jest.spyOn(component, 'setState');
 
     component.handleInputChange(e);
 

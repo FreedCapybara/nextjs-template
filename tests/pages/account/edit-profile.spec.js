@@ -1,18 +1,16 @@
 import React from 'react';
 
 import { shallowWrapped } from '@tests/wrapper';
-import { IntlMock } from '@tests/mocks';
 
 import { gravatarUrl } from '@lib/gravatar';
 
 import { EditProfile } from '@pages/account/edit-profile';
 
 describe('EditProfile page', () => {
-  const intl = new IntlMock();
 
   it('should render without throwing an error', () => {
     const user = {};
-    const component = shallowWrapped(<EditProfile intl={intl} user={user} />);
+    const component = shallowWrapped(<EditProfile user={user} />);
     expect(component).toBeDefined();
   });
 
@@ -38,7 +36,7 @@ describe('EditProfile page', () => {
       }
     };
     const component = new EditProfile(props);
-    const spy = spyOn(component, 'setState');
+    const spy = jest.spyOn(component, 'setState');
 
     component.handleInputChange(e);
 

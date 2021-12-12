@@ -1,22 +1,19 @@
 import React from 'react';
 import App from 'next/app';
-import { createIntl, createIntlCache, RawIntlProvider } from 'react-intl';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 
-import { theme } from '@config/theme';
-import configureStore from '@config/redux-config';
+import trackingCode from '@config/analytics-config';
 import configureHttp from '@config/http-config';
+import configureStore from '@config/redux-config';
 import configureRouter, { serverRedirect } from '@config/router-config';
+import { theme } from '@config/theme';
 
-import { getLocale } from '@lib/i18n';
 import { initTracker, trackPage } from '@lib/analytics';
 
 import { authActions } from '@redux/actions'; // eslint-disable-line no-unused-vars
-
-const trackingCode = process.env.GA_TRACKING_CODE || 'UA-XXXXXXXXX-X';
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -29,10 +26,6 @@ body {
   box-sizing: border-box;
 }
 `;
-
-// This is optional but highly recommended
-// since it prevents memory leak
-const cache = createIntlCache();
 
 const isServer = typeof(window) === 'undefined';
 
@@ -69,23 +62,7 @@ class $App extends App {
       pageProps = await Component.getInitialProps(ctx);
     }
 
-    // Get the `locale` and `messages` from the request object on the server.
-    // In the browser, use the same values that the server serialized.
-    const { locale, messages } = req || window.__NEXT_DATA__.props;
-
-    const props = { pageProps, locale, messages };
-
-    // locale fallbacks
-    // for scenarios where server.js isn't running
-    // (like in a serverless Zeit/Now deployment)
-    if (!props.locale) {
-      props.locale = getLocale(req);
-    }
-
-    if (!props.messages) {
-      const strings = (await import('@lang/strings')).default;
-      props.messages = strings[props.locale];
-    }
+    const props = { pageProps };
 
     return props;
   }
@@ -108,24 +85,14 @@ class $App extends App {
   }
 
   render() {
-    const { Component, pageProps, locale, messages, store } = this.props;
-
-    const intl = createIntl(
-      {
-        locale,
-        messages
-      },
-      cache
-    );
+    const { Component, pageProps, store } = this.props;
 
     return (
       <React.Fragment>
         <GlobalStyle />
         <Provider store={store}>
           <ThemeProvider theme={theme}>
-            <RawIntlProvider value={intl}>
-              <Component {...pageProps} />
-            </RawIntlProvider>
+            <Component {...pageProps} />
           </ThemeProvider>
         </Provider>
       </React.Fragment>

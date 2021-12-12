@@ -1,7 +1,4 @@
-
 import React from 'react';
-import PropTypes from 'prop-types';
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -24,40 +21,25 @@ const Description = styled.p`
   margin-bottom: 40px;
 `;
 
-const messages = defineMessages({
-  pageTitleText: {
-    id: 'not-found.page-title',
-    defaultMessage: 'Not found',
-    description: 'Page title',
-  },
-  backToHomeText: {
-    id: 'not-found.back',
-    defaultMessage: 'Back to home',
-    description: 'Back button text',
-  }
-});
-
 export class NotFound extends React.Component {
 
   render() {
-    const { formatMessage } = this.props.intl;
-
     return (
-      <CenteredLayout title={formatMessage(messages.pageTitleText)}>
+      <CenteredLayout title="Not found">
         <Container>
           <Logo />
 
           <h2>
-            <FormattedMessage id="not-found.title" defaultMessage="Not found!" description="Page title" />
+            Not found!
           </h2>
 
           <Description>
-            <FormattedMessage id="not-found.description" defaultMessage="We were unable to find the requested page." description="Page description" />
+            We were unable to find the requested page.
           </Description>
 
           <Link href="/" passHref>
             <LinkButton>
-              {formatMessage(messages.backToHomeText)}
+              Back to home
             </LinkButton>
           </Link>
         </Container>
@@ -66,9 +48,5 @@ export class NotFound extends React.Component {
   }
 }
 
-NotFound.propTypes = {
-  intl: PropTypes.object
-};
-
-export default injectIntl(NotFound);
+export default NotFound;
 

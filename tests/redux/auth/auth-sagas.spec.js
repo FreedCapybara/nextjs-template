@@ -28,8 +28,8 @@ describe('Auth sagas', () => {
       json: () => Promise.resolve(data)
     };
 
-    spyOn(authApi, 'login').and.returnValue(response);
-    spyOn(Router, 'push');
+    jest.spyOn(authApi, 'login').mockReturnValue(response);
+    jest.spyOn(Router, 'push');
 
     const dispatched = [];
     const sagaOptions = {
@@ -48,8 +48,8 @@ describe('Auth sagas', () => {
       json: () => Promise.resolve(data)
     };
 
-    spyOn(authApi, 'login').and.returnValue(response);
-    spyOn(Router, 'push');
+    jest.spyOn(authApi, 'login').mockReturnValue(response);
+    jest.spyOn(Router, 'push');
 
     const dispatched = [];
     const sagaOptions = {
@@ -68,8 +68,8 @@ describe('Auth sagas', () => {
       json: () => Promise.resolve(data)
     };
 
-    spyOn(authApi, 'register').and.returnValue(response);
-    spyOn(Router, 'push');
+    jest.spyOn(authApi, 'register').mockReturnValue(response);
+    jest.spyOn(Router, 'push');
 
     const dispatched = [];
     const sagaOptions = {
@@ -81,7 +81,7 @@ describe('Auth sagas', () => {
   });
 
   it('should run registerSaga and handle errors', async () => {
-    spyOn(authApi, 'register').and.throwError();
+    jest.spyOn(authApi, 'register').and.throwError();
 
     const dispatched = [];
     const sagaOptions = {
@@ -100,8 +100,8 @@ describe('Auth sagas', () => {
       json: () => Promise.resolve(data)
     };
 
-    spyOn(authApi, 'register').and.returnValue(response);
-    spyOn(Router, 'push');
+    jest.spyOn(authApi, 'register').mockReturnValue(response);
+    jest.spyOn(Router, 'push');
 
     const dispatched = [];
     const sagaOptions = {
@@ -113,8 +113,8 @@ describe('Auth sagas', () => {
   });
 
   it('should run logoutSaga', async () => {
-    spyOn(authApi, 'logout');
-    spyOn(Router, 'push');
+    jest.spyOn(authApi, 'logout');
+    jest.spyOn(Router, 'push');
 
     const dispatched = [];
     const sagaOptions = {
@@ -133,8 +133,8 @@ describe('Auth sagas', () => {
       json: () => Promise.resolve(data)
     };
 
-    spyOn(authApi, 'getUser').and.returnValue(response);
-    spyOn(Router, 'push');
+    jest.spyOn(authApi, 'getUser').mockReturnValue(response);
+    jest.spyOn(Router, 'push');
 
     const dispatched = [];
     const sagaOptions = {
@@ -153,8 +153,8 @@ describe('Auth sagas', () => {
       json: () => Promise.resolve(data)
     };
 
-    spyOn(authApi, 'updateProfile').and.returnValue(response);
-    spyOn(Router, 'push');
+    jest.spyOn(authApi, 'updateProfile').mockReturnValue(response);
+    jest.spyOn(Router, 'push');
 
     const dispatched = [];
     const sagaOptions = {
@@ -166,8 +166,8 @@ describe('Auth sagas', () => {
   });
 
   it('should run forgotPasswordSaga', async () => {
-    const spy = spyOn(authApi, 'forgotPassword');
-    spyOn(Router, 'push');
+    const spy = jest.spyOn(authApi, 'forgotPassword');
+    jest.spyOn(Router, 'push');
 
     const sagaOptions = {};
     await runSaga(sagaOptions, forgotPasswordSaga, {}).toPromise();
@@ -176,8 +176,8 @@ describe('Auth sagas', () => {
   });
 
   it('should run resetPasswordSaga', async () => {
-    const spy = spyOn(authApi, 'resetPassword');
-    spyOn(Router, 'push');
+    const spy = jest.spyOn(authApi, 'resetPassword');
+    jest.spyOn(Router, 'push');
 
     const sagaOptions = {};
     await runSaga(sagaOptions, resetPasswordSaga, {}).toPromise();
@@ -186,7 +186,7 @@ describe('Auth sagas', () => {
   });
 
   it('should handle errors in resetPasswordSaga', async () => {
-    spyOn(authApi, 'resetPassword').and.throwError('error');
+    jest.spyOn(authApi, 'resetPassword').and.throwError('error');
 
     const dispatched = [];
     const sagaOptions = {

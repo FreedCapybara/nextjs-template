@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { FormattedMessage } from 'react-intl';
 
 import { Button } from '@components/elements';
 
@@ -30,7 +29,7 @@ export class DeleteButtons extends React.Component {
     if (this.props.onDelete) {
       this.props.onDelete();
     }
-  }
+  };
 
   render() {
     return (
@@ -38,18 +37,18 @@ export class DeleteButtons extends React.Component {
         {this.state.deleteEnabled ?
           <Button type="button" onClick={this.toggleDelete}>
             <span className="ti-unlock" />
-            <FormattedMessage id="interfaces.disable-delete" defaultMessage="Disable delete" description="Hide delete toggle button label" />
+            Disable delete
           </Button>
           :
           <Button type="button" onClick={this.toggleDelete}>
             <span className="ti-lock" />
-            <FormattedMessage id="interfaces.enable-delete" defaultMessage="Enable delete" description="Show delete toggle button label" />
+            Enable delete
           </Button>
         }
 
         <Button type="button" onClick={this.delete} disabled={!this.state.deleteEnabled}>
           <span className="ti-trash" />
-          <FormattedMessage id="interfaces.delete" defaultMessage="Delete" description="Delete button label" />
+          Delete
         </Button>
       </Wrapper>
     );

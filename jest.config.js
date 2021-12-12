@@ -11,7 +11,6 @@ module.exports = {
     "@components(.*)$": "<rootDir>/components/$1",
     "@pages(.*)$": "<rootDir>/pages/$1",
     "@public(.*)$": "<rootDir>/public/$1",
-    "@lang(.*)$": "<rootDir>/lang/$1",
     "@lib(.*)$": "<rootDir>/lib/$1",
     "@redux(?!-)(.*)$": "<rootDir>/redux/$1",
     "@tests(.*)$": "<rootDir>/tests/$1",

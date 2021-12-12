@@ -10,7 +10,7 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'plugin:security/recommended'
   ],
-  'parser': 'babel-eslint',
+  'parser': '@babel/eslint-parser',
   'parserOptions': {
     'ecmaFeatures': {
       'jsx': true
@@ -21,7 +21,6 @@ module.exports = {
   },
   'plugins': [
     'react',
-    'formatjs',
     'jsx-a11y',
     'security'
   ],
@@ -54,16 +53,6 @@ module.exports = {
   ],
   'rules': {
     'semi': [ 'error', 'always' ],
-    'react/jsx-no-literals': 'error',
-    'formatjs/enforce-placeholders': 'error',
-    'formatjs/blacklist-elements': 'error',
-    'formatjs/enforce-description': 'error',
-    'formatjs/enforce-plural-rules': 'error',
-    'formatjs/no-camel-case': 'error',
-    'formatjs/no-emoji': 'error',
-    'formatjs/no-multiple-plurals': 'error',
-    'formatjs/no-offset': 'error',
-    'formatjs/supported-datetime-skeleton': 'error',
     'jsx-a11y/anchor-is-valid': 'off' // the Next.js <Link><a /></Link> screws this up
   }
 };

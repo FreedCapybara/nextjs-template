@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -36,34 +35,6 @@ const ErrorMessage = styled.p`
   color: ${({ theme }) => theme.colors.red};
 `;
 
-const messages = defineMessages({
-  pageTitleText: {
-    id: 'reset-password.page-title',
-    defaultMessage: 'Reset password',
-    description: 'Page title',
-  },
-  emailLabelText: {
-    id: 'reset-password.email',
-    defaultMessage: 'Email',
-    description: 'Form field label'
-  },
-  passwordLabelText: {
-    id: 'reset-password.password',
-    defaultMessage: 'New password',
-    description: 'Form field label'
-  },
-  confirmPasswordLabelText: {
-    id: 'reset-password.confirm-password',
-    defaultMessage: 'Confirm password',
-    description: 'Form field label'
-  },
-  backText: {
-    id: 'reset-password.back',
-    defaultMessage: 'back to login',
-    description: 'Back link'
-  }
-});
-
 export class ResetPassword extends React.Component {
 
   static async getInitialProps(context) {
@@ -84,63 +55,61 @@ export class ResetPassword extends React.Component {
       [e.target.name]: e.target.value
     });
     this.props.setAuthError(false);
-  }
+  };
 
   submit = (e) => {
     e.preventDefault();
     this.props.resetPassword(this.state);
     trackEvent('auth', 'reset password', 'password reset submitted');
-  }
+  };
 
   render() {
-    const { formatMessage } = this.props.intl;
-
     return (
-      <CenteredLayout title={formatMessage(messages.pageTitleText)}>
+      <CenteredLayout title="Reset password">
         <ResetPasswordForm onSubmit={this.submit} autoComplete="off">
           <Logo height="108px" />
 
           <h2>
-            <FormattedMessage id="reset-password.title" defaultMessage="Password reset" description="Page title" />
+            Password reset
           </h2>
 
           <Link href="/login">
             <a>
-              {formatMessage(messages.backText)}
+              back to login
             </a>
           </Link>
 
           <DescriptionText>
-            <FormattedMessage id="reset-password.description" defaultMessage="Use the form below to reset your password. Once completed, you can use your new password to log in." description="Email description text" />
+            Use the form below to reset your password. Once completed, you can use your new password to log in.
           </DescriptionText>
 
-          <FormField label={formatMessage(messages.emailLabelText)}>
+          <FormField label="Email">
             <input type="email" id="email" name="email" required
               onChange={this.handleInputChange} value={this.state.email || ''} />
           </FormField>
 
-          <FormField label={formatMessage(messages.passwordLabelText)}>
+          <FormField label="New password">
             <input type="password" id="newPassword" name="newPassword" required
               onChange={this.handleInputChange} value={this.state.newPassword || ''} />
           </FormField>
 
-          <FormField label={formatMessage(messages.confirmPasswordLabelText)}>
+          <FormField label="Confirm password">
             <input type="password" id="confirmPassword" name="confirmPassword" required
               onChange={this.handleInputChange} value={this.state.confirmPassword || ''} />
           </FormField>
 
           {this.state.confirmPassword && this.state.newPassword !== this.state.confirmPassword ? (
             <ErrorMessage id="password-match-error">
-              <FormattedMessage id="reset-password.password-match" defaultMessage="Passwords must match" description="Password match error message" />
+              Passwords must match
             </ErrorMessage>
           ) : (this.props.authError &&
             <ErrorMessage id="login-error">
-              <FormattedMessage id="reset-password.error" defaultMessage="Couldn't create account. Please try again later!" description="Registration error message" />
+              Couldn&apos;t create account. Please try again later!
             </ErrorMessage>
           )}
 
           <Button type="submit" disabled={!this.state.email || !this.state.newPassword || this.state.newPassword !== this.state.confirmPassword}>
-            <FormattedMessage id="reset-password.submit" defaultMessage="Set password" description="Change password submit button" />
+            Set password
           </Button>
         </ResetPasswordForm>
       </CenteredLayout>
@@ -149,7 +118,6 @@ export class ResetPassword extends React.Component {
 }
 
 ResetPassword.propTypes = {
-  intl: PropTypes.object,
   token: PropTypes.string,
   authError: PropTypes.bool,
   setAuthError: PropTypes.func,
@@ -168,5 +136,5 @@ const mapDispatchToProps = {
   ...authActions
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(ResetPassword));
+export default connect(mapStateToProps, mapDispatchToProps)(ResetPassword);
 
