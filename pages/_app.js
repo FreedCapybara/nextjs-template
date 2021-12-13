@@ -2,7 +2,7 @@ import React from 'react';
 import App from 'next/app';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { Provider } from 'react-redux';
-import withRedux from 'next-redux-wrapper';
+import { createWrapper } from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 
 import trackingCode from '@config/analytics-config';
@@ -29,10 +29,12 @@ body {
 
 const isServer = typeof(window) === 'undefined';
 
+const store = configureStore();
+
 class $App extends App {
 
   static async getInitialProps({ Component, ctx }) {
-    const { req, res, store } = ctx; // eslint-disable-line no-unused-vars
+    const { req, res } = ctx; // eslint-disable-line no-unused-vars
 
     if (req) {
       if (serverRedirect(req, res)) {
@@ -85,7 +87,7 @@ class $App extends App {
   }
 
   render() {
-    const { Component, pageProps, store } = this.props;
+    const { Component, pageProps } = this.props;
 
     return (
       <React.Fragment>
@@ -100,5 +102,5 @@ class $App extends App {
   }
 }
 
-export default withRedux(configureStore)(withReduxSaga($App));
+export default createWrapper(() => store).withRedux(withReduxSaga($App));
 

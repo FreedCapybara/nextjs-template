@@ -1,5 +1,5 @@
 import React from 'react';
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 // The document (which is SSR-only) needs to be customized to expose the locale
@@ -41,7 +41,7 @@ export default class $Document extends Document {
 
   render() {
     return (
-      <html lang="en-US">
+      <Html lang="en-US">
         <Head>
           {/* probably want to figure out how to load this asynchronously
             https://stackoverflow.com/questions/32759272/how-to-load-css-asynchronously
@@ -52,7 +52,7 @@ export default class $Document extends Document {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }
