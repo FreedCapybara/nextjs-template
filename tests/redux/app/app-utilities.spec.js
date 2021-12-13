@@ -25,7 +25,7 @@ describe('App utilities', () => {
   });
 
   it('should wrap saga errors', async () => {
-    jest.spyOn(console, 'error'); // quiet the console
+    jest.spyOn(console, 'error').mockImplementation(() => {}); // quiet the console
     const dispatched = [];
     const sagaOptions = {
       dispatch: (action) => dispatched.push(action)

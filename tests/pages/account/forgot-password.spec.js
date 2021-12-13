@@ -21,7 +21,7 @@ describe('ForgotPassword page', () => {
       }
     };
     const component = new ForgotPassword(props);
-    const spy = jest.spyOn(component, 'setState');
+    const spy = jest.spyOn(component, 'setState').mockImplementation((state) => component.state = state);
 
     component.handleInputChange(e);
 

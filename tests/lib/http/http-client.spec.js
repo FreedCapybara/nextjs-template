@@ -41,36 +41,6 @@ describe('Http utilities', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should GET', () => {
-    const spy = jest.spyOn(http, 'request');
-    http.get('/test');
-    expect(spy).toHaveBeenCalledWith('/test', 'GET', undefined, undefined);
-  });
-
-  it('should POST', () => {
-    const spy = jest.spyOn(http, 'request');
-    http.post('/test', { test: 5 });
-    expect(spy).toHaveBeenCalledWith('/test', 'POST', JSON.stringify({ test: 5 }), undefined);
-  });
-
-  it('should PUT', () => {
-    const spy = jest.spyOn(http, 'request');
-    http.put('/test', { test: 5 });
-    expect(spy).toHaveBeenCalledWith('/test', 'PUT', JSON.stringify({ test: 5 }), undefined);
-  });
-
-  it('should PATCH', () => {
-    const spy = jest.spyOn(http, 'request');
-    http.patch('/test', { test: 5 });
-    expect(spy).toHaveBeenCalledWith('/test', 'PATCH', JSON.stringify({ test: 5 }), undefined);
-  });
-
-  it('should DELETE', () => {
-    const spy = jest.spyOn(http, 'request');
-    http.delete('/test');
-    expect(spy).toHaveBeenCalledWith('/test', 'DELETE', undefined, undefined);
-  });
-
   it('should use the base url', () => {
     const expectedOptions = {
       method: 'GET',
@@ -142,6 +112,36 @@ describe('Http utilities', () => {
     http.request('/test', 'POST', new FormData(), { headers: { 'Content-Type': 'application/json' } });
 
     expect(spy).toHaveBeenCalledWith('http://localhost:3000/test', expectedOptions);
+  });
+
+  it('should GET', () => {
+    const spy = jest.spyOn(http, 'request').mockImplementation(() => {});
+    http.get('/test');
+    expect(spy).toHaveBeenCalledWith('/test', 'GET', undefined, undefined);
+  });
+
+  it('should POST', () => {
+    const spy = jest.spyOn(http, 'request').mockImplementation(() => {});
+    http.post('/test', { test: 5 });
+    expect(spy).toHaveBeenCalledWith('/test', 'POST', JSON.stringify({ test: 5 }), undefined);
+  });
+
+  it('should PUT', () => {
+    const spy = jest.spyOn(http, 'request').mockImplementation(() => {});
+    http.put('/test', { test: 5 });
+    expect(spy).toHaveBeenCalledWith('/test', 'PUT', JSON.stringify({ test: 5 }), undefined);
+  });
+
+  it('should PATCH', () => {
+    const spy = jest.spyOn(http, 'request').mockImplementation(() => {});
+    http.patch('/test', { test: 5 });
+    expect(spy).toHaveBeenCalledWith('/test', 'PATCH', JSON.stringify({ test: 5 }), undefined);
+  });
+
+  it('should DELETE', () => {
+    const spy = jest.spyOn(http, 'request').mockImplementation(() => {});
+    http.delete('/test');
+    expect(spy).toHaveBeenCalledWith('/test', 'DELETE', undefined, undefined);
   });
 });
 

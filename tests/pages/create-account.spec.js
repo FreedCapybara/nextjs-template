@@ -43,7 +43,7 @@ describe('CreateAccount page', () => {
       }
     };
     const component = new CreateAccount(props);
-    const spy = jest.spyOn(component, 'setState');
+    const spy = jest.spyOn(component, 'setState').mockImplementation((state) => component.state = state);
 
     component.handleInputChange(e);
 

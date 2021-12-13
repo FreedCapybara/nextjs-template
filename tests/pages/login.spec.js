@@ -21,6 +21,16 @@ describe('Login page', () => {
     expect(component).toBeDefined();
   });
 
+  it('should getInitialProps', async () => {
+    const context = {
+      query: {
+        redirect: '/test'
+      }
+    };
+    const result = await Login.getInitialProps(context);
+    expect(result.redirect).toBe('/test');
+  });
+
   it('should handleInputChange', () => {
     const props = {};
     const e = {
@@ -30,7 +40,7 @@ describe('Login page', () => {
       }
     };
     const component = new Login(props);
-    const spy = jest.spyOn(component, 'setState');
+    const spy = jest.spyOn(component, 'setState').mockImplementation((state) => component.state = state);
 
     component.handleInputChange(e);
 
@@ -40,7 +50,8 @@ describe('Login page', () => {
   it('should submit', () => {
     const login = jest.fn();
     const props = {
-      login
+      login,
+      redirect: ''
     };
 
     const preventDefault = jest.fn();
@@ -57,6 +68,6 @@ describe('Login page', () => {
     component.submit(e);
 
     expect(preventDefault).toHaveBeenCalled();
-    expect(login).toHaveBeenCalledWith({ email: 'test@test.net', password: 'password' });
+    expect(login).toHaveBeenCalledWith({ email: 'test@test.net', password: 'password' }, '');
   });
 });

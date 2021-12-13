@@ -15,12 +15,12 @@ describe('Server error page', () => {
     expect(component).toBeDefined();
   });
 
-  it('should getInitialProps', () => {
-    const spy = jest.spyOn(store, 'dispatch');
+  it('should getInitialProps', async () => {
+    const spy = jest.spyOn(store, 'dispatch').mockImplementation(() => {});
     const context = {
       store
     };
-    ServerError.getInitialProps(context);
+    await ServerError.getInitialProps(context);
     expect(spy).toHaveBeenCalledWith(appActions.setError(false));
   });
 });
