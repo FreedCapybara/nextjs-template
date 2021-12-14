@@ -1,4 +1,7 @@
-import home from './home';
+import Landing from './landing';
+import Home from './home';
 
-export default home;
+const isLoggedIn = false;
+
+export default isLoggedIn ? Home : Landing;
 
