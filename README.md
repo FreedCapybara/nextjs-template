@@ -3,6 +3,8 @@
 * CSS modules
 * Sass
 
+* Need to do the SEO course https://nextjs.org/learn/seo/introduction-to-seo
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
