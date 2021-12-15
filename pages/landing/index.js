@@ -50,6 +50,9 @@ export default function Landing() {
             </p>
           </a>
         </div>
+
+        <button>hello</button>
+        <a className="link-button">hello</a>
       </main>
 
       <footer className={styles.footer}>

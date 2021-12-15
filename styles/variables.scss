@@ -1,0 +1,44 @@
+
+// Breakpoints -- use with @media(min-width)
+// --------------------
+
+$tiny-breakpoint: 0;
+$mobile-breakpoint: 360px;
+$tablet-breakpoint: 576px;
+$desktop-breakpoint: 992px;
+$desktop-hd-breakpoint: 1400px;
+
+// Colors
+// --------------------
+
+$primary-color: #3158fe;
+$secondary-color: #3158fe;
+$text-color: rgba(0, 0, 0, .8);
+$text-color-light: rgba(0, 0, 0, .5);
+$error-color: #f20000;
+$warning-color: #f18701;
+$input-border-color: rgba(0, 0, 0, .4);
+$light-grey: #f4f5f6;
+$medium-light-grey: #eee;
+$medium-grey: #d0d0d0;
+$grey: #888;
+$green: #43cea2;
+$purple: #9796f0;
+$blue: #24c6dc;
+$tan: #c9a690;
+$red: #f20000;
+
+// shadows
+// --------------------
+
+$text-shadow: 0 2px 3px rgba(0,0,0,0.2);
+$box-shadow-small: 0 2px 1px rgba(0,0,0,0.3);
+$box-shadow-medium: 0 2px 3px rgba(0,0,0,0.2);
+$box-shadow-large: 0 4px 16px rgba(0,0,0,0.2);
+
+// toolbar
+// --------------------
+
+$toolbar-mobile-height: 54px;
+$toolbar-desktop-height: 84px;
+

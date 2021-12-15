@@ -1,0 +1,42 @@
+@import './variables';
+
+%button-style {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid $primary-color;
+  color: $primary-color;
+  padding: 12px 64px;
+  font-size: 1.125rem;
+  line-height: 1rem;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 100px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color .3s, color .3s, box-shadow .3s;
+
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+    box-shadow: $box-shadow-large;
+  }
+
+  &[disabled] {
+    border-color: $grey !important;
+    color: $grey !important;
+    background: transparent !important;
+    cursor: default !important;
+    box-shadow: none;
+  }
+}
+
+button {
+  @extend %button-style;
+}
+
+a.link-button {
+  @extend %button-style;
+}
+
