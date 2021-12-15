@@ -1,11 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import styles from './_error.module.scss';
+import styles from './404.module.scss';
 
 import { CenteredLayout } from '@components/centered-layout';
 import { Logo } from '@components/logo';
 
-export default function NotFound() {
+function NotFound() {
   return (
     <CenteredLayout title="Not found">
       <div className={styles.container}>
@@ -28,4 +28,6 @@ export default function NotFound() {
     </CenteredLayout>
   );
 }
+
+export default NotFound;
 

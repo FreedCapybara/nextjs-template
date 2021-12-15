@@ -1,7 +1,10 @@
-import styles from './home.module.scss'
+import styles from './home.module.scss';
 
-export default function Home() {
+function Home() {
   return (
     <div />
-  )
+  );
 }
+
+export default Home;
+

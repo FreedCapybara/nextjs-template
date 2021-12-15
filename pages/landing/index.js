@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from './landing.module.scss'
 
-export default function Landing() {
+function Landing() {
   return (
     <div className={styles.container}>
       <Head>
@@ -50,9 +50,6 @@ export default function Landing() {
             </p>
           </a>
         </div>
-
-        <button>hello</button>
-        <a className="link-button">hello</a>
       </main>
 
       <footer className={styles.footer}>
@@ -70,3 +67,6 @@ export default function Landing() {
     </div>
   )
 }
+
+export default Landing;
+
