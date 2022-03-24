@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from './landing.module.scss'
 
-import { LoadingSpinner } from '@components/loading-spinner';
+import { Modal } from '@components/modal';
 
 function Landing() {
   return (
@@ -53,7 +53,7 @@ function Landing() {
           </a>
         </div>
 
-        <LoadingSpinner />
+        <Modal />
 
       </main>
 

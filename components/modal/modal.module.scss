@@ -1,0 +1,74 @@
+@import '@styles/variables';
+
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, .3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  position: relative;
+  background-color: white;
+  text-decoration: none;
+  color: $text-color;
+  display: flex;
+  flex-direction: column;
+  box-shadow: $box-shadow-medium;
+  padding: 20px;
+  border-radius: 12px;
+  width: calc(100% - 40px);
+  max-width: 600px;
+  margin: 20px;
+  transition: box-shadow .3s;
+  z-index: 51;
+}
+
+.closeButton {
+  position: absolute;
+  font-size: 1.5rem;
+  padding: 0;
+  border: none;
+  background: none;
+  color: $text-color-light;
+  font-weight: normal;
+  letter-spacing: 0;
+  top: 20px;
+  right: 20px;
+
+  &:hover {
+    background: none;
+    color: $text-color-light;
+    box-shadow: none;
+  }
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  padding: 0 20px 10px;
+  margin: 0 -20px;
+  border-bottom: 1px solid $medium-light-grey;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0 20px;
+  margin: 0 -20px;
+  max-height: 100%;
+}
+
