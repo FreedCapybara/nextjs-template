@@ -2,6 +2,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from './landing.module.scss'
 
+import { LoadingSpinner } from '@components/loading-spinner';
+
 function Landing() {
   return (
     <div className={styles.container}>
@@ -50,6 +52,9 @@ function Landing() {
             </p>
           </a>
         </div>
+
+        <LoadingSpinner />
+
       </main>
 
       <footer className={styles.footer}>

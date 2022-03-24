@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import styles from './404.module.scss';
+import styles from './not-found.module.scss';
 
 import { CenteredLayout } from '@components/centered-layout';
 import { Logo } from '@components/logo';
