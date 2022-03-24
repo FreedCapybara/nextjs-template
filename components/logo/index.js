@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import styles from './logo.module.scss';
 import theme from '@config/theme.config';
 
-function Logo(props) {
+export function Logo(props) {
+  const { height } = props;
 
   const logoStyle = {
-    height: props.height
+    height
   };
 
   return (
@@ -23,6 +24,4 @@ Logo.propTypes = {
   src: PropTypes.string,
   height: PropTypes.string
 };
-
-export Logo;
 

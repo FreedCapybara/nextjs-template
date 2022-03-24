@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import styles from './centered-layout.module.scss';
 
-function CenteredLayoutComponent(props) {
+export function CenteredLayoutComponent(props) {
   return (
     <>
       <div className={styles.wrapper}>
@@ -48,6 +48,4 @@ CenteredLayoutComponent.propTypes = {
 };
 
 export const CenteredLayout = CenteredLayoutComponent; //connect(mapStateToProps, mapDispatchToProps)(CenteredLayoutComponent);
-
-export CenteredLayoutComponent;
 

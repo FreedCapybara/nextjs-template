@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './avatar.module.scss';
 
-import { gravatarUrl } from '@lib/gravatar';
+import { getGravatarUrl } from '@lib/gravatar';
 
-function Avatar {
-  const { email, width, height, size, url } = this.props;
+export function Avatar(props) {
+  const { email, width, height, size, url } = props;
 
-  const gravatarUrl = url || gravatarUrl(email, size);
+  const gravatarUrl = url || getGravatarUrl(email, size);
 
   const avatarStyle = {
     height: height || (size && `${size}px`),
@@ -30,6 +31,4 @@ Avatar.propTypes = {
   height: PropTypes.string,
   size: PropTypes.string
 };
-
-export Avatar;
 
