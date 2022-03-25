@@ -1,34 +1,30 @@
-/**
- * See https://github.com/zeit/next.js/tree/acf7d0ad3bdde5fd579e80325894f4b8a262130f/examples/with-redux-saga
+/*
+ * From https://github.com/vercel/next.js/tree/canary/examples/with-redux-saga
  */
 
-import { applyMiddleware, createStore } from 'redux';
-import createSagaMiddleware from 'redux-saga';
+import { applyMiddleware, createStore } from 'redux'
+import createSagaMiddleware from 'redux-saga'
+import { createWrapper } from 'next-redux-wrapper'
 
-import { rootReducer, initialState } from '@redux/root-reducer';
+import { rootReducer } from '@redux/root-reducer';
 import rootSaga from '@redux/root-saga';
 
-const dev = process.env.NODE_ENV !== 'production';
-
-const bindMiddleware = (middleware, useDevTools) => {
-  if (useDevTools) {
+const bindMiddleware = (middleware) => {
+  if (process.env.NODE_ENV !== 'production') {
     const { composeWithDevTools } = require('redux-devtools-extension');
     return composeWithDevTools(applyMiddleware(...middleware));
   }
   return applyMiddleware(...middleware);
-};
+}
 
-function configureStore(state = initialState, useDevTools = dev) {
+export const makeStore = (context) => {
   const sagaMiddleware = createSagaMiddleware();
-  const store = createStore(
-    rootReducer(),
-    state,
-    bindMiddleware([sagaMiddleware], useDevTools)
-  );
+  const store = createStore(rootReducer, bindMiddleware([sagaMiddleware]));
 
   store.sagaTask = sagaMiddleware.run(rootSaga);
 
   return store;
 }
 
-export default configureStore;
+export const wrapper = createWrapper(makeStore, { debug: true });
+
