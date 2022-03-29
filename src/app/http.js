@@ -1,10 +1,10 @@
-import { Http } from '@lib/http';
+import { Http } from '@utils/http';
 import Router from 'next/router';
 import cookie from 'cookie';
 import Cookies from 'js-cookie';
 import getConfig from 'next/config';
 
-import { createRedirect } from '@config/router-config';
+import { createRedirect } from '@app/router';
 
 const dev = process.env.NODE_ENV !== 'production';
 const apiBaseUrl = getConfig().publicRuntimeConfig.apiBaseUrl;

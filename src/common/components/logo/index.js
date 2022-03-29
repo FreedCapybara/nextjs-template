@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './logo.module.scss';
-import theme from '@config/theme.config';
+import theme from '@app/theme';
 
 export function Logo(props) {
   const { height } = props;

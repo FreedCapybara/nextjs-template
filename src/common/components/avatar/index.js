@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './avatar.module.scss';
 
-import { getGravatarUrl } from '@lib/gravatar';
+import { getGravatarUrl } from '@utils/gravatar';
 
 export function Avatar(props) {
   const { email, width, height, size, url } = props;

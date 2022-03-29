@@ -1,4 +1,4 @@
-import { http } from '@lib/http';
+import { http } from '@utils/http';
 
 export const authApi = {
   login: (credentials) => http.post(`/auth/login`, credentials),

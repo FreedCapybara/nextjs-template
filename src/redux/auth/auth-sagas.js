@@ -3,7 +3,7 @@ import Router from 'next/router';
 import Cookies from 'js-cookie';
 import moment from 'moment';
 
-import { http } from '@lib/http';
+import { http } from '@utils/http';
 
 import { appActions, productActions } from '@redux/actions';
 import { wrap } from '@redux/app/app-utilities';
