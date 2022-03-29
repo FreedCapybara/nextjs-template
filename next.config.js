@@ -12,9 +12,9 @@ module.exports = {
     config.resolve.alias['@components'] = path.resolve(__dirname + '/src/common/components');
     config.resolve.alias['@hooks'] = path.resolve(__dirname + '/src/common/hooks');
     config.resolve.alias['@utils'] = path.resolve(__dirname + '/src/common/utils');
+    config.resolve.alias['@features'] = path.resolve(__dirname + '/src/features');
     config.resolve.alias['@pages'] = path.resolve(__dirname + '/src/pages');
     config.resolve.alias['@public'] = path.resolve(__dirname + '/public');
-    config.resolve.alias['@redux'] = path.resolve(__dirname + '/src/redux');
     config.resolve.alias['@styles'] = path.resolve(__dirname + '/src/styles');
 
     // remove moment.js locales

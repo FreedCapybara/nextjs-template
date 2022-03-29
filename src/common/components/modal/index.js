@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styles from './modal.module.scss';
 
-import { appActions } from '@redux/actions';
+//import { appActions } from '@redux/actions';
 
 export class ModalComponent extends React.Component {
 
@@ -12,7 +12,7 @@ export class ModalComponent extends React.Component {
   }
 
   cancel = () => {
-    this.props.hideModal();
+    //this.props.hideModal();
   };
 
   render() {
@@ -52,7 +52,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  ...appActions
+  //...appActions
 };
 
 export const Modal = connect(mapStateToProps, mapDispatchToProps)(ModalComponent);
