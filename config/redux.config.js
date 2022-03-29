@@ -12,6 +12,12 @@ import rootSaga from '@redux/root-saga';
 const bindMiddleware = (middleware) => {
   if (process.env.NODE_ENV !== 'production') {
     const { composeWithDevTools } = require('redux-devtools-extension');
+
+    // add redux-immutable-state-invariant
+    // https://redux.js.org/style-guide/style-guide#do-not-mutate-state
+    const reduxImmutableStateInvariant = require('redux-immutable-state-invariant').default();
+    middleware.push(reduxImmutableStateInvariant);
+
     return composeWithDevTools(applyMiddleware(...middleware));
   }
   return applyMiddleware(...middleware);
