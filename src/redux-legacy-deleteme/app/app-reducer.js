@@ -1,13 +1,4 @@
 
-export const appInitialState = {
-  loading: false,
-  loadingCount: 0,
-  modalOpen: false,
-  modalTitle: '',
-  modalContent: null,
-  error: false
-};
-
 export function appReducer(state = appInitialState, action) {
 
   switch (action.type) {
