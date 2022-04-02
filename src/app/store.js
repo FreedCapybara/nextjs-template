@@ -19,7 +19,7 @@ export function createStore() {
 
   return configureStore({
     reducer,
-    middleware
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(middleware)
   });
 }
 
