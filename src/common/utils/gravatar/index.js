@@ -1,2 +1,2 @@
-export * from './gravatar-utilities';
+export * from './gravatar-utils';
 
