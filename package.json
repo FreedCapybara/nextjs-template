@@ -23,8 +23,6 @@
   },
   "devDependencies": {
     "eslint": "^8.10.0",
-    "eslint-config-next": "^12.1.0",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-immutable-state-invariant": "^2.1.0"
+    "eslint-config-next": "^12.1.0"
   }
 }
