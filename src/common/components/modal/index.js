@@ -1,59 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import styles from './modal.module.scss';
 
-//import { appActions } from '@redux/actions';
+import { modalUtils } from '@common/utils/modal';
 
-export class ModalComponent extends React.Component {
+export function Modal(props) {
 
-  consumeEvent(e) {
+  function consumeEvent(e) {
     e.stopPropagation();
   }
 
-  cancel = () => {
-    //this.props.hideModal();
+  function close() {
+    if (props.onClose) {
+      props.onClose();
+    }
+    modalUtils.closeModal();
   };
 
-  render() {
-    return (
-      <div className={styles.wrapper} onClick={this.cancel}>
-        <div className={styles.card} onClick={this.consumeEvent}>
-          <div className={styles.cardHeader}>
-            <span className={styles.cardTitle}>
-              {this.props.modalTitle}
-            </span>
+  return (
+    <div className={styles.wrapper} onClick={close}>
+      <div className={styles.card} onClick={consumeEvent}>
+        <div className={styles.cardHeader}>
+          <span className={styles.cardTitle}>
+            {props.title}
+          </span>
 
-            <button className={styles.closeButton} type="button" onClick={this.cancel}>
-              <span className="ti-close" />
-            </button>
-          </div>
+          <button className={styles.closeButton} type="button" onClick={close}>
+            <span className="ti-close" />
+          </button>
+        </div>
 
-          <div className={styles.cardContent}>
-            {this.props.modalContent}
-          </div>
+        <div className={styles.cardContent}>
+          {props.children}
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-ModalComponent.propTypes = {
-  modalTitle: PropTypes.string,
-  modalContent: PropTypes.node,
-  hideModal: PropTypes.func
+Modal.propTypes = {
+  title: PropTypes.string,
+  onClose: PropTypes.func
 };
-
-/* istanbul ignore next */
-const mapStateToProps = state => {
-  return {
-    ...state.appState
-  };
-};
-
-const mapDispatchToProps = {
-  //...appActions
-};
-
-export const Modal = connect(mapStateToProps, mapDispatchToProps)(ModalComponent);
 
