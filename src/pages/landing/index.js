@@ -2,8 +2,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from './landing.module.scss'
 
-import { Modal } from '@components/modal';
-
 function Landing() {
   return (
     <div className={styles.container}>
@@ -52,9 +50,6 @@ function Landing() {
             </p>
           </a>
         </div>
-
-        <Modal />
-
       </main>
 
       <footer className={styles.footer}>
