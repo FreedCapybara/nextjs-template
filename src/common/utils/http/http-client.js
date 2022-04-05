@@ -22,16 +22,12 @@ export class Http {
   requestFn = fetch;
   onFail = null;
 
-  static configure(callback) {
-    if (!http.isConfigured) {
-      callback(http);
-      http.isConfigured = true;
+  configure(callback) {
+    if (!this.isConfigured) {
+      callback(this);
+      this.isConfigured = true;
     }
     return http;
-  }
-
-  static setAuth(callback) {
-    callback(http);
   }
 
   request(url, method, body, options) {
@@ -92,6 +88,4 @@ export class Http {
     return this.request(url, 'DELETE', undefined, options);
   }
 }
-
-export const http = new Http();
 
