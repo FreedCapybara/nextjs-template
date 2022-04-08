@@ -1,14 +1,12 @@
 import { Provider } from 'react-redux';
-import { store } from '@app/store';
+import { wrapper } from '@app/store';
 import '@styles/globals.scss';
 
 function App({ Component, pageProps }) {
   return (
-    <Provider store={store}>
-      <Component {...pageProps} />
-    </Provider>
+    <Component {...pageProps} />
   );
 }
 
-export default App;
+export default wrapper.withRedux(App);
 

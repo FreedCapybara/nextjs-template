@@ -1,47 +1,37 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-//import { connect } from 'react-redux';
 import Head from 'next/head';
 import styles from './centered-layout.module.scss';
 
+import { selectLoading } from '@features/app';
+
+import { LoadingSpinner } from '@common/components/loading-spinner';
+
 export function CenteredLayoutComponent(props) {
+
+  const loading = useSelector(selectLoading);
+
   return (
-    <>
-      <div className={styles.wrapper}>
-        <Head>
-          <title>
-            {props.title}
-          </title>
-        </Head>
+    <div className={styles.wrapper}>
+      <Head>
+        <title>
+          {props.title}
+        </title>
+      </Head>
 
-        {props.loading ?
-            <div className={styles.loadingSpinnerWrapper}>
-              {/*<LoadingSpinner size={42} />*/}
-            </div>
-            :
-            props.children
-        }
-      </div>
-
-      {/*this.props.showModal && (
-        <Modal />
-      )*/}
-    </>
+      {loading ? (
+        <div className={styles.loadingSpinnerWrapper}>
+          <LoadingSpinner size={42} />
+        </div>
+      ) : (
+        props.children
+      )}
+    </div>
   );
 }
 
-/* istanbul ignore next */
-const mapStateToProps = state => {
-  return {
-    ...state.appState
-  };
-};
-
-const mapDispatchToProps = {
-};
-
 CenteredLayoutComponent.propTypes = {
-  showModal: PropTypes.bool,
   loading: PropTypes.bool,
   title: PropTypes.string,
   children: PropTypes.node

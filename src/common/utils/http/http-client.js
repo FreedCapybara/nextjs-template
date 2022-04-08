@@ -1,91 +1,50 @@
 import fetch from 'isomorphic-unfetch';
 
-// Not super sure about isomorphic-unfetch,
-// so this wrapper class
-//
-//   (1) decouples the app from any specific library
-//   (2) provides some features missing from isomorphic-unfetch
-//       (base urls, default headers, interceptors)
-//
-// Should be easy enough to switch to axios or something else if desired.
-export class Http {
+import { apiBaseUrl } from '@app/api-base';
+import { createDefaultHttpOptions } from '@app/http';
 
-  isConfigured = false;
+export const http = {
+  request,
+  get,
+  post,
+  put,
+  patch,
+  delete
+}
 
-  defaults = {
-    baseUrl: '',
-    headers: {},
-    interceptors: {}, // 404: (response) => {}
-    options: {}
+function request(url, method, body, options, ssrContext) {
+  const { req } = ssrContext || {};
+  const requestUrl = apiBaseUrl + url;
+
+  const defaultOptions = createDefaultHttpOptions(req);
+
+  const requestOptions = {
+    ...defaultOptions,
+    ...options,
+    method,
+    body
   };
 
-  requestFn = fetch;
-  onFail = null;
+  return fetch(requestUrl, requestOptions);
+}
 
-  configure(callback) {
-    if (!this.isConfigured) {
-      callback(this);
-      this.isConfigured = true;
-    }
-    return http;
-  }
+function get(url, options, ssrContext) {
+  return http.request(url, 'GET', undefined, options, ssrContext);
+}
 
-  request(url, method, body, options) {
-    url = this.defaults.baseUrl + url;
+function post(url, body, options, ssrContext) {
+  return http.request(url, 'POST', JSON.stringify(body), options, ssrContext);
+}
 
-    options = {
-      ...this.defaults.options,
-      ...options,
-      method,
-      body
-    };
+function put(url, body, options, ssrContext) {
+  return http.request(url, 'PUT', JSON.stringify(body), options, ssrContext);
+}
 
-    options.headers = {
-      ...this.defaults.headers,
-      ...options.headers
-    };
+function patch(url, body, options, ssrContext) {
+  return http.request(url, 'PATCH', JSON.stringify(body), options, ssrContext);
+}
 
-    if (typeof(window) !== 'undefined' && body instanceof FormData) {
-      delete options.headers['Content-Type'];
-    }
-
-    return new Promise((resolve, reject) => {
-      this.requestFn(url, options)
-        .then((response) => {
-          const interceptor = this.defaults.interceptors[response.status];
-          if (interceptor) {
-            interceptor(response);
-          }
-
-          resolve(response);
-        })
-        .catch((error) => {
-          if (error && error.toString() === 'TypeError: Failed to fetch' && this.onFail) {
-            this.onFail(error);
-          }
-          reject(error);
-        });
-    });
-  }
-
-  get(url, options) {
-    return this.request(url, 'GET', undefined, options);
-  }
-
-  post(url, body, options) {
-    return this.request(url, 'POST', JSON.stringify(body), options);
-  }
-
-  put(url, body, options) {
-    return this.request(url, 'PUT', JSON.stringify(body), options);
-  }
-
-  patch(url, body, options) {
-    return this.request(url, 'PATCH', JSON.stringify(body), options);
-  }
-
-  delete(url, options) {
-    return this.request(url, 'DELETE', undefined, options);
-  }
+function delete(url, options, ssrContext) {
+  return http.request(url, 'DELETE', undefined, options, ssrContext);
 }
 

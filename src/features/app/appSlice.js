@@ -36,7 +36,6 @@ export const appSlice = createSlice({
 });
 
 export const {
-  setLoading,
   clearState
 } = appSlice.actions;
 

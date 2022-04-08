@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { createWrapper } from 'next-redux-wrapper';
 
-import appReducer from '@features/app/appSlice';
+import appReducer from '@features/app';
 
 export function createStore() {
   return configureStore({
@@ -10,5 +11,5 @@ export function createStore() {
   });
 }
 
-export const store = createStore();
+export const wrapper = createWrapper(createStore);
 

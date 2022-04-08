@@ -48,5 +48,67 @@ function configureRouter() {
   Router.events.on('routeChangeStart', clientRedirect);
 }
 
+// stuff from the http config
+
+import Cookies from 'js-cookie';
+
+function universalRedirect(res, location) {
+  if (res) {
+    createRedirect(res, location);
+  } else {
+    Router.push(location);
+  }
+}
+
+export function configureHttp(req, res, http) {
+  http.configure((client) => {
+    client.defaults.baseUrl = apiBaseUrl;
+
+    client.defaults.interceptors[404] = () => {
+      universalRedirect(res, '/not-found');
+    };
+
+    client.defaults.interceptors[401] = () => {
+      if (!req) {
+        Cookies.remove('token');
+      }
+      universalRedirect(res, '/login');
+    };
+
+    client.defaults.interceptors[403] = () => {
+      if (!req) {
+        Cookies.remove('token');
+      }
+      universalRedirect(res, '/login');
+    };
+
+    client.defaults.interceptors[500] = () => {
+      universalRedirect(res, '/server-error');
+    };
+
+    client.onFail = () => {
+      universalRedirect(res, '/server-error');
+    };
+
+    client.defaults.headers['Content-Type'] = 'application/json';
+
+    // fix Node "unable to verify the first certificate" errors in dev
+    if (dev && req) {
+      const https = require("https");
+      client.defaults.options['agent'] = new https.Agent({ rejectUnauthorized: false });
+    }
+
+    // set auth header from the token cookie
+    const cookieSource = req ? req.headers.cookie : document.cookie;
+    const cookies = cookie.parse(cookieSource || '');
+    const token = cookies.token;
+
+    if (token) {
+      client.defaults.headers['Authorization'] = `Bearer ${token}`;
+    } else {
+      delete client.defaults.headers['Authorization'];
+    }
+  });
+}
 export default configureRouter;
 

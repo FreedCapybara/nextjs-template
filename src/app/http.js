@@ -1,73 +1,34 @@
-import { Http } from '@utils/http';
-import Router from 'next/router';
 import cookie from 'cookie';
-import Cookies from 'js-cookie';
-import getConfig from 'next/config';
 
-import { createRedirect } from '@app/router';
+export function createDefaultHttpOptions(req) {
+  const dev = process.env.NODE_ENV !== 'production';
+  const options = {
+    headers: {}
+  };
 
-const dev = process.env.NODE_ENV !== 'production';
-const apiBaseUrl = getConfig().publicRuntimeConfig.apiBaseUrl;
+  // application/json by default
+  options.headers['Content-Type'] = 'application/json';
 
-export const http = new Http();
+  // set auth header from the token cookie
+  const cookieSource = req ? req.headers.cookie : document.cookie;
+  const cookies = cookie.parse(cookieSource || '');
+  const token = cookies.token;
 
-function universalRedirect(res, location) {
-  if (res) {
-    createRedirect(res, location);
-  } else {
-    Router.push(location);
+  if (token) {
+    options.headers['Authorization'] = `Bearer ${token}`;
   }
-}
 
-export function configureHttp(req, res, http) {
-  http.configure((client) => {
-    client.defaults.baseUrl = apiBaseUrl;
+  // fix Node "unable to verify the first certificate" errors during SSR in dev
+  if (dev && req) {
+    const https = require('https');
+    options['agent'] = new https.Agent({ rejectUnauthorized: false });
+  }
 
-    client.defaults.interceptors[404] = () => {
-      universalRedirect(res, '/not-found');
-    };
+  // remove Content-Type for file uploads
+  if (typeof(window) !== 'undefined' && body instanceof FormData) {
+    delete options.headers['Content-Type'];
+  }
 
-    client.defaults.interceptors[401] = () => {
-      if (!req) {
-        Cookies.remove('token');
-      }
-      universalRedirect(res, '/login');
-    };
-
-    client.defaults.interceptors[403] = () => {
-      if (!req) {
-        Cookies.remove('token');
-      }
-      universalRedirect(res, '/login');
-    };
-
-    client.defaults.interceptors[500] = () => {
-      universalRedirect(res, '/server-error');
-    };
-
-    client.onFail = () => {
-      universalRedirect(res, '/server-error');
-    };
-
-    client.defaults.headers['Content-Type'] = 'application/json';
-
-    // fix Node "unable to verify the first certificate" errors in dev
-    // (prod should be fine because it'll have a real SSL cert)
-    if (dev && req) {
-      const https = require("https");
-      client.defaults.options['agent'] = new https.Agent({ rejectUnauthorized: false });
-    }
-
-    // set auth header from the token cookie
-    const cookieSource = req ? req.headers.cookie : document.cookie;
-    const cookies = cookie.parse(cookieSource || '');
-    const token = cookies.token;
-
-    if (token) {
-      client.defaults.headers['Authorization'] = `Bearer ${token}`;
-    } else {
-      delete client.defaults.headers['Authorization'];
-    }
-  });
+  return options;
 }
 
