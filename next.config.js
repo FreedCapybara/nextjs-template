@@ -1,5 +1,5 @@
 const path = require('path');
-const apiBaseUrl = require('./src/app/api-base');
+//const apiBaseUrl = require('./src/app/api-base');
 const { webpack } = require('next/dist/compiled/webpack/webpack');
 
 module.exports = {

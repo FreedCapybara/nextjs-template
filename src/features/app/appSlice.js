@@ -44,5 +44,5 @@ export const selectLoading = createSelector(
   (loadingCount) => loadingCount > 0
 );
 
-export default appSlice.reducer;
+export const appReducer = appSlice.reducer;
 

@@ -9,11 +9,11 @@ export const authenticatedRequestThunk = createAsyncThunk(
   'sandbox/authenticatedRequest',
   async (ssrContext) => {
     const response = await authenticatedRequest(ssrContext);
-    return response.data;
+    return await response.json();
   }
 );
 
-export const appSlice = createSlice({
+export const sandboxSlice = createSlice({
   name: 'sandbox',
   initialState,
   reducers: {
@@ -25,7 +25,7 @@ export const appSlice = createSlice({
 
 export const {
   clearState
-} = appSlice.actions;
+} = sandboxSlice.actions;
 
-export default appSlice.reducer;
+export const sandboxReducer = sandboxSlice.reducer;
 

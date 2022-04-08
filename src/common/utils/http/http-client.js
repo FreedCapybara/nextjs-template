@@ -9,7 +9,7 @@ export const http = {
   post,
   put,
   patch,
-  delete
+  $delete
 }
 
 function request(url, method, body, options, ssrContext) {
@@ -44,7 +44,7 @@ function patch(url, body, options, ssrContext) {
   return http.request(url, 'PATCH', JSON.stringify(body), options, ssrContext);
 }
 
-function delete(url, options, ssrContext) {
+function $delete(url, options, ssrContext) {
   return http.request(url, 'DELETE', undefined, options, ssrContext);
 }
 
