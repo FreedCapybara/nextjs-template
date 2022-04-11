@@ -5,8 +5,10 @@ import styles from './sandbox.module.scss';
 
 import { authenticatedRequestThunk, waitThunk } from '@features/sandbox';
 
-import { MainLayout } from '@common/components/main-layout';
-import { AvatarMenu } from '@common/components/avatar-menu';
+import { MainLayout } from '@components/main-layout';
+import { TwoPaneLayout } from '@components/two-pane-layout';
+import { AvatarMenu } from '@components/avatar-menu';
+import { Emoji } from '@components/emoji';
 
 function Sandbox(props) {
   const { data } = props;
@@ -14,14 +16,15 @@ function Sandbox(props) {
   const dispatch = useDispatch();
 
   return (
-    <MainLayout title="Sandbox">
+    <TwoPaneLayout title="Sandbox">
       <h1>hi</h1>
-      <button onClick={() => dispatch(waitThunk())}>Loading</button>
+      <button onClick={() => dispatch(waitThunk())}>Load something</button>
       <div>{JSON.stringify(data)}</div>
       <AvatarMenu email="andrew@spacegiraffe.io" align="right">
         <a>hello</a>
       </AvatarMenu>
-    </MainLayout>
+      <Emoji>&#x1f680;</Emoji>
+    </TwoPaneLayout>
   );
 }
 

@@ -20,7 +20,7 @@ function ServerError() {
         </p>
 
         <Link href="/" passHref>
-          <a className="link-button">
+          <a className="button">
             Back to home
           </a>
         </Link>

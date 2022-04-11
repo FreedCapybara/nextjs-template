@@ -8,9 +8,9 @@ import theme from '@app/theme';
 
 import { selectLoading } from '@features/app';
 
-import { Nav } from '@common/components/nav';
-import { Footer } from '@common/components/footer';
-import { LoadingSpinner } from '@common/components/loading-spinner';
+import { Nav } from '@components/nav';
+import { Footer } from '@components/footer';
+import { LoadingSpinner } from '@components/loading-spinner';
 
 export function MainLayout(props) {
   const { title, section } = props;

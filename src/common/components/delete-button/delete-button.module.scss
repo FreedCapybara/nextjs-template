@@ -1,0 +1,15 @@
+@import '@styles/variables';
+
+.wrapper {
+  display: flex;
+}
+
+.delete-button {
+  margin-right: 4px;
+
+  &:hover {
+    background-color: $red;
+    border-color: $red;
+  }
+}
+

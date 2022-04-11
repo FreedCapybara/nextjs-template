@@ -32,11 +32,8 @@
   }
 }
 
-button {
-  @extend %button-style;
-}
-
-a.link-button {
+button,
+.button {
   @extend %button-style;
 }
 

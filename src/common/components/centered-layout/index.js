@@ -8,7 +8,7 @@ import theme from '@app/theme';
 
 import { selectLoading } from '@features/app';
 
-import { LoadingSpinner } from '@common/components/loading-spinner';
+import { LoadingSpinner } from '@components/loading-spinner';
 
 export function CenteredLayout(props) {
   const { title, section } = props;

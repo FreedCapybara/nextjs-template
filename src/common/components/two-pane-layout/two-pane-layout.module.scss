@@ -1,0 +1,36 @@
+@import '@styles/variables';
+
+.wrapper {
+  display: flex;
+}
+
+.left-pane {
+  height: 100vh;
+  min-width: 28%;
+  background-size: cover;
+  background-position: center, center;
+  background-repeat: no-repeat;
+  display: none;
+
+  @media(min-width: $desktop-breakpoint) {
+    display: block;
+  }
+}
+
+.right-pane {
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 120px 20px;
+}
+

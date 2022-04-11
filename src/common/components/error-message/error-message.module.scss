@@ -1,0 +1,12 @@
+@import '@styles/variables';
+
+.error-message {
+  padding: 8px 12px;
+  background-color: $light-red;
+  border: 1px solid $medium-red;
+  border-radius: 12px;
+  font-size: .875rem;
+  text-align: left;
+  width: 100%;
+};
+
