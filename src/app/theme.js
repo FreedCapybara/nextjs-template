@@ -3,6 +3,7 @@
 // Also see /styles/variables.scss.
 
 const theme = {
+  appName: 'Next.js template',
   logo: {
     url: 'https://via.placeholder.com/150'
   }

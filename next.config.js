@@ -23,6 +23,18 @@ module.exports = {
       contextRegExp: /moment$/,
     }));
 
+    // camel-case style names from css modules
+    // see https://github.com/vercel/next.js/discussions/11267
+    config.module.rules
+      .find(({ oneOf }) => !!oneOf).oneOf
+      .filter(({ use }) => JSON.stringify(use)?.includes('css-loader'))
+      .reduce((accumulator, { use }) => accumulator.concat(use), [])
+      .forEach(({ options }) => {
+        if (options.modules) {
+          options.modules.exportLocalsConvention = 'camelCase';
+        }
+      });
+
     return config;
   },
   // replace with .env files?

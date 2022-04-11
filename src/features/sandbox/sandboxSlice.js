@@ -13,6 +13,15 @@ export const authenticatedRequestThunk = createAsyncThunk(
   }
 );
 
+export const waitThunk = createAsyncThunk(
+  'sandbox/fake',
+  async () => {
+    await new Promise((resolve) =>
+      setTimeout(() => resolve(), 2000)
+    );
+  }
+);
+
 export const sandboxSlice = createSlice({
   name: 'sandbox',
   initialState,

@@ -1,0 +1,44 @@
+@import '@styles/variables';
+
+.wrapper {
+  position: relative;
+  min-height: 100vh;
+}
+
+.main-content {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - $toolbar-mobile-height);
+
+  @media(min-width: $desktop-breakpoint) {
+    min-height: calc(100vh - $toolbar-desktop-height);
+  }
+}
+
+.container {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
+}
+
+.content-wrapper {
+  padding-bottom: 80px;
+}
+
+.loading-spinner-wrapper {
+  position: fixed;
+  transform: translateX(-100%);
+  left: calc(100% - 10px);
+  bottom: 10px;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity .3s;
+
+  @media(min-width: $desktop-breakpoint) {
+    position: fixed;
+    left: calc(100% - 20px);
+    bottom: 20px;
+  }
+}
+

@@ -40,7 +40,7 @@ export const {
 } = appSlice.actions;
 
 export const selectLoading = createSelector(
-  (state) => state.loadingCount,
+  (state) => state.app.loadingCount,
   (loadingCount) => loadingCount > 0
 );
 
