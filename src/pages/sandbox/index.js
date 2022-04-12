@@ -9,6 +9,9 @@ import { MainLayout } from '@components/main-layout';
 import { TwoPaneLayout } from '@components/two-pane-layout';
 import { AvatarMenu } from '@components/avatar-menu';
 import { Emoji } from '@components/emoji';
+import { NavMenu } from '@components/nav-menu';
+import { ProgressBar } from '@components/progress-bar';
+import { Swatch } from '@components/swatch';
 
 function Sandbox(props) {
   const { data } = props;
@@ -24,6 +27,13 @@ function Sandbox(props) {
         <a>hello</a>
       </AvatarMenu>
       <Emoji>&#x1f680;</Emoji>
+      <NavMenu>
+        <a>hello</a>
+      </NavMenu>
+      <ProgressBar progress={.35} />
+      <Swatch color={19}>
+        Hello
+      </Swatch>
     </TwoPaneLayout>
   );
 }

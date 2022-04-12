@@ -1,41 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styles from './swatch.module.scss';
+import { isNumber } from 'lodash-es';
 
-import { theme } from '@config/theme';
+export function Swatch(props) {
+  const { color } = props;
 
-const colors = [
-  theme.colors.grey,
-  theme.colors.green,
-  theme.colors.purple,
-  theme.colors.blue,
-  theme.colors.tan
-];
+  const colorClass = styles[`color-${isNumber(color) ? (color % 5) : color}`];
 
-/* istanbul ignore next */
-const ColorSwatch = styled.span`
-  background-color: ${({ color }) => colors[color % colors.length]};
-  padding: 2px 8px;
-  display: inline-block;
-  border-radius: 4px;
-  color: white;
-  font-weight: 700;
-  font-size: .8125rem;
-`;
-
-export class Swatch extends React.Component {
-  render() {
-    return (
-      <ColorSwatch color={this.props.color}>
-        {this.props.children}
-      </ColorSwatch>
-    );
-  }
+  return (
+    <div className={`${styles.colorSwatch} ${colorClass}`}>
+      {props.children}
+    </div>
+  );
 }
 
 Swatch.propTypes = {
-  index: PropTypes.number,
-  color: PropTypes.number,
+  color: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
   children: PropTypes.node
 };
 

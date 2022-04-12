@@ -1,0 +1,17 @@
+@import '@styles/variables';
+
+.progress-background {
+  background-color: $medium-light-grey;
+  display: inline-block;
+  border-radius: 20px;
+  width: 100%;
+  height: 12px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background-color: $primary-color;
+  border-radius: 20px;
+}
+

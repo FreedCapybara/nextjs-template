@@ -1,0 +1,37 @@
+@import '@styles/variables';
+
+.color-swatch {
+  background-color: $grey;
+  padding: 2px 8px;
+  display: inline-block;
+  border-radius: 4px;
+  color: white;
+  font-weight: 700;
+  font-size: .8125rem;
+
+  &.color-0,
+  &.color-grey {
+    background-color: $grey;
+  }
+
+  &.color-1,
+  &.color-green {
+    background-color: $green;
+  }
+
+  &.color-2,
+  &.color-purple {
+    background-color: $purple;
+  }
+
+  &.color-3,
+  &.color-blue {
+    background-color: $blue;
+  }
+
+  &.color-4,
+  &.color-tan {
+    background-color: $tan;
+  }
+}
+
