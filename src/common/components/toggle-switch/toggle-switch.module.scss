@@ -8,16 +8,20 @@
   border-radius: 50px;
   width: 48px;
   height: 24px;
-  background-color: $primary-color;
-  border: 1px solid $primary-color;
+  background-color: $medium-grey;
   cursor: pointer;
   transition: all .3s;
+
+  &.active {
+    background-color: $primary-color;
+  }
 }
 
 .switch {
   width: 18px;
   height: 18px;
-  background-color: $primary-color;
+  background-color: white;
+  box-shadow: $box-shadow-small;
   border-radius: 100%;
   transition: all .3s;
 }

@@ -11,19 +11,17 @@ export function ToggleSwitch(props) {
     }
   };
 
-  const switchBackgroundStyle = {
-    backgroundColor: value ? null : 'transparent'
-  };
+  const switchBackgroundClass = value ?
+    `${styles.switchBackground} ${styles.active}` :
+    styles.switchBackground;
 
   const switchStyle = {
-    backgroundColor: value ? 'white' : null,
     transform: `translateX(${value ? '12px' : '-12px'})`
   };
 
   return (
     <div
-      className={styles.switchBackground}
-      style={switchBackgroundStyle}
+      className={switchBackgroundClass}
       onClick={handleClick}
     >
       <div
