@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { first, filter } from 'lodash-es';
 import styles from './file-drop.module.scss';
 
+import { fileUtils } from '@utils/file-utils';
+
 export class FileDrop extends React.Component {
 
   dropTargetRef = React.createRef();
@@ -81,19 +83,7 @@ export class FileDrop extends React.Component {
   async readFiles(files) {
     const promises = [];
     for (const file of files) {
-      const promise = new Promise((resolve) => {
-        const fileClone = new File([file], file.name);
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const base64 = e.target.result;
-          const data = {
-            file: fileClone,
-            base64
-          };
-          resolve(data);
-        };
-        reader.readAsDataURL(fileClone);
-      });
+      const promise = fileUtils.readAsBase64Async(file);
       promises.push(promise);
     }
 

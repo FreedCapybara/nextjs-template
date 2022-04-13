@@ -3,24 +3,14 @@ import PropTypes from 'prop-types';
 import styles from './file-picker.module.scss';
 import { camelCase } from 'lodash-es';
 
+import { fileUtils } from '@utils/file-utils';
+
 export class FilePicker extends React.Component {
 
   async handleChange(e) {
     const promises = [];
     for (const file of e.target.files) {
-      const promise = new Promise((resolve) => {
-        const fileClone = new File([file], file.name);
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const base64 = e.target.result;
-          const data = {
-            file: fileClone,
-            base64
-          };
-          resolve(data);
-        };
-        reader.readAsDataURL(fileClone);
-      });
+      const promise = fileUtils.readAsBase64Async(file);
       promises.push(promise);
     }
 

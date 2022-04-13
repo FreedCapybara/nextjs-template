@@ -6,7 +6,11 @@ export function Form(props) {
   const { onSubmit } = props;
 
   return (
-    <form className={styles.form} onSubmit={onSubmit} autoComplete="off">
+    <form
+      className={styles.form}
+      onSubmit={onSubmit}
+      autoComplete="off"
+    >
       {props.children}
     </form>
   );

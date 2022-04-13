@@ -1,0 +1,24 @@
+@import '@styles/variables';
+
+.wrapper {
+  position: relative;
+}
+
+.validated-Input {
+  padding-right: 32px;
+}
+
+.indicator-Icon {
+  position: absolute;
+  //top: 10px;
+
+  &.valid {
+    color: $green;
+    //transform: rotate(8deg);
+  }
+
+  &.invalid {
+    color: $red;
+  }
+}
+

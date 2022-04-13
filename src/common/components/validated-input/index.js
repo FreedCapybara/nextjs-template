@@ -1,54 +1,64 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styles from './validated-input.module.scss';
 
-/* istanbul ignore next */
-const Wrapper = styled.div`
-  width: 100%;
-`;
+export function ValidatedInput(props) {
+  const {
+    type,
+    value,
+    isValid,
+    showSuccess,
+    id,
+    name,
+    required,
+    maxLength,
+    iconOffset,
+    onChange
+  } = props;
 
-/* istanbul ignore next */
-const Input = styled.input`
-  padding-right: 32px !important;
-`;
-
-/* istanbul ignore next */
-const IndicatorIcon = styled.span`
-  position: absolute;
-  top: 10px;
-  right: ${({ offset }) => offset || '12px'};
-  color: ${({ theme, color }) => theme.colors[color.toString()]};
-  ${({ rotate }) => (rotate ? `
-    transform: rotate(${rotate});
-  ` : null)}
-`;
-
-export class ValidatedInput extends React.Component {
-
-  onChange = (e) => {
-    if (this.props.onChange) {
-      this.props.onChange(e);
+  function handleChange(e) {
+    if (onChange) {
+      onChange(e.target.value);
     }
   };
 
-  render() {
-    const { type, value, isValid, showSuccess, id, name, required, maxLength, iconOffset } = this.props;
+  const indicatorIconStyle = {
+    right: iconOffset || '12px'
+  };
 
-    return (
-      <Wrapper>
-        <Input type={type || 'text'} id={id} name={name} required={required} maxLength={maxLength} autoComplete="new-password"
-          onChange={this.onChange} value={value} />
+  const showValid = !!value && isValid && showSuccess;
+  const showInvalid = !!value && !isValid;
 
-        {value && (
-          isValid ? (showSuccess &&
-            <IndicatorIcon color="green" rotate="8deg" offset={iconOffset} className="ti-check" />
-          ) : (
-            <IndicatorIcon color="red" offset={iconOffset} className="ti-alert" />
-          )
-        )}
-      </Wrapper>
-    );
-  }
+  return (
+    <div className={styles.wrapper}>
+      <input
+        className={styles.validatedInput}
+        type={type || 'text'}
+        id={id}
+        name={name}
+        required={required}
+        maxLength={maxLength}
+        autoComplete="new-password"
+        onChange={handleChange}
+        value={value}
+      />
+
+      {showValid && (
+          <span
+            className={`${styles.indicatorIcon} ${styles.valid} ti-check`}
+            style={indicatorIconStyle}
+
+        >valid</span>
+      )}
+
+      {showInvalid && (
+        <span
+          className={`${styles.indicatorIcon} ${styles.invalid} ti-alert`}
+          style={indicatorIconStyle}
+        >invalid</span>
+      )}
+    </div>
+  );
 }
 
 ValidatedInput.propTypes = {

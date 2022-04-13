@@ -6,7 +6,8 @@ export function LoadingSpinner(props) {
   const { size, shadow } = props;
 
   const wrapperClass = shadow ?
-    `${styles.wrapper} ${styles.shadow}` : styles.wrapper;
+    `${styles.wrapper} ${styles.shadow}` :
+    styles.wrapper;
 
   const spinnerStyle = {
     width: size,
@@ -15,7 +16,10 @@ export function LoadingSpinner(props) {
 
   return (
     <div className={wrapperClass}>
-      <div className={styles.spinner} style={spinnerStyle} />
+      <div
+        className={styles.spinner}
+        style={spinnerStyle}
+      />
     </div>
   );
 }

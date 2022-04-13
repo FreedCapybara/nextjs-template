@@ -13,11 +13,13 @@ import { NavMenu } from '@components/nav-menu';
 import { ProgressBar } from '@components/progress-bar';
 import { Swatch } from '@components/swatch';
 import { ToggleSwitch } from '@components/toggle-switch';
+import { ValidatedInput } from '@components/validated-input';
 
 function Sandbox(props) {
   const { data } = props;
 
   const [toggleValue, setToggleValue] = useState(false);
+  const [formValue, setFormValue] = useState('');
 
   const dispatch = useDispatch();
 
@@ -38,6 +40,7 @@ function Sandbox(props) {
         Hello
       </Swatch>
       <ToggleSwitch value={toggleValue} onChange={(newValue) => setToggleValue(newValue)} />
+      <ValidatedInput value={formValue} onChange={(newValue) => setFormValue(newValue)} isValid={formValue === 'hello'} showSuccess={true} />
     </TwoPaneLayout>
   );
 }
