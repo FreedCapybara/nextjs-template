@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styles from './delete-button.module.scss';
+import styles from './DeleteButton.module.scss';
 
 export function DeleteButton(props) {
   const { onDelete } = props;

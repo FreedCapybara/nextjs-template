@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import styles from './not-found.module.scss';
+import styles from './NotFound.module.scss';
 
-import { CenteredLayout } from '@components/centered-layout';
-import { Logo } from '@components/logo';
+import { CenteredLayout } from '@components/CenteredLayout';
+import { Logo } from '@components/Logo';
 
 function NotFound() {
   return (

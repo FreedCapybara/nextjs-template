@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { first, filter } from 'lodash-es';
-import styles from './file-drop.module.scss';
+import styles from './FileDrop.module.scss';
 
 import { fileUtils } from '@utils/file-utils';
 

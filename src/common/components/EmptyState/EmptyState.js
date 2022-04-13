@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './empty-state.module.scss';
+import styles from './EmptyState.module.scss';
 
 export function EmptyState(props) {
   const { text, padding } = props;

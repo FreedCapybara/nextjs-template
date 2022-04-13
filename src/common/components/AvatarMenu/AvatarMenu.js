@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styles from './avatar-menu.module.scss';
+import styles from './AvatarMenu.module.scss';
 
-import { Avatar } from '@components/avatar';
+import { Avatar } from '@components/Avatar';
 
 export function AvatarMenu(props) {
   const { email, align } = props;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './progress-bar.module.scss';
+import styles from './ProgressBar.module.scss';
 
 export function ProgressBar(props) {
   const { progress } = props;

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './forgot-password-success.module.scss';
+import styles from './ForgotPasswordSuccess.module.scss';
 
 function ForgotPasswordSuccess() {
   return (

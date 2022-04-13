@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import styles from './server-error.module.scss';
+import styles from './ServerError.module.scss';
 
-import { CenteredLayout } from '@components/centered-layout';
-import { Logo } from '@components/logo';
+import { CenteredLayout } from '@components/CenteredLayout';
+import { Logo } from '@components/Logo';
 
 function ServerError() {
   return (

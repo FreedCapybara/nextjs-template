@@ -2,15 +2,15 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import styles from './main-layout.module.scss';
+import styles from './MainLayout.module.scss';
 
 import theme from '@app/theme';
 
 import { selectLoading } from '@features/app';
 
-import { Nav } from '@components/nav';
-import { Footer } from '@components/footer';
-import { LoadingSpinner } from '@components/loading-spinner';
+import { Nav } from '@components/Nav';
+import { Footer } from '@components/Footer';
+import { LoadingSpinner } from '@components/LoadingSpinner';
 
 export function MainLayout(props) {
   const { title, section } = props;

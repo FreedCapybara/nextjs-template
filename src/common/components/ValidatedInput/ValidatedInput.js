@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './validated-input.module.scss';
+import styles from './ValidatedInput.module.scss';
 
 export function ValidatedInput(props) {
   const {

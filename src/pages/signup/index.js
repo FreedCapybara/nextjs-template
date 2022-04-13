@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './signup.module.scss';
+import styles from './Signup.module.scss';
 
 function Signup() {
   return (

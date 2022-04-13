@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './form.module.scss';
+import styles from './Form.module.scss';
 
 export function Form(props) {
   const { onSubmit } = props;

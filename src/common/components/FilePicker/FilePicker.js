@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './file-picker.module.scss';
 import { camelCase } from 'lodash-es';
+import styles from './FilePicker.module.scss';
 
 import { fileUtils } from '@utils/file-utils';
 

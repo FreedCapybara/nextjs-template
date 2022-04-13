@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './swatch.module.scss';
 import { isNumber } from 'lodash-es';
+import styles from './Swatch.module.scss';
 
 export function Swatch(props) {
   const { color } = props;

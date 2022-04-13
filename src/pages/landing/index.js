@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from './landing.module.scss'
+import styles from './Landing.module.scss'
 
 function Landing() {
   return (

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './modal.module.scss';
+import styles from './Modal.module.scss';
 
-import { modalUtils } from '@common/utils/modal';
+import { modalUtils } from '@utils/modal';
 
 export function Modal(props) {
 

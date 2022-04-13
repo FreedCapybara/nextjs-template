@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './loading-spinner.module.scss';
+import styles from './LoadingSpinner.module.scss';
 
 export function LoadingSpinner(props) {
   const { size, shadow } = props;

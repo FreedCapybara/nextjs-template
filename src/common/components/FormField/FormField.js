@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './form-field.module.scss';
 import { upperFirst, camelCase } from 'lodash-es';
+import styles from './FormField.module.scss';
 
 export function FormField(props) {
   const { label, optional } = props;

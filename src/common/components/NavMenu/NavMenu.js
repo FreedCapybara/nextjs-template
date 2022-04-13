@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styles from './nav-menu.module.scss';
+import styles from './NavMenu.module.scss';
 
 export function NavMenu(props) {
   const { title, align } = props;

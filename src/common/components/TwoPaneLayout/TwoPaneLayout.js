@@ -2,13 +2,13 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import styles from './two-pane-layout.module.scss';
+import styles from './TwoPaneLayout.module.scss';
 
 import theme from '@app/theme';
 
 import { selectLoading } from '@features/app';
 
-import { LoadingSpinner } from '@components/loading-spinner';
+import { LoadingSpinner } from '@components/LoadingSpinner';
 
 export function TwoPaneLayout(props) {
   const { title, section } = props;

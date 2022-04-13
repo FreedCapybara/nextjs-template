@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './error-message.module.scss';
+import styles from './ErrorMessage.module.scss';
 
 export function ErrorMessage(props) {
   const { text } = props;

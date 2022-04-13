@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './toggle-switch.module.scss';
+import styles from './ToggleSwitch.module.scss';
 
 export function ToggleSwitch(props) {
   const { value, onChange } = props;

@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { wrapper } from '@app/store';
-import styles from './sandbox.module.scss';
+import styles from './Sandbox.module.scss';
 
 import { authenticatedRequestThunk, waitThunk } from '@features/sandbox';
 
-import { MainLayout } from '@components/main-layout';
-import { TwoPaneLayout } from '@components/two-pane-layout';
-import { AvatarMenu } from '@components/avatar-menu';
-import { Emoji } from '@components/emoji';
-import { NavMenu } from '@components/nav-menu';
-import { ProgressBar } from '@components/progress-bar';
-import { Swatch } from '@components/swatch';
-import { ToggleSwitch } from '@components/toggle-switch';
-import { ValidatedInput } from '@components/validated-input';
+import { MainLayout } from '@components/MainLayout';
+import { TwoPaneLayout } from '@components/TwoPaneLayout';
+import { AvatarMenu } from '@components/AvatarMenu';
+import { Emoji } from '@components/Emoji';
+import { NavMenu } from '@components/NavMenu';
+import { ProgressBar } from '@components/ProgressBar';
+import { Swatch } from '@components/Swatch';
+import { ToggleSwitch } from '@components/ToggleSwitch';
+import { ValidatedInput } from '@components/ValidatedInput';
 
 function Sandbox(props) {
   const { data } = props;

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './logo.module.scss';
+import styles from './Logo.module.scss';
+
 import theme from '@app/theme';
 
 export function Logo(props) {
