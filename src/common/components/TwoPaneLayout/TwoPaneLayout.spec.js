@@ -1,0 +1,12 @@
+import { render } from '@testing-library/react';
+
+import { TwoPaneLayout } from './TwoPaneLayout';
+
+describe('TwoPaneLayout', () => {
+
+  it('should render', () => {
+    const component = render(<TwoPaneLayout />);
+    expect(component).toBeDefined();
+  });
+});
+
