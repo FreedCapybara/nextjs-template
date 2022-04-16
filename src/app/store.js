@@ -3,13 +3,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import { createWrapper } from 'next-redux-wrapper';
 
 import { appReducer } from '@features/app';
-import { sandboxReducer } from '@features/sandbox';
+import { authReducer } from '@features/auth';
 
 export function createStore() {
   return configureStore({
     reducer: {
       app: appReducer,
-      sandbox: sandboxReducer
+      auth: authReducer
     }
   });
 }

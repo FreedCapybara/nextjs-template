@@ -24,17 +24,8 @@ export const waitThunk = createAsyncThunk(
 
 export const sandboxSlice = createSlice({
   name: 'sandbox',
-  initialState,
-  reducers: {
-    clearState: (state, action) => {
-      return initialState;
-    }
-  }
+  initialState
 });
-
-export const {
-  clearState
-} = sandboxSlice.actions;
 
 export const sandboxReducer = sandboxSlice.reducer;
 

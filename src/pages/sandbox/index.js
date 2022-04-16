@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { wrapper } from '@app/store';
 import styles from './Sandbox.module.scss';
 
 import { authenticatedRequestThunk, waitThunk } from '@features/sandbox';
+import { authorize, selectUser } from '@features/auth';
 
 import { MainLayout } from '@components/MainLayout';
 import { TwoPaneLayout } from '@components/TwoPaneLayout';
@@ -16,18 +17,18 @@ import { ToggleSwitch } from '@components/ToggleSwitch';
 import { ValidatedInput } from '@components/ValidatedInput';
 
 function Sandbox(props) {
-  const { data } = props;
 
   const [toggleValue, setToggleValue] = useState(false);
   const [formValue, setFormValue] = useState('');
 
   const dispatch = useDispatch();
 
+  const user = useSelector(selectUser);
+
   return (
     <TwoPaneLayout title="Sandbox">
-      <h1>hi</h1>
+      <h1>hi {user.email}</h1>
       <button onClick={() => dispatch(waitThunk())}>Load something</button>
-      <div>{JSON.stringify(data)}</div>
       <AvatarMenu email="andrew@spacegiraffe.io" align="right">
         <a>hello</a>
       </AvatarMenu>
@@ -45,15 +46,18 @@ function Sandbox(props) {
   );
 }
 
-/*export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {*/
-  //const { dispatch } = store;
+export const getServerSideProps = wrapper.getServerSideProps((store) => (context) => {
+  const { dispatch } = store;
+  const authResult = dispatch(authorize(context));
+  return authResult.serverSideProps;
+});
+
   //const data = await dispatch(authenticatedRequestThunk(context));
   //return {
     //props: {
       //data: data.payload
     //}
   //};
-//});
 
 export default Sandbox;
 

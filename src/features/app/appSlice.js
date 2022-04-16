@@ -17,11 +17,6 @@ function isCompletedAction(action) {
 export const appSlice = createSlice({
   name: 'app',
   initialState,
-  reducers: {
-    clearState: (state, action) => {
-      return initialState;
-    }
-  },
   extraReducers: (builder) => {
     builder
       .addMatcher(isPendingAction, (state, action) => {
@@ -31,13 +26,9 @@ export const appSlice = createSlice({
       .addMatcher(isCompletedAction, (state, action) => {
         // decrement loading when a request finishes
         state.loadingCount = Math.max(0, state.loadingCount - 1);
-      })
+      });
   }
 });
-
-export const {
-  clearState
-} = appSlice.actions;
 
 export const selectLoading = createSelector(
   (state) => state.app.loadingCount,
