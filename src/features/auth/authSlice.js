@@ -64,6 +64,7 @@ export const userInvalid = (ssrContext) => (dispatch) => {
 };
 
 // Utility function for consistent return values.
+// Provides a `serverSideProps` key as an easy return value for `getServerSideProps()`.
 function createAuthResult(authorized, user, redirect) {
 
   const serverSideProps = authorized ? {
