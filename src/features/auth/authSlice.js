@@ -32,7 +32,7 @@ export const authorize = (ssrContext, roles) => (dispatch) => {
   const token = cookies.token;
 
   if (!token) {
-    return dispatch(userInvalid(ssrContext));
+    return dispatch(userUnauthorized(ssrContext));
   }
 
   const jwt = jwtUtils.parseJwt(token);
@@ -43,16 +43,20 @@ export const authorize = (ssrContext, roles) => (dispatch) => {
   }
 
   if (some(roles) && isEmpty(intersection(roles, user.roles))) {
-    return dispatch(userInvalid(ssrContext));
+    return dispatch(userUnauthorized(ssrContext));
   }
 
-  dispatch(userLoaded(user));
+  return dispatch(userAuthorized(user));
+};
 
+// Handles valid/authorized users and returns an auth result with user information.
+export const userAuthorized = (user) => (dispatch) => {
+  dispatch(userLoaded(user));
   return createAuthResult(true, user, null);
 };
 
 // Handles invalid/unauthorized users and returns an auth result with redirect information.
-export const userInvalid = (ssrContext) => (dispatch) => {
+export const userUnauthorized = (ssrContext) => (dispatch) => {
   const { req, res } = ssrContext;
 
   dispatch(clearState());
