@@ -6,6 +6,7 @@ import { intersection, isEmpty, some } from 'lodash-es';
 //import { } from './authAPI';
 
 import { jwtUtils } from '@utils/jwt';
+import { nextjsUtils } from '@utils/nextjs';
 
 const initialState = {
   user: {
@@ -57,30 +58,20 @@ export const userAuthorized = (user) => (dispatch) => {
 
 // Handles invalid/unauthorized users and returns an auth result with redirect information.
 export const userUnauthorized = (ssrContext) => (dispatch) => {
-  const { req, res } = ssrContext;
+  const { req } = ssrContext || {};
 
   dispatch(clearState());
 
-  const originalUrl = encodeURIComponent(req.url);
-  const redirect = `/login?redirect=${originalUrl}`;
-
+  const redirect = req ?
+    `/login?redirect=${encodeURIComponent(req.url)}` :
+    `/login?redirect=${encodeURIComponent(window.location.href.replace(window.location.origin, ''))}`;
   return createAuthResult(false, null, redirect);
 };
 
 // Utility function for consistent return values.
 // Provides a `serverSideProps` key as an easy return value for `getServerSideProps()`.
 function createAuthResult(authorized, user, redirect) {
-
-  const serverSideProps = authorized ? {
-    props: {
-      user
-    }
-  } : {
-    redirect: {
-      destination: redirect
-    }
-  }
-
+  const serverSideProps = nextjsUtils.createServerSideProps(user, redirect);
   return {
     authorized,
     user,

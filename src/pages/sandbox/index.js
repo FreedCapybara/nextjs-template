@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { wrapper } from '@app/store';
 import styles from './Sandbox.module.scss';
 
-import { authenticatedRequestThunk, waitThunk } from '@features/sandbox';
+import { sandboxRequest, selectData, wait } from '@features/sandbox';
 import { authorize, selectUser } from '@features/auth';
 
 import { MainLayout } from '@components/MainLayout';
@@ -24,11 +24,13 @@ function Sandbox(props) {
   const dispatch = useDispatch();
 
   const user = useSelector(selectUser);
+  const data = useSelector(selectData);
 
   return (
     <TwoPaneLayout title="Sandbox">
       <h1>hi {user.email}</h1>
-      <button onClick={() => dispatch(waitThunk())}>Load something</button>
+      <button onClick={() => dispatch(wait())}>Load something</button>
+      <button onClick={() => dispatch(sandboxRequest())}>Status code</button>
       <AvatarMenu email="andrew@spacegiraffe.io" align="right">
         <a>hello</a>
       </AvatarMenu>
@@ -46,18 +48,19 @@ function Sandbox(props) {
   );
 }
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => (context) => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
   const { dispatch } = store;
-  const authResult = dispatch(authorize(context));
-  return authResult.serverSideProps;
-});
 
-  //const data = await dispatch(authenticatedRequestThunk(context));
-  //return {
-    //props: {
-      //data: data.payload
-    //}
-  //};
+  // not necessary since `sandboxRequest` should redirect unauthorized users
+  //const authResult = dispatch(authorize(context));
+
+  //if (!authResult.authorized) {
+    //return authResult.serverSideProps;
+  //}
+
+  const dataResult = await dispatch(sandboxRequest(context));
+  return dataResult.payload.serverSideProps;
+});
 
 export default Sandbox;
 
