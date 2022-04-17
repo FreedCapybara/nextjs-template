@@ -4,6 +4,9 @@ import { nextjsUtils } from '@utils/nextjs';
 
 import { userUnauthorized } from '@features/auth';
 
+// Use this to configure options for HTTP requests.
+// You can use this to add default headers, handle authentication, and more!
+// It should return an options object that can be used with the fetch API.
 export function createDefaultHttpOptions(url, method, body, ssrContext) {
   const { req } = ssrContext || {};
   const dev = process.env.NODE_ENV !== 'production';
@@ -37,6 +40,28 @@ export function createDefaultHttpOptions(url, method, body, ssrContext) {
   return options;
 }
 
+// Use this in data-fetching thunks to provide consistent error response handling
+// and reduce verbosity in getServerSideProps by returning myThunkResult.payload.serverSideProps.
+// Example usage:
+//
+// export const exampleRequest = createAsyncThunk(
+//   'example/exampleRequest',
+//   async (ssrContext, thunkAPI) => {
+//     const response = await exampleAPI.exampleRequest(ssrContext);
+//     return await defaultResponseHandler(response, ssrContext, thunkAPI);
+//   }
+// );
+//
+// then in getServerSideProps:
+//
+// export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
+//   const { dispatch } = store;
+//   const dataResult = await dispatch(exampleRequest(context));
+//   return dataResult.payload.serverSideProps;
+// });
+//
+// Note that since 401/403 responses for unauthorized requests are handled here,
+// you do not need to dispatch `authorize(context)` in getServerSideProps if dispatching a thunk that uses this function.
 export async function defaultResponseHandler(response, ssrContext, thunkAPI) {
   const { dispatch } = thunkAPI;
   const ok = response.ok;
