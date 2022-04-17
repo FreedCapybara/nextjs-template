@@ -35,8 +35,10 @@ export const appSlice = createSlice({
       })
       .addMatcher(rejectedActionMatcher, (state, action) => {
         if (dev) {
-          // this is a side effect and therefore not in line with the style guide,
-          // but otherwise runtime errors that occur in thunks tend to be silent
+          // This isn't exactly great Redux code per the style guide (https://redux.js.org/style-guide#reducers-must-not-have-side-effects),
+          // but otherwise runtime errors in thunks created with createAsyncThunk are frustratingly silent.
+          // This ensures that all myAsyncThunk/rejected events will log an error, which improves the development experience significantly.
+          // Trading Redux correctness for a lot less swearing -- worth it.
           console.error(action.error);
         }
       });
