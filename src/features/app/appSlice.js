@@ -6,11 +6,11 @@ const initialState = {
 };
 
 // extraReducers matchers
-function isPendingAction(action) {
+function pendingActionMatcher(action) {
   return action.type.endsWith('/pending');
 }
 
-function isCompletedAction(action) {
+function completedActionMatcher(action) {
   return action.type.endsWith('/fulfilled') || action.type.endsWith('/rejected');
 }
 
@@ -19,11 +19,11 @@ export const appSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
-      .addMatcher(isPendingAction, (state, action) => {
+      .addMatcher(pendingActionMatcher, (state, action) => {
         // increment loading when starting a request
         state.loadingCount++;
       })
-      .addMatcher(isCompletedAction, (state, action) => {
+      .addMatcher(completedActionMatcher, (state, action) => {
         // decrement loading when a request finishes
         state.loadingCount = Math.max(0, state.loadingCount - 1);
       });
