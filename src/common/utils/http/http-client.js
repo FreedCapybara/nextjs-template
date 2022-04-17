@@ -13,10 +13,9 @@ export const http = {
 }
 
 function request(url, method, body, options, ssrContext) {
-  const { req } = ssrContext || {};
   const requestUrl = apiBaseUrl + url;
 
-  const defaultOptions = createDefaultHttpOptions(req);
+  const defaultOptions = createDefaultHttpOptions(url, method, body, ssrContext);
 
   const requestOptions = {
     ...defaultOptions,

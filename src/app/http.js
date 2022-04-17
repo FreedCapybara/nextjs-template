@@ -1,6 +1,7 @@
 import cookie from 'cookie';
 
-export function createDefaultHttpOptions(req) {
+export function createDefaultHttpOptions(url, method, body, ssrContext) {
+  const { req } = ssrContext || {};
   const dev = process.env.NODE_ENV !== 'production';
   const options = {
     headers: {}
