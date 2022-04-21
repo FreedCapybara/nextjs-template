@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import cookie from 'cookie';
 import { intersection, isEmpty, some } from 'lodash-es';
-//import { } from './authAPI';
+import { authAPI } from './authAPI';
 
 import { jwtUtils } from '@utils/jwt';
 import { nextjsUtils } from '@utils/nextjs';
@@ -16,6 +16,14 @@ const initialState = {
 };
 
 const rolesClaim = 'http://schemas.microsoft.com/ws/2008/06/identity/claims/role';
+
+export const login = createAsyncThunk(
+  'auth/login',
+  async (email, password) => {
+    const response = await authAPI.login(email, password);
+    return await response.json();
+  }
+);
 
 // Dispatch this in `getServerSideProps` to load basic user information from the token,
 // or redirect unauthorized users to login. Example:
