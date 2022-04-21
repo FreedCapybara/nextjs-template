@@ -15,6 +15,7 @@ import { ProgressBar } from '@components/ProgressBar';
 import { Swatch } from '@components/Swatch';
 import { ToggleSwitch } from '@components/ToggleSwitch';
 import { ValidatedInput } from '@components/ValidatedInput';
+import { FormField } from '@components/FormField';
 
 function Sandbox(props) {
 
@@ -43,7 +44,10 @@ function Sandbox(props) {
         Hello
       </Swatch>
       <ToggleSwitch value={toggleValue} onChange={(newValue) => setToggleValue(newValue)} />
-      <ValidatedInput value={formValue} onChange={(newValue) => setFormValue(newValue)} isValid={formValue === 'hello'} showSuccess={true} />
+      <FormField label="Valerdated field">
+        <ValidatedInput value={formValue} onChange={(newValue) => setFormValue(newValue)} isValid={formValue === 'hello'} showSuccess={true} />
+        <p>VALERDATED</p>
+      </FormField>
     </TwoPaneLayout>
   );
 }

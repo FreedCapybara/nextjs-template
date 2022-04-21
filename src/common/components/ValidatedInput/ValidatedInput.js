@@ -31,31 +31,36 @@ export function ValidatedInput(props) {
 
   return (
     <div className={styles.wrapper}>
-      <input
-        className={styles.validatedInput}
-        type={type || 'text'}
-        id={id}
-        name={name}
-        required={required}
-        maxLength={maxLength}
-        autoComplete="new-password"
-        onChange={handleChange}
-        value={value}
-      />
+      <div className={styles.inputWrapper}>
+        <input
+          className={styles.validatedInput}
+          type={type || 'text'}
+          id={id}
+          name={name}
+          required={required}
+          maxLength={maxLength}
+          autoComplete="new-password"
+          onChange={handleChange}
+          value={value}
+        />
 
-      {showValid && (
+        {showValid && (
           <span
             className={`${styles.indicatorIcon} ${styles.valid} ti-check`}
             style={indicatorIconStyle}
-
-        >valid</span>
-      )}
+          >
+            valid
+          </span>
+        )}
+      </div>
 
       {showInvalid && (
         <span
           className={`${styles.indicatorIcon} ${styles.invalid} ti-alert`}
           style={indicatorIconStyle}
-        >invalid</span>
+        >
+          invalid
+        </span>
       )}
     </div>
   );
