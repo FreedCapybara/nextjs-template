@@ -10,7 +10,6 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.0",
     "cookie": "^0.4.2",
-    "isomorphic-unfetch": "^3.1.0",
     "js-cookie": "^3.0.1",
     "js-md5": "^0.7.3",
     "lodash-es": "^4.17.21",

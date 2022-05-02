@@ -1,5 +1,3 @@
-import fetch from 'isomorphic-unfetch';
-
 import { apiBaseUrl } from '@app/api-base';
 import { createDefaultHttpOptions } from '@app/http';
 
