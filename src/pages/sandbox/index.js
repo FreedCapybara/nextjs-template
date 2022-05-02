@@ -62,7 +62,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
     //return authResult.serverSideProps;
   //}
 
-  const dataResult = await dispatch(sandboxRequest(context));
+  const dataResult = await dispatch(sandboxRequest({ context }));
   return dataResult.payload.serverSideProps;
 });
 

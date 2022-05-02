@@ -46,9 +46,9 @@ export function createDefaultHttpOptions(url, method, body, ssrContext) {
 //
 // export const exampleRequest = createAsyncThunk(
 //   'example/exampleRequest',
-//   async (ssrContext, thunkAPI) => {
-//     const response = await exampleAPI.exampleRequest(ssrContext);
-//     return await defaultResponseHandler(response, ssrContext, thunkAPI);
+//   async ({ context }, thunkAPI) => {
+//     const response = await exampleAPI.exampleRequest(context);
+//     return await defaultResponseHandler(response, thunkAPI, context);
 //   }
 // );
 //
@@ -56,13 +56,13 @@ export function createDefaultHttpOptions(url, method, body, ssrContext) {
 //
 // export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
 //   const { dispatch } = store;
-//   const dataResult = await dispatch(exampleRequest(context));
+//   const dataResult = await dispatch(exampleRequest({ context }));
 //   return dataResult.payload.serverSideProps;
 // });
 //
 // Note that since 401/403 responses for unauthorized requests are handled here,
 // you do not need to dispatch `authorize(context)` in getServerSideProps if dispatching a thunk that uses this function.
-export async function defaultResponseHandler(response, ssrContext, thunkAPI) {
+export async function defaultResponseHandler(response, thunkAPI, ssrContext) {
   const { dispatch } = thunkAPI;
   const ok = response.ok;
   const status = response.status;

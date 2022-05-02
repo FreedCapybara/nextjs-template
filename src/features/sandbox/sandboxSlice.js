@@ -10,9 +10,9 @@ const initialState = {
 
 export const sandboxRequest = createAsyncThunk(
   'sandbox/sandboxRequest',
-  async (ssrContext, thunkAPI) => {
-    const response = await sandboxAPI.sandboxRequest(ssrContext);
-    return await defaultResponseHandler(response, ssrContext, thunkAPI);
+  async ({ context }, thunkAPI) => {
+    const response = await sandboxAPI.sandboxRequest(context);
+    return await defaultResponseHandler(response, thunkAPI, context);
   }
 );
 
