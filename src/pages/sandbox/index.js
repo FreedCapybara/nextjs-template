@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useSession, getSession, signIn, signOut } from 'next-auth/react';
 import { wrapper } from '@app/store';
 import styles from './Sandbox.module.scss';
 
@@ -70,8 +70,14 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
     //return authResult.serverSideProps;
   //}
 
-  const dataResult = await dispatch(sandboxRequest({ context }));
-  return dataResult.payload.serverSideProps;
+  //const dataResult = await dispatch(sandboxRequest({ context }));
+  //return dataResult.payload.serverSideProps;
+
+  return {
+    props: {
+      session: await getSession(context)
+    }
+  }
 });
 
 export default Sandbox;
