@@ -4,16 +4,26 @@ export const nextjsUtils = {
 };
 
 function createServerSideProps(data, redirect, options) {
-  return redirect ? {
-    redirect: {
+  // return the redirect if present
+  if (redirect) {
+    const redirect = {
       destination: redirect
-    }
-  } : {
-    props: options.spread ? {
-      ...data
-    } : {
-      data
-    }
+    };
+
+    return {
+      redirect
+    };
   }
+
+  // create props
+  const props = options.spread ? {
+    ...data
+  } : {
+    data
+  };
+
+  return {
+    props
+  };
 }
 
