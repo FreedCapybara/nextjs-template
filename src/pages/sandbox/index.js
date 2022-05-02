@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useSession, signIn, signOut } from 'next-auth/react';
 import { wrapper } from '@app/store';
 import styles from './Sandbox.module.scss';
 
@@ -24,6 +25,8 @@ function Sandbox(props) {
 
   const dispatch = useDispatch();
 
+  const { data: session } = useSession();
+
   const user = useSelector(selectUser);
   const data = useSelector(selectData);
 
@@ -34,6 +37,11 @@ function Sandbox(props) {
       <button onClick={() => dispatch(sandboxRequest())}>Status code</button>
       <AvatarMenu email="andrew@spacegiraffe.io" align="right">
         <a>hello</a>
+        {session ? (
+          <button onClick={() => signOut()}>Sign out {session.user.email}</button>
+        ) : (
+          <button onClick={() => signIn()}>Sign in</button>
+        )}
       </AvatarMenu>
       <Emoji>&#x1f680;</Emoji>
       <NavMenu>
