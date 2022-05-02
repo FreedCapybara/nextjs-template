@@ -64,9 +64,9 @@ export const userUnauthorized = (ssrContext) => (dispatch) => {
 // Utility function for consistent return values.
 // Provides a `serverSideProps` key as an easy return value for `getServerSideProps()`.
 function createAuthResult(authorized, session, redirect) {
-  const user = session.user;
+  const user = session?.user;
   const serverSideProps = nextjsUtils.createServerSideProps(user, redirect);
-  serverSideProps.props.session = session;
+  serverSideProps.props?.session = session;
 
   return {
     authorized,
