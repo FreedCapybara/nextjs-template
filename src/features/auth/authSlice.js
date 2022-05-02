@@ -1,14 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-//import { createSelector } from 'reselect';
 import { HYDRATE } from 'next-redux-wrapper';
-import cookie from 'cookie';
-import Cookies from 'js-cookie';
+import { getSession } from 'next-auth/react';
 import { intersection, isEmpty, some } from 'lodash-es';
 import { authAPI } from './authAPI';
 
 import { defaultResponseHandler } from '@app/http';
 
-import { jwtUtils } from '@utils/jwt';
 import { nextjsUtils } from '@utils/nextjs';
 
 const initialState = {
@@ -16,64 +13,6 @@ const initialState = {
     email: '',
     roles: []
   }
-};
-
-const rolesClaim = 'http://schemas.microsoft.com/ws/2008/06/identity/claims/role';
-
-export const login = createAsyncThunk(
-  'auth/login',
-  async ({ email, password }, thunkAPI) => {
-    const { dispatch } = thunkAPI;
-    const response = await authAPI.login(email, password);
-    const loginResult = await defaultResponseHandler(response, thunkAPI);
-
-    if (loginResult.data?.token) {
-      dispatch(userAuthenticated(loginResult))
-
-      // return an auth result with a redirect to the home page
-      return createAuthResult(true, user, '/');
-    }
-
-    // indicate there was an error
-    return createAuthResult(false, null, null);
-  }
-);
-
-export const register = createAsyncThunk(
-  'auth/register',
-  async ({ email, password }, thunkAPI) => {
-    const { dispatch } = thunkAPI;
-    const response = await authAPI.register(email, password);
-    const loginResult = await defaultResponseHandler(response, thunkAPI);
-
-    if (loginResult.data?.token) {
-      dispatch(userAuthenticated(loginResult))
-
-      // return an auth result with a redirect to the home page
-      return createAuthResult(true, user, '/');
-    }
-
-    // indicate there was an error
-    return createAuthResult(false, null, null);
-  }
-);
-
-// Handles successful authentication from login or registration
-export const userAuthenticated = (loginResult) => (dispatch) => {
-  // set the token
-  dispatch(setToken(loginResult.data));
-
-  // get user information
-  const user = getUserFromJwt(token);
-  dispatch(userAuthorized(user));
-};
-
-export const setToken = (user) => (dispatch) => {
-  // set the cookie
-  const cookieOptions = {
-    secure: true
-  };
-  Cookies.set('token', data.token, cookieOptions);
 };
 
 // Dispatch this in `getServerSideProps` to load basic user information from the token,
@@ -85,29 +24,29 @@ export const setToken = (user) => (dispatch) => {
 //   return authResult.serverSideProps;
 // });
 //
-export const authorize = (ssrContext, roles) => (dispatch) => {
+export const authorize = (ssrContext, roles) => async (dispatch) => {
   const { req } = ssrContext;
 
-  const cookies = cookie.parse(req.headers.cookie || '');
-  const token = cookies.token;
+  const session = await getSession(ssrContext);
 
-  if (!token) {
+  if (!session) {
     return dispatch(userUnauthorized(ssrContext));
   }
 
-  const user = getUserFromJwt(token);
+  const user = session.user;
+  const userRoles = user.roles;
 
-  if (some(roles) && isEmpty(intersection(roles, user.roles))) {
+  if (some(roles) && isEmpty(intersection(roles, userRoles))) {
     return dispatch(userUnauthorized(ssrContext));
   }
 
-  return dispatch(userAuthorized(user));
+  return dispatch(userAuthorized(session));
 };
 
 // Handles valid/authorized users and returns an auth result with user information.
-export const userAuthorized = (user) => (dispatch) => {
-  dispatch(userLoaded(user));
-  return createAuthResult(true, user, null);
+export const userAuthorized = (session) => (dispatch) => {
+  dispatch(userLoaded(session.user));
+  return createAuthResult(true, session, null);
 };
 
 // Handles invalid/unauthorized users and returns an auth result with redirect information.
@@ -122,21 +61,13 @@ export const userUnauthorized = (ssrContext) => (dispatch) => {
   return createAuthResult(false, null, redirect);
 };
 
-function getUserFromJwt(token) {
-  const jwt = jwtUtils.parseJwt(token);
-
-  const user = {
-    email: jwt.sub,
-    roles: jwt[rolesClaim] || []
-  };
-
-  return user;
-}
-
 // Utility function for consistent return values.
 // Provides a `serverSideProps` key as an easy return value for `getServerSideProps()`.
-function createAuthResult(authorized, user, redirect) {
+function createAuthResult(authorized, session, redirect) {
+  const user = session.user;
   const serverSideProps = nextjsUtils.createServerSideProps(user, redirect);
+  serverSideProps.props.session = session;
+
   return {
     authorized,
     user,

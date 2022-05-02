@@ -63,6 +63,9 @@ function Sandbox(props) {
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
   const { dispatch } = store;
 
+  const authResult = await dispatch(authorize(context));
+  return authResult.serverSideProps;
+
   // not necessary since `sandboxRequest` should redirect unauthorized users
   //const authResult = dispatch(authorize(context));
 
@@ -73,11 +76,11 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
   //const dataResult = await dispatch(sandboxRequest({ context }));
   //return dataResult.payload.serverSideProps;
 
-  return {
-    props: {
-      session: await getSession(context)
-    }
-  }
+  //return {
+    //props: {
+      //session: await getSession(context)
+    //}
+  //}
 });
 
 export default Sandbox;
