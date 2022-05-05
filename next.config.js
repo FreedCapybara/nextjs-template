@@ -4,6 +4,16 @@ const { webpack } = require('next/dist/compiled/webpack/webpack');
 
 module.exports = {
   reactStrictMode: true,
+  pageExtensions: [
+    'page.js',
+    'page.ts',
+    'page.jsx',
+    'page.tsx',
+    'api.js',
+    'api.ts',
+    'api.jsx',
+    'api.tsx'
+  ],
   webpack: config => {
 
     // path aliases

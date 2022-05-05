@@ -18,7 +18,7 @@ import { ToggleSwitch } from '@components/ToggleSwitch';
 import { ValidatedInput } from '@components/ValidatedInput';
 import { FormField } from '@components/FormField';
 
-function Sandbox(props) {
+export function Sandbox(props) {
 
   const [toggleValue, setToggleValue] = useState(false);
   const [formValue, setFormValue] = useState('');
@@ -82,6 +82,4 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
     //}
   //}
 });
-
-export default Sandbox;
 

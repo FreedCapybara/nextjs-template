@@ -1,11 +1,9 @@
 import React from 'react';
 import styles from './ForgotPassword.module.scss';
 
-function ForgotPassword() {
+export function ForgotPassword() {
   return (
     <h1>ForgotPassword</h1>
   );
 }
-
-export default ForgotPassword;
 

@@ -5,7 +5,7 @@ import styles from './NotFound.module.scss';
 import { CenteredLayout } from '@components/CenteredLayout';
 import { Logo } from '@components/Logo';
 
-function NotFound() {
+export function NotFound() {
   return (
     <CenteredLayout title="Not found">
       <div className={styles.container}>
@@ -28,6 +28,4 @@ function NotFound() {
     </CenteredLayout>
   );
 }
-
-export default NotFound;
 

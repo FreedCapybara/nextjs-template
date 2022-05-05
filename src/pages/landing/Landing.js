@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from './Landing.module.scss'
 
-function Landing() {
+export function Landing() {
   return (
     <div className={styles.container}>
       <Head>
@@ -67,6 +67,4 @@ function Landing() {
     </div>
   )
 }
-
-export default Landing;
 

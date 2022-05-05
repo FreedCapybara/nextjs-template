@@ -5,7 +5,7 @@ import styles from './ServerError.module.scss';
 import { CenteredLayout } from '@components/CenteredLayout';
 import { Logo } from '@components/Logo';
 
-function ServerError() {
+export function ServerError() {
   return (
     <CenteredLayout title="Server error">
       <div className={styles.container}>
@@ -28,6 +28,4 @@ function ServerError() {
     </CenteredLayout>
   );
 }
-
-export default ServerError;
 
