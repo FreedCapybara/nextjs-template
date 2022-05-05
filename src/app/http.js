@@ -1,5 +1,3 @@
-import cookie from 'cookie';
-
 import { nextjsUtils } from '@utils/nextjs';
 
 import { userUnauthorized } from '@features/auth';
@@ -16,15 +14,6 @@ export function createDefaultHttpOptions(url, method, body, ssrContext) {
 
   // application/json by default
   options.headers['Content-Type'] = 'application/json';
-
-  // set auth header from the token cookie
-  const cookieSource = req ? req.headers.cookie : document.cookie;
-  const cookies = cookie.parse(cookieSource || '');
-  const token = cookies.token;
-
-  if (token) {
-    options.headers['Authorization'] = `Bearer ${token}`;
-  }
 
   // fix Node "unable to verify the first certificate" errors during SSR in dev
   if (dev && req) {

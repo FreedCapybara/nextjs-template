@@ -8,23 +8,23 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.8.0",
-    "cookie": "^0.4.2",
-    "js-cookie": "^3.0.1",
+    "@reduxjs/toolkit": "^1.8.1",
     "js-md5": "^0.7.3",
     "lodash-es": "^4.17.21",
-    "moment": "^2.29.1",
-    "next": "^12.1.0",
+    "moment": "^2.29.3",
+    "next": "^12.1.6",
     "next-auth": "^4.3.4",
     "next-redux-wrapper": "^7.0.5",
     "prop-types": "^15.8.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-redux": "^7.2.6",
-    "sass": "^1.49.9"
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-redux": "^8.0.1",
+    "sass": "^1.51.0"
   },
   "devDependencies": {
-    "eslint": "^8.10.0",
-    "eslint-config-next": "^12.1.0"
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.2.0",
+    "eslint": "^8.14.0",
+    "eslint-config-next": "^12.1.6"
   }
 }
