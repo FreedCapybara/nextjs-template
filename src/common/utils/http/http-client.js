@@ -1,4 +1,3 @@
-import { apiBaseUrl } from '@app/api-base';
 import { createDefaultHttpOptions } from '@app/http';
 
 export const http = {
@@ -11,7 +10,7 @@ export const http = {
 }
 
 function request(url, method, body, options, ssrContext) {
-  const requestUrl = apiBaseUrl + url;
+  const requestUrl = process.env.NEXT_PUBLIC_API_BASE_URL + url;
 
   const defaultOptions = createDefaultHttpOptions(url, method, body, ssrContext);
 
