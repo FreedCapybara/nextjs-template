@@ -1,2 +1,2 @@
-export * from './Toolbar.js';
+export * from './Toolbar';
 

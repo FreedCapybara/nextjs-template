@@ -1,2 +1,2 @@
-export * from './EmptyState.js';
+export * from './EmptyState';
 

@@ -1,2 +1,2 @@
-export * from './Emoji.js';
+export * from './Emoji';
 

@@ -1,2 +1,2 @@
-export * from './ToggleSwitch.js';
+export * from './ToggleSwitch';
 

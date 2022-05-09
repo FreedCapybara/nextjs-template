@@ -1,2 +1,2 @@
-export * from './ValidatedInput.js';
+export * from './ValidatedInput';
 

@@ -1,2 +1,2 @@
-export * from './FileDrop.js';
+export * from './FileDrop';
 

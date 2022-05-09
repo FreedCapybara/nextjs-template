@@ -1,2 +1,2 @@
-export * from './FormField.js';
+export * from './FormField';
 

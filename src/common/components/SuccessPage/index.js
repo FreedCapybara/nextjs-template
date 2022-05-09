@@ -1,2 +1,2 @@
-export * from './SuccessPage.js';
+export * from './SuccessPage';
 

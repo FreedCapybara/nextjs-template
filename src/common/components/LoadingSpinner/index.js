@@ -1,2 +1,2 @@
-export * from './LoadingSpinner.js';
+export * from './LoadingSpinner';
 

@@ -1,2 +1,2 @@
-export * from './AvatarMenu.js';
+export * from './AvatarMenu';
 

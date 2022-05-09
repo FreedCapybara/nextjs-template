@@ -1,2 +1,2 @@
-export * from './NavMenu.js';
+export * from './NavMenu';
 

@@ -1,2 +1,2 @@
-export * from './Swatch.js';
+export * from './Swatch';
 

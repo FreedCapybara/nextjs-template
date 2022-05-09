@@ -1,2 +1,2 @@
-export * from './DeleteButton.js';
+export * from './DeleteButton';
 

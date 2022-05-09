@@ -1,2 +1,2 @@
-export * from './FilePicker.js';
+export * from './FilePicker';
 
