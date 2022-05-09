@@ -5,7 +5,11 @@ import url from 'url';
 export default NextAuth({
   pages: {
     signIn: '/login',
-    signOut: '/login'
+    signOut: '/login',
+    error: '/server-error'
+  },
+  session: {
+    maxAge: 16 * 60 * 60 // 16 hours, in seconds
   },
   providers: [
     GithubProvider({
