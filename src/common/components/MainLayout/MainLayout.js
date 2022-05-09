@@ -33,7 +33,7 @@ export function MainLayout(props) {
 
       <div className={styles.mainContent}>
 
-        <div className={styles.container}>
+        <div className="container">
           <div className={styles.contentWrapper}>
             {props.children}
           </div>

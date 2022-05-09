@@ -1,0 +1,15 @@
+@import '@styles/variables';
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: $toolbar-mobile-height;
+  max-height: $toolbar-mobile-height;
+
+  @media(min-width: $desktop-breakpoint) {
+    height: $toolbar-desktop-height;
+    max-height: $toolbar-desktop-height;
+  }
+}
+

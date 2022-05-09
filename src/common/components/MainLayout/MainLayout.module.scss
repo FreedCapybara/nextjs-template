@@ -15,15 +15,9 @@
   }
 }
 
-.container {
-  max-width: $max-width;
-  margin: 0 auto;
-  padding: 20px;
-  width: 100%;
-}
-
 .content-wrapper {
   padding-bottom: 80px;
+  padding-top: 20px;
 }
 
 .loading-spinner-wrapper {

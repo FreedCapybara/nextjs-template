@@ -1,10 +1,14 @@
 import styles from './Home.module.scss';
 
+import { MainLayout } from '@components/MainLayout';
+
 export function Home(props) {
   const { data } = props;
 
   return (
-    <h1>Home {data}</h1>
+    <MainLayout>
+      <h1>Home {data}</h1>
+    </MainLayout>
   );
 }
 
