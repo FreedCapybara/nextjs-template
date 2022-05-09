@@ -21,6 +21,7 @@ module.exports = {
     config.resolve.alias['@common'] = path.resolve(__dirname + '/src/common');
     config.resolve.alias['@components'] = path.resolve(__dirname + '/src/common/components');
     config.resolve.alias['@hooks'] = path.resolve(__dirname + '/src/common/hooks');
+    config.resolve.alias['@services'] = path.resolve(__dirname + '/src/common/services');
     config.resolve.alias['@utils'] = path.resolve(__dirname + '/src/common/utils');
     config.resolve.alias['@features'] = path.resolve(__dirname + '/src/features');
     config.resolve.alias['@pages'] = path.resolve(__dirname + '/src/pages');
