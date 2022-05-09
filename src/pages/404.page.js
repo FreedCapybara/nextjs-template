@@ -1,4 +1,4 @@
-import { NotFound } from './not-found/NotFound';
 
-export default NotFound;
+export { NotFound as default } from './not-found/NotFound';
+
 

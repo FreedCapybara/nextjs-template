@@ -1,3 +1,3 @@
-import { Sandbox } from './Sandbox';
 
-export default Sandbox;
+export { Sandbox as default, getServerSideProps } from './Sandbox';
+

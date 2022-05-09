@@ -1,3 +1,3 @@
-import { ForgotPasswordSuccess } from './ForgotPasswordSuccess';
 
-export default ForgotPasswordSuccess;
+export { ForgotPasswordSuccess as default } from './ForgotPasswordSuccess';
+

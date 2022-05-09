@@ -1,7 +1,31 @@
+import React from 'react';
+import { useSession, getSession } from 'next-auth/react';
 import { Landing } from './landing/Landing';
-import { Home } from './home/Home';
+import { Home, getServerSideProps as getHomeServerSideProps } from './home/Home';
 
-const isLoggedIn = false;
+export default function Index(props) {
 
-export default isLoggedIn ? Home : Landing;
+  const { data: session } = useSession();
+
+  return session ? (
+    <Home {...props} />
+  ) : (
+    <Landing {...props} />
+  );
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+
+  const additionalProps = session ?
+    await getHomeServerSideProps(context) :
+    null;
+
+  return {
+    props: {
+      session,
+      ...additionalProps?.props
+    }
+  };
+}
 

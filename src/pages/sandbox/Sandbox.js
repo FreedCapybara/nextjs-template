@@ -80,6 +80,6 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
     //props: {
       //session: await getSession(context)
     //}
-  //}
+  //};
 });
 

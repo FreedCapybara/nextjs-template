@@ -1,3 +1,3 @@
-import { ResetPasswordSuccess } from './ResetPasswordSuccess';
 
-export default ResetPasswordSuccess;
+export { ResetPasswordSuccess as default } from './ResetPasswordSuccess';
+

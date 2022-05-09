@@ -1,3 +1,3 @@
-import { Landing } from './Landing';
 
-export default Landing;
+export { Landing as default } from './Landing';
+

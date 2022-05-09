@@ -1,4 +1,4 @@
-import { ServerError } from './server-error/ServerError';
 
-export default ServerError;
+export { ServerError as default } from './server-error/ServerError';
+
 
