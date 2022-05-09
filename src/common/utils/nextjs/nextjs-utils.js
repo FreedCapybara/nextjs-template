@@ -3,11 +3,11 @@ export const nextjsUtils = {
   createServerSideProps
 };
 
-function createServerSideProps(data, redirect, options) {
+function createServerSideProps(data, redirectUrl, options) {
   // return the redirect if present
-  if (redirect) {
+  if (redirectUrl) {
     const redirect = {
-      destination: redirect
+      destination: redirectUrl
     };
 
     return {
