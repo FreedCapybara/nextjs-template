@@ -56,8 +56,8 @@ export const userUnauthorized = (ssrContext) => (dispatch) => {
   dispatch(clearState());
 
   const redirect = req ?
-    `/login?redirect=${encodeURIComponent(req.url)}` :
-    `/login?redirect=${encodeURIComponent(window.location.href.replace(window.location.origin, ''))}`;
+    `/login?callbackUrl=${encodeURIComponent(req.url)}` :
+    `/login?callbackUrl=${encodeURIComponent(window.location.href.replace(window.location.origin, ''))}`;
   return createAuthResult(false, null, redirect);
 };
 
