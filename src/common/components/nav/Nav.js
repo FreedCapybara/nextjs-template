@@ -31,9 +31,16 @@ export function Nav(props) {
                 </button>
               </AvatarMenu>
             ) : (
-              <button onClick={signIn}>
-                Sign in
-              </button>
+              <>
+                <button className="text-button" onClick={signIn}>
+                  Sign in
+                </button>
+                <Link href="/signup">
+                  <a className="button">
+                    Sign up
+                  </a>
+                </Link>
+              </>
             )}
         </ToolbarGroup>
       </Toolbar>

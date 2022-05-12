@@ -2,19 +2,21 @@
 
 %button-style {
   display: inline-block;
-  background: transparent;
-  border: 1px solid $primary-color;
-  color: $primary-color;
-  padding: 12px 64px;
-  font-size: 1.125rem;
+  background: white;
+  border: none;
+  color: $text-color-light;
+  padding: 10px 28px;
+  font-size: 1rem;
+  font-family: $app-font-family;
   line-height: 1rem;
   font-weight: 700;
   letter-spacing: .5px;
   text-align: center;
   vertical-align: middle;
-  border-radius: 100px;
+  border-radius: 12px;
   cursor: pointer;
   text-decoration: none;
+  box-shadow: $box-shadow-medium;
   transition: background-color .3s, color .3s, box-shadow .3s;
 
   &:hover {
@@ -32,8 +34,32 @@
   }
 }
 
-button,
 .button {
   @extend %button-style;
+}
+
+.big-button {
+  @extend %button-style;
+
+  background: transparent;
+  border: 1px solid $primary-color;
+  color: $primary-color;
+  padding: 12px 64px;
+  font-size: 1.125rem;
+  border-radius: 100px;
+  box-shadow: none;
+}
+
+.text-button {
+  @extend %button-style;
+
+  background: transparent;
+  box-shadow: none;
+
+  &:hover {
+    background-color: transparent;
+    color: $primary-color;
+    box-shadow: none;
+  }
 }
 
