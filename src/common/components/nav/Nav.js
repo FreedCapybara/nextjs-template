@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import styles from './Nav.module.scss';
 
+import theme from '@app/theme';
+
 import { Toolbar } from '@components/Toolbar';
 import { ToolbarGroup } from '@components/ToolbarGroup';
 import { TabBar } from '@components/TabBar';
@@ -17,31 +19,45 @@ export function Nav(props) {
     <div className={styles.navWrapper}>
       <Toolbar>
         <ToolbarGroup>
-          <Logo />
+          <Link href="/">
+            <a>
+              <Logo />
+            </a>
+          </Link>
+          <Link href="/">
+            <a className={styles.appTitle}>
+              {theme.appName}
+            </a>
+          </Link>
         </ToolbarGroup>
 
         <ToolbarGroup>
-            {session ? (
-              <AvatarMenu email={session.user.email} align="right">
-                <Link href="/account">
-                  <a>Account</a>
-                </Link>
-                <button onClick={signOut}>
-                  Logout
-                </button>
-              </AvatarMenu>
-            ) : (
-              <>
-                <button className="text-button" onClick={signIn}>
-                  Sign in
-                </button>
-                <Link href="/signup">
-                  <a className="button">
-                    Sign up
-                  </a>
-                </Link>
-              </>
-            )}
+          <a className="text-button" href="https://github.com/FreedCapybara/nextjs-template" target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+          {session ? (
+            <>
+            <AvatarMenu email={session.user.email} align="right">
+              <Link href="/account">
+                <a>Account</a>
+              </Link>
+              <button onClick={signOut}>
+                Logout
+              </button>
+            </AvatarMenu>
+            </>
+          ) : (
+            <>
+            <button className="text-button" onClick={signIn}>
+              Sign in
+            </button>
+            <Link href="/signup">
+              <a className="button">
+                Sign up
+              </a>
+            </Link>
+            </>
+          )}
         </ToolbarGroup>
       </Toolbar>
 
