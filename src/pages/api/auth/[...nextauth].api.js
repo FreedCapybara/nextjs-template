@@ -1,6 +1,7 @@
 import NextAuth from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import url from 'url';
+import { endsWith } from 'lodash-es';
 
 export default NextAuth({
   pages: {
@@ -28,6 +29,9 @@ export default NextAuth({
       if (callbackUrl.startsWith('/')) {
         // allow relative callback URLs
         return `${baseUrl}${callbackUrl}`;
+      } else if (endsWith(callbackUrl, '/login')) {
+        // navigate to the home page when there is no callbackUrl
+        return baseUrl;
       } else if (new URL(callbackUrl).origin === baseUrl) {
         // allow callback URLs on the same origin
         return callbackUrl;
