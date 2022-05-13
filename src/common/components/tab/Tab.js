@@ -15,8 +15,8 @@ export function Tab(props) {
       router.asPath.startsWith(path);
   }
 
-  const isSelected =
-    some(matchPaths, ({ path, exact }) => isPathMatch(path, exact)) ||
+  const isSelected = some(matchPaths) ?
+    some(matchPaths, ({ path, exact }) => isPathMatch(path, exact)) :
     isPathMatch(path, exactMatch);
 
   const tabClass = isSelected ?
