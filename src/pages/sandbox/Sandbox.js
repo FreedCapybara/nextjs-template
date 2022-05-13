@@ -31,7 +31,7 @@ export function Sandbox(props) {
   const data = useSelector(selectData);
 
   return (
-    <TwoPaneLayout title="Sandbox">
+    <MainLayout title="Sandbox">
       <h1>hi {user.email}</h1>
       <button onClick={() => dispatch(wait())}>Load something</button>
       <button onClick={() => dispatch(sandboxRequest())}>Status code</button>
@@ -56,7 +56,7 @@ export function Sandbox(props) {
         <ValidatedInput value={formValue} onChange={(newValue) => setFormValue(newValue)} isValid={formValue === 'hello'} showSuccess={true} />
         <p>VALERDATED</p>
       </FormField>
-    </TwoPaneLayout>
+    </MainLayout>
   );
 }
 
