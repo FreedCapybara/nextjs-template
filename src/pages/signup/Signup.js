@@ -1,9 +1,13 @@
 import React from 'react';
 import styles from './Signup.module.scss';
 
+import { TwoPaneLayout } from '@components/TwoPaneLayout';
+
 export function Signup() {
   return (
-    <h1>Signup</h1>
+    <TwoPaneLayout>
+      <h1>Signup</h1>
+    </TwoPaneLayout>
   );
 }
 
