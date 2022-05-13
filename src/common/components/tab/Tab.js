@@ -1,39 +1,41 @@
-import styled from 'styled-components';
+import React from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import PropTypes from 'prop-types';
+import { some } from 'lodash-es';
+import styles from './Tab.module.scss';
 
-export const TabBar = styled.div`
-  display: flex;
-  justify-content: center;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.mediumLightGrey};
-`;
+export function Tab(props) {
+  const { path, matchPaths, exactMatch } = props;
+  const router = useRouter();
 
-export const TabsWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  max-width: ${({ theme }) => theme.maxWidth};
-  padding: 0 8px;
-`;
+  function isPathMatch(path, exact) {
+    return exact ?
+      router.asPath === path :
+      router.asPath.startsWith(path);
+  }
 
-export const tabStyle = (theme, selected) => `
-  display: block;
-  height: 36px;
-  padding: 0 12px;
-  text-decoration: none;
-  color: ${theme.colors.textColor};
-  border-bottom: ${selected ? '2px solid ' + theme.colors.blueGrey : '2px solid transparent'};
-  cursor: pointer;
+  const isSelected =
+    some(matchPaths, ({ path, exact }) => isPathMatch(path, exact)) ||
+    isPathMatch(path, exactMatch);
 
-  ${!selected ? `
-    &:hover {
-      color: ${theme.colors.secondary};
-    }
-  ` : ''}
-`;
+  const tabClass = isSelected ?
+    `${styles.tab} ${styles.selected}` :
+    styles.tab;
 
-export const Tab = styled.div`
-  ${({ theme, selected }) => tabStyle(theme, selected)}
-`;
+  return (
+    <Link href={path}>
+      <a className={tabClass}>
+        {props.children}
+      </a>
+    </Link>
+  );
+}
 
-export const TabLink = styled.a`
-  ${({ theme, selected }) => tabStyle(theme, selected)}
-`;
+Tab.propTypes = {
+  path: PropTypes.string,
+  matchPaths: PropTypes.array,
+  exactMatch: PropTypes.bool,
+  children: PropTypes.node
+};
 

@@ -9,11 +9,19 @@ import theme from '@app/theme';
 import { Toolbar } from '@components/Toolbar';
 import { ToolbarGroup } from '@components/ToolbarGroup';
 import { TabBar } from '@components/TabBar';
+import { Tab } from '@components/Tab';
 import { Logo } from '@components/Logo';
 import { AvatarMenu } from '@components/AvatarMenu';
 
 export function Nav(props) {
   const { data: session } = useSession();
+
+  const homeTabMatchPaths = [{
+    path: '/',
+    exact: true
+  }, {
+    path: '/home'
+  }];
 
   return (
     <div className={styles.navWrapper}>
@@ -62,6 +70,13 @@ export function Nav(props) {
       </Toolbar>
 
       <TabBar>
+        <Tab path="/" matchPaths={homeTabMatchPaths}>
+          Home
+        </Tab>
+
+        <Tab path="/sandbox">
+          Sandbox
+        </Tab>
       </TabBar>
     </div>
   );

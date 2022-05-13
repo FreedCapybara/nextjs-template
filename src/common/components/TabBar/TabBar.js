@@ -4,10 +4,15 @@ import styles from './TabBar.module.scss';
 
 export function TabBar(props) {
   return (
-    <div />
+    <div className={styles.tabBar}>
+      <div className={styles.tabsWrapper}>
+        {props.children}
+      </div>
+    </div>
   );
 }
 
 TabBar.propTypes = {
+  children: PropTypes.node
 };
 

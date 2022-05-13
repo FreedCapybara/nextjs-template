@@ -1,0 +1,24 @@
+@import '@styles/variables';
+
+.tab {
+  display: block;
+  height: 36px;
+  padding: 0 12px;
+  text-decoration: none;
+  color: $text-color;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+
+  &:hover {
+    color: $secondary-color;
+  }
+
+  &.selected {
+    border-bottom: 2px solid $primary-color;
+
+    &:hover {
+      color: $text-color;
+    }
+  }
+}
+
