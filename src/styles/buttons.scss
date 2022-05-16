@@ -79,5 +79,12 @@
     box-shadow: none;
   }
 
+  svg {
+    font-size: 2rem;
+
+    &:not(:last-child) {
+      margin-right: .5rem;
+    }
+  }
 }
 
