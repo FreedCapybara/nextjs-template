@@ -6,6 +6,7 @@ import styles from './MainNav.module.scss';
 
 import theme from '@app/theme';
 
+import { FiExternalLink } from 'react-icons/fi';
 import { Toolbar } from '@components/Toolbar';
 import { ToolbarGroup } from '@components/ToolbarGroup';
 import { TabBar } from '@components/TabBar';
@@ -41,8 +42,13 @@ export function MainNav(props) {
           </ToolbarGroup>
 
           <ToolbarGroup>
-            <a className="text-button" href="https://github.com/FreedCapybara/nextjs-template" target="_blank" rel="noopener noreferrer">
-              GitHub
+            <a
+              className="text-button"
+              href="https://github.com/FreedCapybara/nextjs-template"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub <FiExternalLink />
             </a>
             {session ? (
               <>
