@@ -8,7 +8,11 @@ export function Login(props) {
   const { providers } = props;
 
   return (
-    <TwoPaneLayout title="Login" backRoute="/">
+    <TwoPaneLayout
+      title="Login"
+      backRoute="/"
+      backText="Home"
+    >
       {Object.values(providers).map((provider) => (
         <div key={provider.name}>
           <button onClick={() => signIn(provider.id)}>

@@ -15,7 +15,7 @@ import { Toolbar } from '@components/Toolbar';
 import { ToolbarGroup } from '@components/ToolbarGroup';
 
 export function TwoPaneLayout(props) {
-  const { title, section, backRoute } = props;
+  const { title, section, backRoute, backText } = props;
 
   const loading = useSelector(selectLoading);
 
@@ -42,6 +42,9 @@ export function TwoPaneLayout(props) {
                 <Link href={backRoute}>
                   <a className="icon-button">
                     <FiArrowLeft />
+                    {!!backText && (
+                      <span>{backText}</span>
+                    )}
                   </a>
                 </Link>
               </ToolbarGroup>

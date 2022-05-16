@@ -66,8 +66,9 @@
 .icon-button {
   @extend %button-style;
 
+  display: flex;
+  align-items: center;
   color: $text-color-light-solid;
-  font-size: 2rem;
   background: transparent;
   box-shadow: none;
   padding: 2px 28px;
