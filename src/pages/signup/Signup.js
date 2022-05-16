@@ -5,7 +5,7 @@ import { TwoPaneLayout } from '@components/TwoPaneLayout';
 
 export function Signup() {
   return (
-    <TwoPaneLayout>
+    <TwoPaneLayout title="Sign up" backRoute="/">
       <h1>Signup</h1>
     </TwoPaneLayout>
   );

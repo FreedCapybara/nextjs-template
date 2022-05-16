@@ -1,17 +1,21 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import Link from 'next/link';
+import { useSelector } from 'react-redux';
 import styles from './TwoPaneLayout.module.scss';
 
 import theme from '@app/theme';
 
 import { selectLoading } from '@features/app';
 
+import { FiArrowLeft } from 'react-icons/fi';
 import { LoadingSpinner } from '@components/LoadingSpinner';
+import { Toolbar } from '@components/Toolbar';
+import { ToolbarGroup } from '@components/ToolbarGroup';
 
 export function TwoPaneLayout(props) {
-  const { title, section } = props;
+  const { title, section, backRoute } = props;
 
   const loading = useSelector(selectLoading);
 
@@ -30,6 +34,21 @@ export function TwoPaneLayout(props) {
       <div className={styles.leftPane} style={leftPaneStyle} />
 
       <div className={styles.rightPane}>
+
+        {!!backRoute && (
+          <div className={styles.toolbarWrapper}>
+            <Toolbar>
+              <ToolbarGroup>
+                <Link href="/">
+                  <a className="icon-button">
+                    <FiArrowLeft />
+                  </a>
+                </Link>
+              </ToolbarGroup>
+            </Toolbar>
+          </div>
+        )}
+
         <div className={styles.contentWrapper}>
           {loading ? (
             <LoadingSpinner size={42} />

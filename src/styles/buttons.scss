@@ -63,3 +63,20 @@
   }
 }
 
+.icon-button {
+  @extend %button-style;
+
+  color: $text-color-light-solid;
+  font-size: 2rem;
+  background: transparent;
+  box-shadow: none;
+  padding: 2px 28px;
+
+  &:hover {
+    background-color: transparent;
+    color: $primary-color;
+    box-shadow: none;
+  }
+
+}
+

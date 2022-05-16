@@ -6,7 +6,7 @@ export function Home(props) {
   const { data } = props;
 
   return (
-    <MainLayout>
+    <MainLayout title="Home">
       <h1>Home {data}</h1>
     </MainLayout>
   );

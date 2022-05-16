@@ -5,7 +5,7 @@ import { TwoPaneLayout } from '@components/TwoPaneLayout';
 
 export function ResetPassword() {
   return (
-    <TwoPaneLayout title="Reset password">
+    <TwoPaneLayout title="Reset password" backRoute="/login">
       <h1>ResetPassword</h1>
     </TwoPaneLayout>
   );

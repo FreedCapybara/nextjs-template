@@ -5,7 +5,7 @@ import { TwoPaneLayout } from '@components/TwoPaneLayout';
 
 export function ForgotPassword() {
   return (
-    <TwoPaneLayout title="Forgot password">
+    <TwoPaneLayout title="Forgot password" backRoute="/login">
       <h1>ForgotPassword</h1>
     </TwoPaneLayout>
   );
