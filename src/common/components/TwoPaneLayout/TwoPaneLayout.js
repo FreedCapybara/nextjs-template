@@ -39,7 +39,7 @@ export function TwoPaneLayout(props) {
           <div className={styles.toolbarWrapper}>
             <Toolbar>
               <ToolbarGroup>
-                <Link href="/">
+                <Link href={backRoute}>
                   <a className="icon-button">
                     <FiArrowLeft />
                   </a>
