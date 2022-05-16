@@ -1,3 +1,3 @@
 
-export { ForgotPassword as default } from './ForgotPassword';
+export { ForgotPassword as default, getServerSideProps } from './ForgotPassword';
 

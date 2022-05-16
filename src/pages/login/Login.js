@@ -1,6 +1,8 @@
 import React from 'react';
-import { getProviders, signIn } from 'next-auth/react';
+import { getProviders, getSession, signIn } from 'next-auth/react';
 import styles from './Login.module.scss';
+
+import { nextjsUtils } from '@utils/nextjs';
 
 import { TwoPaneLayout } from '@components/TwoPaneLayout';
 
@@ -25,6 +27,13 @@ export function Login(props) {
 }
 
 export async function getServerSideProps(context) {
+  const session = await getSession(context);
+
+  // redirect authenticated users
+  if (session) {
+    return nextjsUtils.createRedirect('/');
+  }
+
   const providers = await getProviders();
   return {
     props: {
