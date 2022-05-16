@@ -1,11 +1,11 @@
 import { render } from '@testing-library/react';
 
-import { Nav } from './Nav';
+import { MainNav } from './MainNav';
 
-describe('Nav', () => {
+describe('MainNav', () => {
 
   it('should render', () => {
-    const component = render(<Nav />);
+    const component = render(<MainNav />);
     expect(component).toBeDefined();
   });
 });

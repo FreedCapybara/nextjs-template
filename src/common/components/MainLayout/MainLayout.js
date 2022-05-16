@@ -8,7 +8,7 @@ import theme from '@app/theme';
 
 import { selectLoading } from '@features/app';
 
-import { Nav } from '@components/Nav';
+import { MainNav } from '@components/MainNav';
 import { Footer } from '@components/Footer';
 import { LoadingSpinner } from '@components/LoadingSpinner';
 
@@ -29,7 +29,7 @@ export function MainLayout(props) {
         </title>
       </Head>
 
-      <Nav />
+      <MainNav />
 
       <div className={styles.mainContent}>
 
