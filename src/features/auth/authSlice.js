@@ -68,7 +68,9 @@ function createAuthResult(authorized, session, redirect) {
   const props = {
     session
   };
-  const serverSideProps = nextjsUtils.createServerSideProps(props, redirect, { spread: true });
+  const serverSideProps = redirect ?
+    nextjsUtils.createRedirect(redirect) :
+    nextjsUtils.createServerSideProps(props, { spread: true });
 
   return {
     authorized,

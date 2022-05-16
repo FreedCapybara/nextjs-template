@@ -68,7 +68,7 @@ export async function defaultResponseHandler(response, thunkAPI, ssrContext) {
   // 200 ok - return the data
   if (ok) {
     result.data = await response.json();
-    result.serverSideProps = nextjsUtils.createServerSideProps(result.data, null);
+    result.serverSideProps = nextjsUtils.createServerSideProps(result.data);
     return result;
   }
 
@@ -84,7 +84,7 @@ export async function defaultResponseHandler(response, thunkAPI, ssrContext) {
   if (status === 404) {
     result.message = 'Not found';
     result.redirect = '/not-found';
-    result.serverSideProps = nextjsUtils.createServerSideProps(null, result.redirect);
+    result.serverSideProps = nextjsUtils.createRedirect(result.redirect);
   }
 
   // redirect to the server error page and include the response text in the result
@@ -92,7 +92,7 @@ export async function defaultResponseHandler(response, thunkAPI, ssrContext) {
   if (status === 400 || status === 500) {
     result.message = await response.text();
     result.redirect = '/server-error';
-    result.serverSideProps = nextjsUtils.createServerSideProps(null, result.redirect);
+    result.serverSideProps = nextjsUtils.createRedirect(result.redirect);
   }
 
   // perform client-side redirects

@@ -1,22 +1,12 @@
 
 export const nextjsUtils = {
-  createServerSideProps
+  createServerSideProps,
+  createRedirect
 };
 
-function createServerSideProps(data, redirectUrl, options) {
-  // return the redirect if present
-  if (redirectUrl) {
-    const redirect = {
-      destination: redirectUrl
-    };
-
-    return {
-      redirect
-    };
-  }
-
+function createServerSideProps(data, options) {
   // create props
-  const props = options.spread ? {
+  const props = options?.spread ? {
     ...data
   } : {
     data
@@ -24,6 +14,16 @@ function createServerSideProps(data, redirectUrl, options) {
 
   return {
     props
+  };
+}
+
+function createRedirect(redirectUrl) {
+  const redirect = {
+    destination: redirectUrl
+  };
+
+  return {
+    redirect
   };
 }
 
