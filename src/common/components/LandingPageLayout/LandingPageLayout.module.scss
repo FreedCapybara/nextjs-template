@@ -1,0 +1,14 @@
+@import '@styles/variables';
+
+.wrapper {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+}
+
