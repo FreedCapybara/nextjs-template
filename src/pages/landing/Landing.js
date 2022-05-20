@@ -1,8 +1,8 @@
 import styles from './Landing.module.scss'
 
 import { LandingPageLayout } from '@components/LandingPageLayout';
-import { Hero } from '@components/Hero';
 import { LandingPageSection } from '@components/LandingPageSection';
+import { Hero } from '@components/Hero';
 
 export function Landing() {
   return (
