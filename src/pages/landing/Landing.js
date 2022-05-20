@@ -1,5 +1,6 @@
 import styles from './Landing.module.scss'
 
+import { FiExternalLink } from 'react-icons/fi';
 import { LandingPageLayout } from '@components/LandingPageLayout';
 import { LandingPageSection } from '@components/LandingPageSection';
 import { Hero } from '@components/Hero';
@@ -11,6 +12,14 @@ export function Landing() {
       <Hero>
         <h1>The ultimate Next.js boilerplate <Emoji>&#x1f680;</Emoji></h1>
         <h3>A fully featured app template to kick off your next project.</h3>
+        <a
+          className="cta-button"
+          href="https://github.com/FreedCapybara/nextjs-template"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View on GitHub <FiExternalLink />
+        </a>
       </Hero>
 
       <LandingPageSection>

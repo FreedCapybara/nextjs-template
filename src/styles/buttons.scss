@@ -50,6 +50,20 @@
   box-shadow: none;
 }
 
+.cta-button {
+  @extend %button-style;
+
+  color: white;
+  padding: 1rem 5rem;
+  margin: 1rem 0;
+  font-size: 1.125rem;
+  border-radius: 100px;
+  box-shadow: $box-shadow-large;
+  background: $primary-color;
+  background: -webkit-linear-gradient(to right, $primary-color, $secondary-color);
+  background: linear-gradient(to right, $primary-color, $secondary-color);
+}
+
 .text-button {
   @extend %button-style;
 

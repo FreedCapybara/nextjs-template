@@ -11,5 +11,6 @@ export function Hero(props) {
 }
 
 Hero.propTypes = {
+  children: PropTypes.node
 };
 

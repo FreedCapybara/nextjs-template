@@ -1,4 +1,7 @@
+import { getSession } from 'next-auth/react';
 import styles from './Home.module.scss';
+
+import { nextjsUtils } from '@utils/nextjs';
 
 import { MainLayout } from '@components/MainLayout';
 
@@ -13,10 +16,14 @@ export function Home(props) {
 }
 
 export async function getServerSideProps(context) {
-  return {
-    props: {
-      data: 'hi'
-    }
-  };
+  const session = await getSession(context);
+
+  // redirect authenticated users
+  if (!session) {
+    return nextjsUtils.createRedirect('/');
+  }
+
+  const data = 'hi';
+  return nextjsUtils.createServerSideProps(data);
 }
 
