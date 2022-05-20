@@ -4,7 +4,7 @@ import styles from './Hero.module.scss';
 
 export function Hero(props) {
   return (
-    <div>
+    <div className={styles.hero}>
       {props.children}
     </div>
   );

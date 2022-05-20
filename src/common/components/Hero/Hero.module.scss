@@ -1,0 +1,30 @@
+@import '@styles/variables';
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+
+  h1,
+  h2 {
+    color: $text-color;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $text-color-light;
+    margin: 1.5rem;
+    font-size: 1.375rem;
+    font-weight: 500;
+    max-width: 800px;
+  }
+}
+

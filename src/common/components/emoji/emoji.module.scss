@@ -1,5 +1,6 @@
 
 .emoji-text {
   font-weight: normal !important; // as of November 2021, emojis won't render in color without this
+  color: black !important; // avoid semi-translucent font colors
 }
 
