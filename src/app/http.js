@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { nextjsUtils } from '@utils/nextjs';
 
 import { userUnauthorized } from '@features/auth';
@@ -97,8 +98,8 @@ export async function defaultResponseHandler(response, thunkAPI, ssrContext) {
 
   // perform client-side redirects
   if (!ssrContext && result.redirect) {
-    // not very sexy, but it's for an error condition /shrug
-    window.location.href = result.redirect;
+    const router = useRouter();
+    router.push(result.redirect);
   }
 
   return result;
