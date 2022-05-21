@@ -4,14 +4,7 @@ export const nextjsUtils = {
   createRedirect
 };
 
-function createServerSideProps(data, options) {
-  // create props
-  const props = options?.spread ? {
-    ...data
-  } : {
-    data
-  };
-
+function createServerSideProps(props) {
   return {
     props
   };

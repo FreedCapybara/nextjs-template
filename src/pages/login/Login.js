@@ -35,10 +35,9 @@ export async function getServerSideProps(context) {
   }
 
   const providers = await getProviders();
-  return {
-    props: {
-      providers
-    }
-  }
+  const props = {
+    providers
+  };
+  return nextjsUtils.createServerSideProps(props);
 }
 

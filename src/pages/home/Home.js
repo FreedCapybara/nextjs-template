@@ -18,12 +18,14 @@ export function Home(props) {
 export async function getServerSideProps(context) {
   const session = await getSession(context);
 
-  // redirect authenticated users
+  // redirect unauthenticated users
   if (!session) {
     return nextjsUtils.createRedirect('/');
   }
 
-  const data = 'hi';
-  return nextjsUtils.createServerSideProps(data);
+  const props = {
+    data: 'hi'
+  };
+  return nextjsUtils.createServerSideProps(props);
 }
 

@@ -1,4 +1,7 @@
+import { getSession } from 'next-auth/react';
 import styles from './Landing.module.scss'
+
+import { nextjsUtils } from '@utils/nextjs';
 
 import { FiExternalLink } from 'react-icons/fi';
 import { LandingPageLayout } from '@components/LandingPageLayout';
@@ -27,5 +30,16 @@ export function Landing() {
       </LandingPageSection>
     </LandingPageLayout>
   )
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+
+  // redirect authenticated users
+  if (session) {
+    return nextjsUtils.createRedirect('/');
+  }
+
+  return nextjsUtils.createServerSideProps(null);
 }
 

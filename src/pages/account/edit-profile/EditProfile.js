@@ -11,3 +11,14 @@ export function EditProfile() {
   );
 }
 
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+
+  // redirect unauthenticated users
+  if (!session) {
+    return nextjsUtils.createRedirect('/');
+  }
+
+  return nextjsUtils.createServerSideProps(null);
+}
+
