@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { upperFirst, camelCase } from 'lodash-es';
 import styles from './FormField.module.scss';

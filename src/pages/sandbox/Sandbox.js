@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSession, getSession, signIn, signOut } from 'next-auth/react';
 import { wrapper } from '@app/store';

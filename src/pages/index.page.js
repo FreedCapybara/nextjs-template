@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSession, getSession } from 'next-auth/react';
 import { Landing } from './landing/Landing';
 import { Home, getServerSideProps as getHomeServerSideProps } from './home/Home';

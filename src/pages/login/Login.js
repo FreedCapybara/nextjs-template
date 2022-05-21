@@ -1,4 +1,3 @@
-import React from 'react';
 import { getProviders, getSession, signIn } from 'next-auth/react';
 import styles from './Login.module.scss';
 

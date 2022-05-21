@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { first, filter } from 'lodash-es';
 import styles from './FileDrop.module.scss';
