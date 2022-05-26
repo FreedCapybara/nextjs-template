@@ -1,8 +1,9 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { camelCase } from 'lodash-es';
 import styles from './FilePicker.module.scss';
 
-import { fileUtils } from '@utils/file-utils';
+import { fileUtils } from '@utils/file';
 
 export class FilePicker extends React.Component {
 

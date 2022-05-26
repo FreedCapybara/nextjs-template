@@ -4,14 +4,14 @@ import styles from './Avatar.module.scss';
 import { getGravatarUrl } from '@utils/gravatar';
 
 export function Avatar(props) {
-  const { email, width, height, size, url } = props;
+  const { email, size, url, defaultImage } = props;
 
-  const gravatarUrl = url || getGravatarUrl(email, size);
+  const gravatarUrl = url || getGravatarUrl(email, size, defaultImage);
 
-  const avatarStyle = {
-    height: height || (size && `${size}px`),
-    width: width || (size && `${size}px`)
-  };
+  const avatarStyle = size ? {
+    height: `${size}px`,
+    width: `${size}px`
+  } : null;
 
   return (
     <img
@@ -26,8 +26,8 @@ export function Avatar(props) {
 
 Avatar.propTypes = {
   email: PropTypes.string,
-  width: PropTypes.string,
-  height: PropTypes.string,
-  size: PropTypes.string
+  size: PropTypes.string,
+  url: PropTypes.string,
+  defaultImage: PropTypes.string
 };
 

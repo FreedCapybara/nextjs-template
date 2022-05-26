@@ -8,9 +8,10 @@ import theme from '@app/theme';
 import { selectLoading } from '@features/app';
 
 import { LoadingSpinner } from '@components/LoadingSpinner';
+import { BackButtonToolbar } from '@components/BackButtonToolbar';
 
 export function CenteredLayout(props) {
-  const { title, section } = props;
+  const { title, section, backRoute, backText } = props;
 
   const loading = useSelector(selectLoading);
 
@@ -21,6 +22,13 @@ export function CenteredLayout(props) {
           {title} {section ? `| ${section}` : null} | {theme.appName}
         </title>
       </Head>
+
+      {!!backRoute && (
+        <BackButtonToolbar
+          backRoute={backRoute}
+          backText={backText}
+        />
+      )}
 
       {loading ? (
         <div className={styles.loadingSpinnerWrapper}>

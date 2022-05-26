@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import styles from './TwoPaneLayout.module.scss';
 
@@ -8,10 +7,8 @@ import theme from '@app/theme';
 
 import { selectLoading } from '@features/app';
 
-import { FiArrowLeft } from 'react-icons/fi';
 import { LoadingSpinner } from '@components/LoadingSpinner';
-import { Toolbar } from '@components/Toolbar';
-import { ToolbarGroup } from '@components/ToolbarGroup';
+import { BackButtonToolbar } from '@components/BackButtonToolbar';
 
 export function TwoPaneLayout(props) {
   const { title, section, backRoute, backText } = props;
@@ -35,20 +32,10 @@ export function TwoPaneLayout(props) {
       <div className={styles.rightPane}>
 
         {!!backRoute && (
-          <div className={styles.toolbarWrapper}>
-            <Toolbar>
-              <ToolbarGroup>
-                <Link href={backRoute}>
-                  <a className="icon-button">
-                    <FiArrowLeft />
-                    {!!backText && (
-                      <span>{backText}</span>
-                    )}
-                  </a>
-                </Link>
-              </ToolbarGroup>
-            </Toolbar>
-          </div>
+          <BackButtonToolbar
+            backRoute={backRoute}
+            backText={backText}
+          />
         )}
 
         <div className={styles.contentWrapper}>

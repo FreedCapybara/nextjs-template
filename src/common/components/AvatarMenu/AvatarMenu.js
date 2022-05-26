@@ -5,7 +5,7 @@ import styles from './AvatarMenu.module.scss';
 import { Avatar } from '@components/Avatar';
 
 export function AvatarMenu(props) {
-  const { email, align } = props;
+  const { email, align, size, defaultImage } = props;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -29,7 +29,11 @@ export function AvatarMenu(props) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.avatarWrapper} onClick={openMenu}>
-        <Avatar email={email} />
+        <Avatar
+          email={email}
+          size={size}
+          defaultImage={defaultImage}
+        />
       </div>
 
       <div
@@ -52,6 +56,8 @@ export function AvatarMenu(props) {
 AvatarMenu.propTypes = {
   email: PropTypes.string,
   align: PropTypes.string,
+  size: PropTypes.string,
+  defaultImage: PropTypes.string,
   children: PropTypes.node
 };
 

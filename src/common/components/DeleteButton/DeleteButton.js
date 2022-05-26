@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './DeleteButton.module.scss';
 
 export function DeleteButton(props) {
-  const { onDelete } = props;
+  const { onDelete, buttonClass } = props;
 
   const clicksRequired = 5;
 
@@ -22,12 +22,12 @@ export function DeleteButton(props) {
 
   return (
     <div className={styles.wrapper}>
-      <button className={styles.deleteButton} type="button" onClick={onClick}>
+      <button className={`${styles.deleteButton} ${buttonClass || 'button'}`} type="button" onClick={onClick}>
         <span className="ti-trash" />
         {clicksRemaining === clicksRequired ? (
           <span>Delete</span>
         ) : (
-          <span>Click harder ({clicksRemaining})</span>
+          <span>Are you sure? ({clicksRemaining})</span>
         )}
       </button>
     </div>
@@ -35,6 +35,7 @@ export function DeleteButton(props) {
 }
 
 DeleteButton.propTypes = {
-  onDelete: PropTypes.func
+  onDelete: PropTypes.func,
+  buttonClass: PropTypes.string
 };
 

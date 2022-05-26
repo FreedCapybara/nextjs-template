@@ -6,7 +6,7 @@ export const nextjsUtils = {
 
 function createServerSideProps(props) {
   return {
-    props
+    props: props || {}
   };
 }
 
