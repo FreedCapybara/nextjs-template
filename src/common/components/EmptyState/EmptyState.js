@@ -1,23 +1,23 @@
 import PropTypes from 'prop-types';
 import styles from './EmptyState.module.scss';
 
-export function EmptyState(props) {
-  const { text, padding } = props;
+import theme from '@app/theme';
 
-  const wrapperStyle = {
-    padding: padding || '20px 0'
-  };
+export function EmptyState(props) {
 
   return (
-    <div style={wrapperStyle}>
-      <em>{text || props.children}</em>
+    <div className={styles.wrapper}>
+      <img
+        className={styles.emptyStateImage}
+        src={theme.emptyStateImageUrl}
+        alt="Empty state image"
+      />
+      <em>{props.children}</em>
     </div>
   );
 }
 
 EmptyState.propTypes = {
-  children: PropTypes.node,
-  text: PropTypes.string,
-  padding: PropTypes.string
+  children: PropTypes.node
 };
 
