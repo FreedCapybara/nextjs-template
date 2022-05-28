@@ -1,9 +1,25 @@
+@import '@styles/variables';
 
 .wrapper {
   text-align: left;
 }
 
+.title-wrapper {
+  display: flex;
+  align-items: center;
+}
+
 .component-section {
   margin-top: 4rem;
+  border-top: 1px solid $medium-light-grey;
+}
+
+.large-text-wrapper {
+  font-size: 1.75rem;
+}
+
+.flex-start-wrapper {
+  display: flex;
+  align-items: flex-start;
 }
 
