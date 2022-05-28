@@ -13,7 +13,7 @@ export function Logo(props) {
   return (
     <img
       className={styles.logoImage}
-      src={props.src || theme.logo.url}
+      src={props.src || theme.logoUrl}
       style={logoStyle}
       alt="Logo"
     />

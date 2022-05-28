@@ -16,7 +16,7 @@ export function TwoPaneLayout(props) {
   const loading = useSelector(selectLoading);
 
   const leftPaneStyle = {
-    backgroundImage: `url('${theme.layout.twoPaneLayoutImageUrl}')`
+    backgroundImage: `url('${theme.twoPaneLayoutImageUrl}')`
   };
 
   return (
