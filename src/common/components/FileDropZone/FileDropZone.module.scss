@@ -1,0 +1,28 @@
+@import '@styles/variables';
+
+.drop-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.25rem; // 64px 20px
+  width: 100%;
+  border: 3px dashed $medium-light-grey;
+  border-radius: 1.25rem;
+
+  &.dragging {
+    border-color: $primary-color;
+    box-shadow: 0 0 1rem rgba($primary-color, 0.2) inset;
+  }
+
+  &.error {
+    border-color: $error-color;
+    box-shadow: 0 0 1rem rgba($error-color, 0.2) inset;
+  }
+
+  &.file-selected {
+    border-color: $green;
+    box-shadow: 0 0 1rem rgba($green, 0.2) inset;
+  }
+}
+
