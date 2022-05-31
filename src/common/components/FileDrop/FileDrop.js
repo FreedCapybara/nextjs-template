@@ -9,6 +9,22 @@ export class FileDrop extends React.Component {
 
   dropTargetRef = React.createRef();
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      // These counts an issue where entering child components was causing onDragLeave to fire.
+      // Not exactly sure why having two separate properties works and only having one does not,
+      // but for some reason this wasn't successful with
+      //
+      //   onDragEnter --> enterCount++;
+      //   onDragLeave --> enterCount--; (or `enterCount = Math.max(0, enterCount - 1);` to clamp it at 0, just in case)
+      //
+      // Also wasn't successful with `pointer-events: none;` in CSS, which just seemed to generate more onDragLeave events.
+      enterCount: 0,
+      leaveCount: 0
+    };
+  }
+
   // adapted from https://medium.com/@650egor/simple-drag-and-drop-file-upload-in-react-2cb409d88929
   componentDidMount() {
     let dropTarget = this.dropTargetRef.current;
@@ -29,17 +45,35 @@ export class FileDrop extends React.Component {
   onDragEnter = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    if (this.props.onDragEnter) {
-      this.props.onDragEnter(e);
-    }
+
+    this.setState({
+      enterCount: this.state.enterCount + 1
+    }, () => {
+      if (this.state.enterCount === 1 && this.props.onDragEnter) {
+        this.props.onDragEnter(e);
+      }
+    });
   };
 
   onDragLeave = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    if (this.props.onDragLeave) {
-      this.props.onDragLeave(e);
-    }
+
+    this.setState({
+      leaveCount: this.state.leaveCount + 1,
+    }, () => {
+      if (this.state.enterCount === this.state.leaveCount && this.props.onDragLeave) {
+        this.props.onDragLeave(e);
+
+        // Reset the counts firing onDragLeave.
+        // Seems hella nasty to have a setState() in a setState callback,
+        // but it keeps the numbers a little nicer /shrug.
+        this.setState({
+          enterCount: 0,
+          leaveCount: 0
+        });
+      }
+    });
   };
 
   onDragOver = (e) => {
@@ -54,9 +88,15 @@ export class FileDrop extends React.Component {
     const { multiple, accept } = this.props;
     e.preventDefault();
     e.stopPropagation();
+
     if (this.props.onDrop) {
       this.props.onDrop(e);
     }
+
+    this.setState({
+      enterCount: 0,
+      leaveCount: 0
+    });
 
     let files = e.dataTransfer.files;
     if (files && files.length) {
@@ -77,6 +117,31 @@ export class FileDrop extends React.Component {
       if (this.props.onChange) {
         this.props.onChange(processedFiles);
       }
+
+      // Technically incorrect to pass the `e` from the drop event to an onDragLeave callback,
+      // and seems like somewhat of a gray area on whether or not dropping a file constitutes a dragLeave,
+      // but can reduce some code duplication in component usage:
+      //
+      // <FileDrop
+      //   onDragEnter={() => setFileDragging(true)}
+      //   onDragLeave={() => setFileDragging(false)}
+      //   ...
+      // >
+      //
+      // instead of including an onDrop callback to duplicate onDragLeave:
+      //
+      // <FileDrop
+      //   onDragEnter={() => setFileDragging(true)}
+      //   onDragLeave={() => setFileDragging(false)}
+      //   onDrop={() => setFileDragging(false)} <---- oof
+      //   ...
+      // >
+      //
+      // Makes a nicer API. Worth it.
+      // (if it's not working for you, just delete it /shrug)
+      if (this.props.onDragLeave) {
+        this.props.onDragLeave(e);
+      }
     }
   };
 
@@ -91,7 +156,6 @@ export class FileDrop extends React.Component {
   }
 
   render() {
-
     return (
       <div ref={this.dropTargetRef}>
         {this.props.children}
