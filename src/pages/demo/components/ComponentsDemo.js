@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styles from './ComponentsDemo.module.scss';
 
 import { CenteredLayout } from '@components/CenteredLayout';
@@ -9,6 +10,7 @@ import { Emoji } from '@components/Emoji';
 import { EmptyState } from '@components/EmptyState';
 import { ErrorMessage } from '@components/ErrorMessage';
 import { FileDrop } from '@components/FileDrop';
+import { FileDropZone } from '@components/FileDropZone';
 import { FilePicker } from '@components/FilePicker';
 import { Form } from '@components/Form';
 import { FormField } from '@components/FormField';
@@ -24,6 +26,10 @@ import { ToggleSwitch } from '@components/ToggleSwitch';
 import { ValidatedInput } from '@components/ValidatedInput';
 
 export function ComponentsDemo(props) {
+  const [fileDragging, setFileDragging] = useState(false);
+  const [fileData, setFileData] = useState(null);
+  const [fileData2, setFileData2] = useState(null);
+
   return (
     <CenteredLayout
       title="Components"
@@ -151,11 +157,87 @@ export function ComponentsDemo(props) {
           {/* FileDrop */}
           <div className={styles.componentSection}>
             <h3>&lt;FileDrop /&gt;</h3>
+            <p>
+              Easily add drag-and-drop functionality to any page or component!
+              The FileDrop component isn't visible by itself, but pairs well with the FileDropZone and FilePicker components.
+            </p>
+            <FileDrop
+              multiple={false}
+              onDragEnter={() => setFileDragging(true)}
+              onDragLeave={() => setFileDragging(false)}
+              onChange={(files) => setFileData(files[0])}
+            >
+              <FileDropZone
+                dragging={fileDragging}
+                fileSelected={!!fileData}
+              >
+                <p>
+                  {fileData?.file.name || 'Drag-and-drop here!'}
+                </p>
+                <FilePicker
+                  multiple={false}
+                  label="filePicker"
+                  onChange={(files) => setFileData(files[0])}
+                >
+                  Or browse files
+                </FilePicker>
+              </FileDropZone>
+            </FileDrop>
+            <p>
+              The FileDrop component takes the width and height of its children.
+              For this demo we only wrapped the drop zone component, which results in a pretty small drop area.
+              In real life you should wrap the whole page so users can drop files anywhere!
+            </p>
+            <p>
+              If you're looking at the source code for this page, note that the FileDrop, FileDropZone, and FilePicker components are completely independent from each other, and don't require any specific component hierarchy.
+            </p>
+          </div>
+
+          {/* FileDropZone */}
+          <div className={styles.componentSection}>
+            <h3>&lt;FileDropZone /&gt;</h3>
+            <p>Default state:</p>
+            <FileDropZone
+              dragging={false}
+              fileSelected={false}
+              error={false}
+            />
+            <p>Dragging state:</p>
+            <FileDropZone
+              dragging={true}
+              fileSelected={false}
+              error={false}
+            />
+            <p>File selected state:</p>
+            <FileDropZone
+              dragging={false}
+              fileSelected={true}
+              error={false}
+            />
+            <p>Error/invalid state:</p>
+            <FileDropZone
+              dragging={false}
+              fileSelected={false}
+              error={true}
+            />
           </div>
 
           {/* FilePicker */}
           <div className={styles.componentSection}>
             <h3>&lt;FilePicker /&gt;</h3>
+            <p>A nicely-styled file input.</p>
+            <div className={styles.flexStartWrapper}>
+              <FilePicker
+                multiple={false}
+                label="filePicker2"
+                onChange={(files) => setFileData2(files[0])}
+              >
+                Choose file
+              </FilePicker>
+              <p>
+                <em>{fileData2?.file.name || 'No file selected.'}</em>
+              </p>
+            </div>
           </div>
 
           {/* Form */}
