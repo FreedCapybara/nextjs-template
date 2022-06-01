@@ -189,37 +189,35 @@ export function ComponentsDemo(props) {
               In real life you should wrap the whole page so users can drop files anywhere!
             </p>
             <p>
-              If you're looking at the source code for this page, note that the FileDrop, FileDropZone, and FilePicker components are completely independent from each other, and don't require any specific component hierarchy.
+              Please note that the FileDrop, FileDropZone, and FilePicker components are completely independent from each other, and do not require any specific component hierarchy.
             </p>
           </div>
 
           {/* FileDropZone */}
           <div className={styles.componentSection}>
             <h3>&lt;FileDropZone /&gt;</h3>
+            <p>
+              A drop zone component with various states of file selection.
+            </p>
             <p>Default state:</p>
-            <FileDropZone
-              dragging={false}
-              fileSelected={false}
-              error={false}
-            />
+            <FileDropZone />
             <p>Dragging state:</p>
             <FileDropZone
               dragging={true}
-              fileSelected={false}
-              error={false}
             />
             <p>File selected state:</p>
             <FileDropZone
-              dragging={false}
               fileSelected={true}
-              error={false}
             />
             <p>Error/invalid state:</p>
             <FileDropZone
-              dragging={false}
-              fileSelected={false}
               error={true}
             />
+            <p>
+              As mentioned before, this component is completely independent of the other file components.
+              Also note that it does not include any drag-and-drop or file selection functionality itself.
+              Instead, it simply relies on props to determine its state.
+            </p>
           </div>
 
           {/* FilePicker */}
@@ -253,11 +251,26 @@ export function ComponentsDemo(props) {
           {/* LoadingSpinner */}
           <div className={styles.componentSection}>
             <h3>&lt;LoadingSpinner /&gt;</h3>
+            <p>A resizable loading spinner component.</p>
+            <div className={`${styles.flexWrapper} ${styles.horizontalMargins}`}>
+              <LoadingSpinner />
+              <LoadingSpinner size={36} />
+              <LoadingSpinner size={42} />
+              <LoadingSpinner size={48} />
+            </div>
+            <p>You can also use an elevated container style.</p>
+            <div className={`${styles.flexWrapper} ${styles.horizontalMargins}`}>
+              <LoadingSpinner shadow={true} />
+              <LoadingSpinner size={36} shadow={true} />
+              <LoadingSpinner size={42} shadow={true} />
+              <LoadingSpinner size={48} shadow={true} />
+            </div>
           </div>
 
           {/* Logo */}
           <div className={styles.componentSection}>
             <h3>&lt;Logo /&gt;</h3>
+            <Logo />
           </div>
 
           {/* Modal */}
@@ -273,11 +286,27 @@ export function ComponentsDemo(props) {
           {/* ProgressBar */}
           <div className={styles.componentSection}>
             <h3>&lt;ProgressBar /&gt;</h3>
+            <ProgressBar progress={.35} />
           </div>
 
           {/* Swatch */}
           <div className={styles.componentSection}>
             <h3>&lt;Swatch /&gt;</h3>
+            <Swatch color={0}>
+              Hello
+            </Swatch>
+            <Swatch color={1}>
+              Hello
+            </Swatch>
+            <Swatch color={2}>
+              Hello
+            </Swatch>
+            <Swatch color={3}>
+              Hello
+            </Swatch>
+            <Swatch color={4}>
+              Hello
+            </Swatch>
           </div>
 
           {/* Tab */}
