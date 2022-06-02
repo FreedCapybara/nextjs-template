@@ -4,16 +4,16 @@ import styles from './Logo.module.scss';
 import theme from '@app/theme';
 
 export function Logo(props) {
-  const { height } = props;
+  const { size } = props;
 
-  const logoStyle = {
-    height
-  };
+  const logoStyle = size ? {
+    height: size
+  } : {};
 
   return (
     <img
       className={styles.logoImage}
-      src={props.src || theme.logoUrl}
+      src={theme.logoUrl}
       style={logoStyle}
       alt="Logo"
     />
@@ -21,7 +21,6 @@ export function Logo(props) {
 }
 
 Logo.propTypes = {
-  src: PropTypes.string,
-  height: PropTypes.string
+  size: PropTypes.string
 };
 

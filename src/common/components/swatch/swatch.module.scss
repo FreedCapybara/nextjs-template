@@ -10,6 +10,7 @@
   font-size: .8125rem;
 
   &.color-0,
+  &.color-gray,
   &.color-grey {
     background-color: $grey;
   }
@@ -32,6 +33,14 @@
   &.color-4,
   &.color-tan {
     background-color: $tan;
+  }
+
+  &.color-error {
+    background-color: $error-color;
+  }
+
+  &.color-warning {
+    background-color: $warning-color;
   }
 }
 
