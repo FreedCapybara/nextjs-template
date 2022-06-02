@@ -21,17 +21,25 @@
 .flex-wrapper {
   display: flex;
   align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 .flex-start-wrapper {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 .horizontal-margins {
   & > *:not(:last-child) {
     margin-right: 1.25rem;
+  }
+}
+
+.vertical-margins {
+  & > *:not(:last-child) {
+    margin-bottom: 1.25rem;
   }
 }
 

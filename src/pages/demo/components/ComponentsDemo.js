@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './ComponentsDemo.module.scss';
+import { range } from 'lodash-es';
 
 import { CenteredLayout } from '@components/CenteredLayout';
 
@@ -29,6 +30,7 @@ export function ComponentsDemo(props) {
   const [fileDragging, setFileDragging] = useState(false);
   const [fileData, setFileData] = useState(null);
   const [fileData2, setFileData2] = useState(null);
+  const [toggleValue, setToggleValue] = useState(false);
 
   return (
     <CenteredLayout
@@ -270,7 +272,12 @@ export function ComponentsDemo(props) {
           {/* Logo */}
           <div className={styles.componentSection}>
             <h3>&lt;Logo /&gt;</h3>
-            <Logo />
+            <p>The app logo, using the URL configured in app/theme.js. Can be resized!</p>
+            <div className={`${styles.flexWrapper} ${styles.horizontalMargins}`}>
+              <Logo size="36px" />
+              <Logo size="54px" />
+              <Logo size="4.5rem" />
+            </div>
           </div>
 
           {/* Modal */}
@@ -286,27 +293,53 @@ export function ComponentsDemo(props) {
           {/* ProgressBar */}
           <div className={styles.componentSection}>
             <h3>&lt;ProgressBar /&gt;</h3>
-            <ProgressBar progress={.35} />
+            <p>Shows progress! Fills the width of its container and operates within the range [0, 1].</p>
+            <div className={`${styles.flexStartWrapper} ${styles.verticalMargins}`}>
+              <ProgressBar progress={.15} />
+              <ProgressBar progress={.35} />
+              <ProgressBar progress={.55} />
+              <ProgressBar progress={.75} />
+            </div>
           </div>
 
           {/* Swatch */}
           <div className={styles.componentSection}>
             <h3>&lt;Swatch /&gt;</h3>
-            <Swatch color={0}>
-              Hello
-            </Swatch>
-            <Swatch color={1}>
-              Hello
-            </Swatch>
-            <Swatch color={2}>
-              Hello
-            </Swatch>
-            <Swatch color={3}>
-              Hello
-            </Swatch>
-            <Swatch color={4}>
-              Hello
-            </Swatch>
+            <p>
+              Add a splash of color to your text!
+              This may seem like an insignificant component, but it can transform an otherwise bland, colorless layout into something much more pleasing to look at.
+            </p>
+            <div className={`${styles.flexWrapper} ${styles.horizontalMargins} ${styles.verticalMargins}`}>
+              <Swatch color="grey">
+                Grey
+              </Swatch>
+              <Swatch color="green">
+                Green
+              </Swatch>
+              <Swatch color="purple">
+                Purple
+              </Swatch>
+              <Swatch color="blue">
+                Blue
+              </Swatch>
+              <Swatch color="tan">
+                Tan
+              </Swatch>
+              <Swatch color="error">
+                Error
+              </Swatch>
+              <Swatch color="warning">
+                Warning
+              </Swatch>
+            </div>
+            <p>The colors also map to numbers, which operate on a modulus and can be used in a loop!</p>
+            <div className={`${styles.flexWrapper} ${styles.horizontalMargins} ${styles.verticalMargins}`}>
+              {range(12).map((i) => (
+                <Swatch color={i} key={i}>
+                  {i.toString().padStart(2, '0')}
+                </Swatch>
+              ))}
+            </div>
           </div>
 
           {/* Tab */}
@@ -322,6 +355,17 @@ export function ComponentsDemo(props) {
           {/* ToggleSwitch */}
           <div className={styles.componentSection}>
             <h3>&lt;ToggleSwitch /&gt;</h3>
+            <p>A fancy way of showing when something is on or off.</p>
+            <div className={`${styles.flexStartWrapper} ${styles.verticalMargins}`}>
+              <ToggleSwitch
+                value={toggleValue}
+                onChange={(newValue) => setToggleValue(newValue)}
+              />
+              <ToggleSwitch
+                value={!toggleValue}
+                onChange={(newValue) => setToggleValue(!newValue)}
+              />
+            </div>
           </div>
 
           {/* ValidatedInput */}
