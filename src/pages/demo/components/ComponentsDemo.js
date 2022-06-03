@@ -243,9 +243,13 @@ export function ComponentsDemo(props) {
           {/* Form */}
           <div className={styles.componentSection}>
             <h3>&lt;Form /&gt;</h3>
-            <p>A form component that provides consistent attributes and styling.</p>
+            <p>
+              Provides consistent attributes and styling of form elements, and applies e.preventDefault() automatically.
+              Note that in this example, the styles for the text input are being applied by the FormField component.
+              The Form component mostly specifies a max width and some flex properties.
+            </p>
             <Form onSubmit={() => alert('Form submitted!')}>
-              <FormField label="Field 1">
+              <FormField label="Example field">
                 <input type="text" />
               </FormField>
               <button type="submit" className="button">
@@ -257,6 +261,23 @@ export function ComponentsDemo(props) {
           {/* FormField */}
           <div className={styles.componentSection}>
             <h3>&lt;FormField /&gt;</h3>
+            <p>A wrapper component for form inputs. You can include a required asterisk by setting the `required` prop, or optional by setting the `optional` prop.</p>
+            <FormField label="Dog name">
+              <input type="text" />
+              <p>Please enter the name of your horse. I mean dog.</p>
+            </FormField>
+            <FormField label="Cat name" required>
+              <input type="text" required />
+              <p>You are required to have a cat. Please enter its name.</p>
+            </FormField>
+            <FormField label="Horse name" required>
+              <input type="text" required />
+              <p>Horses are also mandatory. Enter your horse's name.</p>
+            </FormField>
+            <FormField label="Walrus name" optional>
+              <input type="text" />
+              <p>Walruses are recommended, but optional. Please enter the name of your walrus if you have one.</p>
+            </FormField>
           </div>
 
           {/* LoadingSpinner */}

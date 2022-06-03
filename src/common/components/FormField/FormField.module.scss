@@ -47,7 +47,7 @@
 .label {
   display: block;
   font-weight: 700;
-  margin-bottom: 4px;
+  margin-bottom: .5rem;
 }
 
 .content-wrapper {
@@ -60,6 +60,11 @@
   @media(min-width: $desktop-breakpoint) {
     margin-bottom: 0;
     flex-direction: row;
+    align-items: flex-start;
   }
+}
+
+.required-asterisk {
+  color: $error-color;
 }
 

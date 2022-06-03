@@ -3,13 +3,18 @@ import { upperFirst, camelCase } from 'lodash-es';
 import styles from './FormField.module.scss';
 
 export function FormField(props) {
-  const { label, optional } = props;
+  const { label, required, optional } = props;
 
   return (
     <div className={styles.wrapper}>
       <label className={styles.label} htmlFor={camelCase(label)}>
         {upperFirst(label)}
-        {optional && (
+        {required && (
+          <span className={styles.requiredAsterisk}>
+            *
+          </span>
+        )}
+        {(optional && !required) && (
           <>
           &nbsp;
           <small>
@@ -28,6 +33,7 @@ export function FormField(props) {
 
 FormField.propTypes = {
   label: PropTypes.string,
+  required: PropTypes.bool,
   optional: PropTypes.bool,
   children: PropTypes.node
 };
