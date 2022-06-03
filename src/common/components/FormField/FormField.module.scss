@@ -2,6 +2,7 @@
 
 .wrapper {
   min-height: 120px;
+  margin-bottom: 20px;
   width: 100%;
 
   input:not([type=checkbox]):not([type=radio]),
@@ -12,7 +13,6 @@
     font-size: 1rem;
     padding: 8px;
     margin-left: -8px;
-    margin-bottom: 20px;
     border-radius: 12px;
     border: 1px solid $input-border-color;
 
@@ -37,7 +37,8 @@
     margin-top: 0;
 
     @media(min-width: $desktop-breakpoint) {
-      margin-top: 0;
+      margin-top: .5rem;
+      margin-bottom: .5rem;
       text-align: right;
     }
   }

@@ -243,6 +243,15 @@ export function ComponentsDemo(props) {
           {/* Form */}
           <div className={styles.componentSection}>
             <h3>&lt;Form /&gt;</h3>
+            <p>A form component that provides consistent attributes and styling.</p>
+            <Form onSubmit={() => alert('Form submitted!')}>
+              <FormField label="Field 1">
+                <input type="text" />
+              </FormField>
+              <button type="submit" className="button">
+                Submit
+              </button>
+            </Form>
           </div>
 
           {/* FormField */}
@@ -371,6 +380,7 @@ export function ComponentsDemo(props) {
           {/* ValidatedInput */}
           <div className={styles.componentSection}>
             <h3>&lt;ValidatedInput /&gt;</h3>
+            {/*<ValidatedInput value={formValue} onChange={(newValue) => setFormValue(newValue)} isValid={formValue === 'hello'} showSuccess={true} />*/}
           </div>
         </div>
       </div>

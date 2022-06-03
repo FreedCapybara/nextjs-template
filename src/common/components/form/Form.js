@@ -4,10 +4,17 @@ import styles from './Form.module.scss';
 export function Form(props) {
   const { onSubmit } = props;
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (onSubmit) {
+      onSubmit(e);
+    }
+  }
+
   return (
     <form
       className={styles.form}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
       autoComplete="off"
     >
       {props.children}
