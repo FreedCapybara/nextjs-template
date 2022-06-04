@@ -3,6 +3,8 @@ import styles from './Modal.module.scss';
 
 import { modalUtils } from '@utils/modal';
 
+import { FiX } from 'react-icons/fi';
+
 export function Modal(props) {
 
   function consumeEvent(e) {
@@ -25,7 +27,7 @@ export function Modal(props) {
           </span>
 
           <button className={styles.closeButton} type="button" onClick={close}>
-            <span className="ti-close" />
+            <FiX />
           </button>
         </div>
 

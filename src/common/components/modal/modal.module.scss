@@ -21,7 +21,6 @@
   display: flex;
   flex-direction: column;
   box-shadow: $box-shadow-medium;
-  padding: 20px;
   border-radius: 12px;
   width: calc(100% - 40px);
   max-width: 600px;
@@ -41,6 +40,7 @@
   letter-spacing: 0;
   top: 20px;
   right: 20px;
+  cursor: pointer;
 
   &:hover {
     background: none;
@@ -52,8 +52,7 @@
 .cardHeader {
   display: flex;
   align-items: center;
-  padding: 0 20px 10px;
-  margin: 0 -20px;
+  padding: 20px 20px 10px;
   border-bottom: 1px solid $medium-light-grey;
 }
 
@@ -67,8 +66,7 @@
   flex-direction: column;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 0 20px;
-  margin: 0 -20px;
+  padding: 20px;
   max-height: 100%;
 }
 
