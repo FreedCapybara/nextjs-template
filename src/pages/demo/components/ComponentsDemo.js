@@ -3,6 +3,7 @@ import styles from './ComponentsDemo.module.scss';
 import { range } from 'lodash-es';
 
 import { CenteredLayout } from '@components/CenteredLayout';
+import { modalUtils } from '@utils/modal';
 
 import { Avatar } from '@components/Avatar';
 import { AvatarMenu } from '@components/AvatarMenu';
@@ -31,6 +32,42 @@ export function ComponentsDemo(props) {
   const [fileData, setFileData] = useState(null);
   const [fileData2, setFileData2] = useState(null);
   const [toggleValue, setToggleValue] = useState(false);
+
+  // example modal
+  const ExampleModal = (props) => {
+    const { exampleProp } = props;
+    return (
+      <Modal title="Example modal!">
+        <p>This is some content.</p>
+        <p>{exampleProp}</p>
+      </Modal>
+    );
+  };
+
+  // example async modal
+  const ExampleAsyncModal = (props) => {
+    const { resolve, reject } = props;
+    return (
+      <Modal title="Example async modal!">
+        <div className={`${styles.flexWrapper} ${styles.horizontalMargins}`}>
+          <button
+            type="button"
+            className="button"
+            onClick={resolve}
+          >
+            Resolve
+          </button>
+          <button
+            type="button"
+            className="button"
+            onClick={reject}
+          >
+            Reject
+          </button>
+        </div>
+      </Modal>
+    );
+  };
 
   return (
     <CenteredLayout
@@ -313,6 +350,24 @@ export function ComponentsDemo(props) {
           {/* Modal */}
           <div className={styles.componentSection}>
             <h3>&lt;Modal /&gt;</h3>
+            <p>A simple modal component that includes a title bar, close button, and clickable backdrop.</p>
+            <div className={`${styles.flexStartWrapper} ${styles.verticalMargins}`}>
+              <button
+                type="button"
+                className="button"
+                onClick={() => modalUtils.openModal(ExampleModal, { exampleProp: 'You can also pass props!' })}
+              >
+                Open modal
+              </button>
+              <p>You can also open them with promises! The built-in modalUtils.openModalAsync() returns a promise, with the resolve and reject functions passed to the modal as props.</p>
+              <button
+                type="button"
+                className="button"
+                onClick={() => modalUtils.openModalAsync(ExampleAsyncModal).then(() => alert('Resolved!'), () => alert('Rejected :('))}
+              >
+                Open async modal
+              </button>
+            </div>
           </div>
 
           {/* NavMenu */}
