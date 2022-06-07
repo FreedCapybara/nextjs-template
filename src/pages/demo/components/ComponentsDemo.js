@@ -175,7 +175,7 @@ export function ComponentsDemo(props) {
               Show this when you don't have any data to display.
               The image is configurable in app/theme.js!
             </p>
-            <div className={styles.flexStartWrapper}>
+            <div className={styles.flexColumnWrapper}>
               <EmptyState>
                 No records found.
               </EmptyState>
@@ -186,7 +186,7 @@ export function ComponentsDemo(props) {
           <div className={styles.componentSection}>
             <h3>&lt;ErrorMessage /&gt;</h3>
             <p>Styles error messages consistently.</p>
-            <div className={styles.flexStartWrapper}>
+            <div className={styles.flexColumnWrapper}>
               <ErrorMessage>
                 <Emoji>&#x1f480;&#x1f525;</Emoji> CRITICAL_FAILURE <Emoji>&#x1f525;&#x1f480;</Emoji>
               </ErrorMessage>
@@ -263,7 +263,7 @@ export function ComponentsDemo(props) {
           <div className={styles.componentSection}>
             <h3>&lt;FilePicker /&gt;</h3>
             <p>A nicely-styled file input.</p>
-            <div className={styles.flexStartWrapper}>
+            <div className={styles.flexColumnWrapper}>
               <FilePicker
                 multiple={false}
                 label="filePicker2"
@@ -351,7 +351,7 @@ export function ComponentsDemo(props) {
           <div className={styles.componentSection}>
             <h3>&lt;Modal /&gt;</h3>
             <p>A simple modal component that includes a title bar, close button, and clickable backdrop.</p>
-            <div className={`${styles.flexStartWrapper} ${styles.verticalMargins}`}>
+            <div className={`${styles.flexColumnWrapper} ${styles.verticalMargins}`}>
               <button
                 type="button"
                 className="button"
@@ -373,13 +373,62 @@ export function ComponentsDemo(props) {
           {/* NavMenu */}
           <div className={styles.componentSection}>
             <h3>&lt;NavMenu /&gt;</h3>
+            <p>An expandable menu that shrinks down to a hamburger menu on mobile.</p>
+            <NavMenu>
+              <a href="https://github.com/FreedCapybara/nextjs-template" target="_blank" rel="noopener noreferrer">
+                Example 1
+              </a>
+              <a href="https://github.com/FreedCapybara/nextjs-template" target="_blank" rel="noopener noreferrer">
+                Example 2
+              </a>
+              <a href="https://github.com/FreedCapybara/nextjs-template" target="_blank" rel="noopener noreferrer">
+                Example 3
+              </a>
+            </NavMenu>
+            <p>You can also force it to hamburger or text mode, regardless of form factor.</p>
+            <div className={`${styles.flexColumnWrapper} ${styles.verticalMargins}`}>
+              <NavMenu mode="hamburger">
+                <a href="https://github.com/FreedCapybara/nextjs-template" target="_blank" rel="noopener noreferrer">
+                  Example 1
+                </a>
+                <a href="https://github.com/FreedCapybara/nextjs-template" target="_blank" rel="noopener noreferrer">
+                  Example 2
+                </a>
+                <a href="https://github.com/FreedCapybara/nextjs-template" target="_blank" rel="noopener noreferrer">
+                  Example 3
+                </a>
+              </NavMenu>
+              <NavMenu mode="text" title="Text-only menu">
+                <a href="https://github.com/FreedCapybara/nextjs-template" target="_blank" rel="noopener noreferrer">
+                  Example 1
+                </a>
+                <a href="https://github.com/FreedCapybara/nextjs-template" target="_blank" rel="noopener noreferrer">
+                  Example 2
+                </a>
+                <a href="https://github.com/FreedCapybara/nextjs-template" target="_blank" rel="noopener noreferrer">
+                  Example 3
+                </a>
+              </NavMenu>
+            </div>
+            <p>You can also align the menu to the right edge!</p>
+            <NavMenu align="right" title="Right-aligned menu" mode="text">
+              <a href="https://github.com/FreedCapybara/nextjs-template" target="_blank" rel="noopener noreferrer">
+                Example 1
+              </a>
+              <a href="https://github.com/FreedCapybara/nextjs-template" target="_blank" rel="noopener noreferrer">
+                Example 2
+              </a>
+              <a href="https://github.com/FreedCapybara/nextjs-template" target="_blank" rel="noopener noreferrer">
+                Example 3
+              </a>
+            </NavMenu>
           </div>
 
           {/* ProgressBar */}
           <div className={styles.componentSection}>
             <h3>&lt;ProgressBar /&gt;</h3>
             <p>Shows progress! Fills the width of its container and operates within the range [0, 1].</p>
-            <div className={`${styles.flexStartWrapper} ${styles.verticalMargins}`}>
+            <div className={`${styles.flexColumnWrapper} ${styles.verticalMargins}`}>
               <ProgressBar progress={.15} />
               <ProgressBar progress={.35} />
               <ProgressBar progress={.55} />
@@ -441,7 +490,7 @@ export function ComponentsDemo(props) {
           <div className={styles.componentSection}>
             <h3>&lt;ToggleSwitch /&gt;</h3>
             <p>A fancy way of showing when something is on or off.</p>
-            <div className={`${styles.flexStartWrapper} ${styles.verticalMargins}`}>
+            <div className={`${styles.flexColumnWrapper} ${styles.verticalMargins}`}>
               <ToggleSwitch
                 value={toggleValue}
                 onChange={(newValue) => setToggleValue(newValue)}

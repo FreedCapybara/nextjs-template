@@ -2,15 +2,44 @@
 
 .wrapper {
   position: relative;
+  display: inline-block;
 }
 
 .menu-button {
   cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  // the negative margin + padding expands the click zone
   margin: -20px;
   padding: 20px;
 
+  svg {
+    stroke: $text-color-light;
+    transition: stroke .3s;
+  }
+
+  &.open,
+  &:hover {
+    .menu-title {
+      color: $primary-color;
+    }
+
+    svg {
+      stroke: $primary-color;
+    }
+  }
+
   @media(max-width: calc($desktop-breakpoint - 1px)) {
     display: none;
+  }
+
+  &.hamburger-only {
+    display: none;
+  }
+
+  &.text-only {
+    display: block;
   }
 }
 
@@ -18,9 +47,7 @@
   font-weight: 700;
   color: $text-color-light;
   margin-right: 12px;
-}
-
-.menu-icon {
+  transition: color .3s;
 }
 
 .hamburger-button {
@@ -28,7 +55,22 @@
   margin: -20px;
   padding: 20px;
 
+  &.open,
+  &:hover {
+    .hamburger-bar {
+      background: $primary-color;
+    }
+  }
+
   @media(min-width: $desktop-breakpoint) {
+    display: none;
+  }
+
+  &.hamburger-only {
+    display: block;
+  }
+
+  &.text-only {
     display: none;
   }
 }
@@ -37,8 +79,9 @@
   display: block;
   height: 2px;
   width: 20px;
-  background: $text-color;
+  background: $text-color-light;
   margin-bottom: 4px;
+  transition: background .3s;
 }
 
 .menu-background {

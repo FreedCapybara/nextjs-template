@@ -2,8 +2,10 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './NavMenu.module.scss';
 
+import { FiChevronUp, FiChevronDown } from 'react-icons/fi';
+
 export function NavMenu(props) {
-  const { title, align } = props;
+  const { title, align, mode } = props;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -24,21 +26,41 @@ export function NavMenu(props) {
     right: align === 'right' ? '-1px' : 'auto'
   };
 
-  const iconClass = isOpen ? 'ti-angle-up' : 'ti-angle-down';
+  let menuButtonClass = styles.menuButton;
+  let hamburgerButtonClass = styles.hamburgerButton;
+
+  if (mode === 'hamburger') {
+    menuButtonClass += ` ${styles.hamburgerOnly}`;
+    hamburgerButtonClass += ` ${styles.hamburgerOnly}`;
+  }
+
+  if (mode === 'text') {
+    menuButtonClass += ` ${styles.textOnly}`;
+    hamburgerButtonClass += ` ${styles.textOnly}`;
+  }
+
+  if (isOpen) {
+    menuButtonClass += ` ${styles.open}`;
+    hamburgerButtonClass += ` ${styles.open}`;
+  }
 
   return (
     <div className={styles.wrapper}>
 
       {/* desktop title */}
-      <div className={styles.menuButton} onClick={openMenu}>
+      <div className={menuButtonClass} onClick={openMenu}>
         <span className={styles.menuTitle}>
           {title || 'Menu'}
         </span>
-        <span className={`${styles.menuIcon} ${iconClass}`} />
+        {isOpen ? (
+          <FiChevronUp />
+        ) : (
+          <FiChevronDown />
+        )}
       </div>
 
       {/* mobile hamburger */}
-      <div className={styles.hamburgerButton} onClick={openMenu}>
+      <div className={hamburgerButtonClass} onClick={openMenu}>
         <div className={styles.hamburgerBar} />
         <div className={styles.hamburgerBar} />
         <div className={styles.hamburgerBar} />
@@ -66,6 +88,7 @@ export function NavMenu(props) {
 NavMenu.propTypes = {
   title: PropTypes.string,
   align: PropTypes.string,
+  mode: PropTypes.string,
   children: PropTypes.node
 };
 
