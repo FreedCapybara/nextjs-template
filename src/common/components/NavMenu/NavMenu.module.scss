@@ -30,7 +30,7 @@
     }
   }
 
-  @media(max-width: calc($desktop-breakpoint - 1px)) {
+  @media(max-width: calc($desktop-breakpoint - 1px)) { // note max-width rather than mobile-first min-width
     display: none;
   }
 

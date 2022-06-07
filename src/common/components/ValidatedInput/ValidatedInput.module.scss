@@ -2,8 +2,13 @@
 
 .input-wrapper {
   position: relative;
-  flex-grow: 1;
-  max-width: $form-field-max-width;
+  width: 100%;
+
+  @media(min-width: $desktop-breakpoint) {
+    flex-grow: 1;
+    max-width: $form-field-max-width;
+    width: max-content;
+  }
 }
 
 .validated-input {

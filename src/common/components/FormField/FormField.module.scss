@@ -9,7 +9,6 @@
   select,
   textarea {
     width: 100%;
-    max-width: $form-field-max-width;
     font-size: 1rem;
     padding: 8px;
     margin-left: -8px;
@@ -20,6 +19,10 @@
       color: rgb(84, 84, 84);
       cursor: default;
       background-color: rgb(235, 235, 228);
+    }
+
+    @media(min-width: $desktop-breakpoint) {
+      max-width: $form-field-max-width;
     }
   }
 
