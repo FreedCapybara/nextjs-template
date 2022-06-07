@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import styles from './ValidatedInput.module.scss';
 
+import { FiCheck, FiAlertTriangle } from 'react-icons/fi';
+
 export function ValidatedInput(props) {
   const {
     type,
@@ -22,44 +24,38 @@ export function ValidatedInput(props) {
   };
 
   const indicatorIconStyle = {
-    right: iconOffset || '12px'
+    right: iconOffset || '1rem'
   };
 
   const showValid = !!value && isValid && showSuccess;
   const showInvalid = !!value && !isValid;
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.inputWrapper}>
-        <input
-          className={styles.validatedInput}
-          type={type || 'text'}
-          id={id}
-          name={name}
-          required={required}
-          maxLength={maxLength}
-          autoComplete="new-password"
-          onChange={handleChange}
-          value={value}
-        />
+    <div className={styles.inputWrapper}>
+      <input
+        className={styles.validatedInput}
+        type={type || 'text'}
+        id={id}
+        name={name}
+        required={required}
+        maxLength={maxLength}
+        autoComplete="new-password"
+        onChange={handleChange}
+        value={value}
+      />
 
-        {showValid && (
-          <span
-            className={`${styles.indicatorIcon} ${styles.valid} ti-check`}
-            style={indicatorIconStyle}
-          >
-            valid
-          </span>
-        )}
-      </div>
+      {showValid && (
+        <FiCheck
+          className={`${styles.indicatorIcon} ${styles.valid}`}
+          style={indicatorIconStyle}
+        />
+      )}
 
       {showInvalid && (
-        <span
-          className={`${styles.indicatorIcon} ${styles.invalid} ti-alert`}
+        <FiAlertTriangle
+          className={`${styles.indicatorIcon} ${styles.invalid}`}
           style={indicatorIconStyle}
-        >
-          invalid
-        </span>
+        />
       )}
     </div>
   );

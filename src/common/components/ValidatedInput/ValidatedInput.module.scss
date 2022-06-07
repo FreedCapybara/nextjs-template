@@ -1,15 +1,13 @@
 @import '@styles/variables';
 
-.wrapper {
-  margin-bottom: 20px;
-}
-
 .input-wrapper {
   position: relative;
+  flex-grow: 1;
+  max-width: $form-field-max-width;
 }
 
 .validated-input {
-  padding-right: 32px;
+  padding-right: 2rem !important;
   margin-bottom: 0 !important;
 }
 
@@ -17,10 +15,10 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  font-size: 1.25rem;
 
   &.valid {
     color: $green;
-    //transform: rotate(8deg);
   }
 
   &.invalid {

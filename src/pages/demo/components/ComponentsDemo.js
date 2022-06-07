@@ -32,6 +32,7 @@ export function ComponentsDemo(props) {
   const [fileData, setFileData] = useState(null);
   const [fileData2, setFileData2] = useState(null);
   const [toggleValue, setToggleValue] = useState(false);
+  const [validatedInputValue, setValidatedInputValue] = useState('');
 
   // example modal
   const ExampleModal = (props) => {
@@ -478,12 +479,30 @@ export function ComponentsDemo(props) {
 
           {/* Tab */}
           <div className={styles.componentSection}>
+            <div id="tabs" />
+            <div id="tabs2" />
             <h3>&lt;Tab /&gt;</h3>
-          </div>
-
-          {/* TabBar */}
-          <div className={styles.componentSection}>
-            <h3>&lt;TabBar /&gt;</h3>
+            <p>Tabs are styled links that highlight according to the current URL.</p>
+            <Tab path="/demo/components#tabs" matchPaths={[{ path: '/demo/components' }]}>
+              Tab 1
+            </Tab>
+            <p>You can also add tabs to a &lt;TabBar /&gt; which spans the width of its container.</p>
+            <TabBar>
+              <Tab path="/demo/components#tabs" matchPaths={[{ path: '/demo/components#tabs', exact: true }]}>
+                Tab 1
+              </Tab>
+              <Tab path="/demo/components#tabs2" matchPaths={[{ path: '/demo/components#tabs2', exact: true }]}>
+                Tab 2
+              </Tab>
+            </TabBar>
+            <p>
+              You can also control which URLs cause the tab to highlight using the matchPaths prop.
+              Using `exact: true` will cause the tab to highlight only when the path matches exactly, or it will match all values starting with the given path.
+              The matchPaths prop isn't necessary if the Tab's path prop is already the desired match path.
+            </p>
+            <p>
+              The main example of tabs in this app is in &lt;MainNav /&gt;, used in &lt;MainLayout /&gt;, which is applied to all pages after logging in.
+            </p>
           </div>
 
           {/* ToggleSwitch */}
@@ -505,7 +524,19 @@ export function ComponentsDemo(props) {
           {/* ValidatedInput */}
           <div className={styles.componentSection}>
             <h3>&lt;ValidatedInput /&gt;</h3>
-            {/*<ValidatedInput value={formValue} onChange={(newValue) => setFormValue(newValue)} isValid={formValue === 'hello'} showSuccess={true} />*/}
+            <p>Easily display validation state within a form input.</p>
+            <FormField label="Validated field">
+              <ValidatedInput
+                value={validatedInputValue}
+                onChange={(newValue) => setValidatedInputValue(newValue)}
+                isValid={validatedInputValue === 'cats'}
+                showSuccess={true}
+              />
+              <p>The value must be "cats".</p>
+            </FormField>
+            <p>
+              Please note that ValidatedInput is completely independent from other form-related components such as Form or FormField, and does not require any specific component hierarchy, though the styles are currently optimized for use with a FormField component.
+            </p>
           </div>
         </div>
       </div>

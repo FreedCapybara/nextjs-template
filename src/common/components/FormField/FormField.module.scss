@@ -9,7 +9,7 @@
   select,
   textarea {
     width: 100%;
-    max-width: 420px;
+    max-width: $form-field-max-width;
     font-size: 1rem;
     padding: 8px;
     margin-left: -8px;
