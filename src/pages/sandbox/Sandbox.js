@@ -35,27 +35,6 @@ export function Sandbox(props) {
       <h1>hi {user.email}</h1>
       <button onClick={() => dispatch(wait())}>Load something</button>
       <button onClick={() => dispatch(sandboxRequest())}>Status code</button>
-      <AvatarMenu email="andrew@spacegiraffe.io" align="right">
-        <a>hello</a>
-        {session ? (
-          <button onClick={() => signOut()}>Sign out {session.user.email}</button>
-        ) : (
-          <button onClick={() => signIn()}>Sign in</button>
-        )}
-      </AvatarMenu>
-      <Emoji>&#x1f680;</Emoji>
-      <NavMenu>
-        <a>hello</a>
-      </NavMenu>
-      <ProgressBar progress={.35} />
-      <Swatch color={19}>
-        Hello
-      </Swatch>
-      <ToggleSwitch value={toggleValue} onChange={(newValue) => setToggleValue(newValue)} />
-      <FormField label="Valerdated field">
-        <ValidatedInput value={formValue} onChange={(newValue) => setFormValue(newValue)} isValid={formValue === 'hello'} showSuccess={true} />
-        <p>VALERDATED</p>
-      </FormField>
     </MainLayout>
   );
 }
