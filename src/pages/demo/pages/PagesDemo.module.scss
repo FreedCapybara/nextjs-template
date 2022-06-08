@@ -1,0 +1,16 @@
+@import '@styles/variables';
+
+.wrapper {
+  text-align: left;
+}
+
+.title-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.section {
+  margin-top: 4rem;
+  border-top: 1px solid $medium-light-grey;
+}
+

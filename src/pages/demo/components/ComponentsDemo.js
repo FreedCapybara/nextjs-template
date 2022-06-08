@@ -90,7 +90,7 @@ export function ComponentsDemo(props) {
           </p>
 
           {/* Avatar */}
-          <div className={styles.componentSection}>
+          <div className={styles.section}>
             <h3>&lt;Avatar /&gt;</h3>
             <p>
               Shows the <a href="https://en.gravatar.com/" target="_blank" rel="noopener noreferrer">Gravatar image</a> for an email address!
@@ -104,7 +104,7 @@ export function ComponentsDemo(props) {
           </div>
 
           {/* AvatarMenu */}
-          <div className={styles.componentSection}>
+          <div className={styles.section}>
             <h3>&lt;AvatarMenu /&gt;</h3>
             <p>
               Creates a menu from the avatar. Great for logged-in users! (Try clicking it)
@@ -144,7 +144,7 @@ export function ComponentsDemo(props) {
           </div>
 
           {/* DeleteButton */}
-          <div className={styles.componentSection}>
+          <div className={styles.section}>
             <h3>&lt;DeleteButton /&gt;</h3>
             <p>
               A button that requires multiple clicks before firing its action.
@@ -153,7 +153,7 @@ export function ComponentsDemo(props) {
           </div>
 
           {/* Emoji */}
-          <div className={styles.componentSection}>
+          <div className={styles.section}>
             <h3>&lt;Emoji /&gt;</h3>
             <p>
               Normalizes emoji text styles, ensuring they render sharply and in color.
@@ -170,7 +170,7 @@ export function ComponentsDemo(props) {
           </div>
 
           {/* EmptyState */}
-          <div className={styles.componentSection}>
+          <div className={styles.section}>
             <h3>&lt;EmptyState /&gt;</h3>
             <p>
               Show this when you don't have any data to display.
@@ -184,7 +184,7 @@ export function ComponentsDemo(props) {
           </div>
 
           {/* ErrorMessage */}
-          <div className={styles.componentSection}>
+          <div className={styles.section}>
             <h3>&lt;ErrorMessage /&gt;</h3>
             <p>Styles error messages consistently.</p>
             <div className={styles.flexColumnWrapper}>
@@ -195,7 +195,7 @@ export function ComponentsDemo(props) {
           </div>
 
           {/* FileDrop */}
-          <div className={styles.componentSection}>
+          <div className={styles.section}>
             <h3>&lt;FileDrop /&gt;</h3>
             <p>
               Easily add drag-and-drop functionality to any page or component!
@@ -234,7 +234,7 @@ export function ComponentsDemo(props) {
           </div>
 
           {/* FileDropZone */}
-          <div className={styles.componentSection}>
+          <div className={styles.section}>
             <h3>&lt;FileDropZone /&gt;</h3>
             <p>
               A drop zone component with various states of file selection.
@@ -261,7 +261,7 @@ export function ComponentsDemo(props) {
           </div>
 
           {/* FilePicker */}
-          <div className={styles.componentSection}>
+          <div className={styles.section}>
             <h3>&lt;FilePicker /&gt;</h3>
             <p>A nicely-styled file input.</p>
             <div className={styles.flexColumnWrapper}>
@@ -279,7 +279,7 @@ export function ComponentsDemo(props) {
           </div>
 
           {/* Form */}
-          <div className={styles.componentSection}>
+          <div className={styles.section}>
             <h3>&lt;Form /&gt;</h3>
             <p>
               Provides consistent attributes and styling of form elements, and applies e.preventDefault() automatically.
@@ -297,7 +297,7 @@ export function ComponentsDemo(props) {
           </div>
 
           {/* FormField */}
-          <div className={styles.componentSection}>
+          <div className={styles.section}>
             <h3>&lt;FormField /&gt;</h3>
             <p>A wrapper component for form inputs. You can include a required asterisk by setting the `required` prop, or optional by setting the `optional` prop.</p>
             <FormField label="Dog name">
@@ -319,7 +319,7 @@ export function ComponentsDemo(props) {
           </div>
 
           {/* LoadingSpinner */}
-          <div className={styles.componentSection}>
+          <div className={styles.section}>
             <h3>&lt;LoadingSpinner /&gt;</h3>
             <p>A resizable loading spinner component.</p>
             <div className={`${styles.flexWrapper} ${styles.horizontalMargins}`}>
@@ -338,7 +338,7 @@ export function ComponentsDemo(props) {
           </div>
 
           {/* Logo */}
-          <div className={styles.componentSection}>
+          <div className={styles.section}>
             <h3>&lt;Logo /&gt;</h3>
             <p>The app logo, using the URL configured in app/theme.js. Can be resized!</p>
             <div className={`${styles.flexWrapper} ${styles.horizontalMargins}`}>
@@ -349,7 +349,7 @@ export function ComponentsDemo(props) {
           </div>
 
           {/* Modal */}
-          <div className={styles.componentSection}>
+          <div className={styles.section}>
             <h3>&lt;Modal /&gt;</h3>
             <p>A simple modal component that includes a title bar, close button, and clickable backdrop.</p>
             <div className={`${styles.flexColumnWrapper} ${styles.verticalMargins}`}>
@@ -372,7 +372,7 @@ export function ComponentsDemo(props) {
           </div>
 
           {/* NavMenu */}
-          <div className={styles.componentSection}>
+          <div className={styles.section}>
             <h3>&lt;NavMenu /&gt;</h3>
             <p>An expandable menu that shrinks down to a hamburger menu on mobile.</p>
             <NavMenu>
@@ -426,7 +426,7 @@ export function ComponentsDemo(props) {
           </div>
 
           {/* ProgressBar */}
-          <div className={styles.componentSection}>
+          <div className={styles.section}>
             <h3>&lt;ProgressBar /&gt;</h3>
             <p>Shows progress! Fills the width of its container and operates within the range [0, 1].</p>
             <div className={`${styles.flexColumnWrapper} ${styles.verticalMargins}`}>
@@ -438,7 +438,7 @@ export function ComponentsDemo(props) {
           </div>
 
           {/* Swatch */}
-          <div className={styles.componentSection}>
+          <div className={styles.section}>
             <h3>&lt;Swatch /&gt;</h3>
             <p>
               Add a splash of color to your text!
@@ -478,7 +478,7 @@ export function ComponentsDemo(props) {
           </div>
 
           {/* Tab */}
-          <div className={styles.componentSection}>
+          <div className={styles.section}>
             <div id="tabs" />
             <div id="tabs2" />
             <h3>&lt;Tab /&gt;</h3>
@@ -506,7 +506,7 @@ export function ComponentsDemo(props) {
           </div>
 
           {/* ToggleSwitch */}
-          <div className={styles.componentSection}>
+          <div className={styles.section}>
             <h3>&lt;ToggleSwitch /&gt;</h3>
             <p>A fancy way of showing when something is on or off.</p>
             <div className={`${styles.flexColumnWrapper} ${styles.verticalMargins}`}>
@@ -522,7 +522,7 @@ export function ComponentsDemo(props) {
           </div>
 
           {/* ValidatedInput */}
-          <div className={styles.componentSection}>
+          <div className={styles.section}>
             <h3>&lt;ValidatedInput /&gt;</h3>
             <p>Easily display validation state within a form input.</p>
             <FormField label="Validated field">
