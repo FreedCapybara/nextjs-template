@@ -8,7 +8,7 @@ import { MainToolbar } from '@components/MainToolbar';
 import { TabBar } from '@components/TabBar';
 import { Tab } from '@components/Tab';
 
-export function MainNav(props) {
+export function MainNav() {
 
   const homeTabMatchPaths = [{
     path: '/',

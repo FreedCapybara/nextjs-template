@@ -11,7 +11,7 @@ import { ToolbarGroup } from '@components/ToolbarGroup';
 import { Logo } from '@components/Logo';
 import { AvatarMenu } from '@components/AvatarMenu';
 
-export function MainToolbar(props) {
+export function MainToolbar() {
   const { data: session } = useSession();
 
   return (
