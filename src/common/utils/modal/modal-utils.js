@@ -1,6 +1,7 @@
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 export const modalUtils = {
+  _modalRoot: null,
   openModalAsync,
   openModal,
   closeModal,
@@ -9,40 +10,45 @@ export const modalUtils = {
 
 function openModalAsync(ModalComponent, props) {
   return new Promise((resolve, reject) => {
-    const modalRoot = getModalRoot();
+    const modalRoot = modalUtils.getModalRoot();
     const modalProps = {
       ...props,
       resolve,
       reject
     };
-    ReactDOM.render(<ModalComponent { ...modalProps } />, modalRoot);
+    modalRoot.render(<ModalComponent { ...modalProps } />);
+    document.body.classList.add('modal-open');
   }).finally(() => {
     closeModal();
   });
 }
 
 function openModal(ModalComponent, modalProps) {
-  const modalRoot = getModalRoot();
-  ReactDOM.render(<ModalComponent { ...modalProps } />, modalRoot);
+  const modalRoot = modalUtils.getModalRoot();
+  modalRoot.render(<ModalComponent { ...modalProps } />);
+  document.body.classList.add('modal-open');
 }
 
 function closeModal() {
-  const modalRoot = document.getElementById('modal-root');
-  if (modalRoot) {
-    ReactDOM.unmountComponentAtNode(modalRoot);
-    modalRoot.parentNode.removeChild(modalRoot);
-    document.body.classList.remove('modal-open');
-  }
+  const modalRoot = modalUtils.getModalRoot();
+  modalRoot.render(null);
+  document.body.classList.remove('modal-open');
 }
 
 function getModalRoot() {
-  let modalRoot = document.getElementById('modal-root');
-  if (!modalRoot) {
-    modalRoot = document.createElement('div');
-    modalRoot.id = 'modal-root';
-    document.body.appendChild(modalRoot);
-    document.body.classList.add('modal-open');
+  if (modalUtils._modalRoot) {
+    return modalUtils._modalRoot;
   }
-  return modalRoot;
+
+  let element = document.getElementById('modal-root');
+  if (!element) {
+    element = document.createElement('div');
+    element.id = 'modal-root';
+    document.body.appendChild(element);
+  }
+
+  const root = createRoot(element);
+  modalUtils._modalRoot = root;
+  return root;
 }
 
