@@ -14,3 +14,22 @@
   border-top: 1px solid $medium-light-grey;
 }
 
+.page-preview {
+  position: relative;
+  max-height: 30rem;
+  border-radius: 2rem;
+  box-shadow: $box-shadow-medium;
+  cursor: pointer;
+  transition: box-shadow .3s;
+  overflow: hidden;
+
+  &:hover {
+    box-shadow: $box-shadow-large;
+  }
+}
+
+.page-component-wrapper {
+  position: relative;
+  pointer-events: none;
+}
+

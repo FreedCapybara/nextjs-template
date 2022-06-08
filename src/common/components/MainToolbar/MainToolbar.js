@@ -10,9 +10,59 @@ import { Toolbar } from '@components/Toolbar';
 import { ToolbarGroup } from '@components/ToolbarGroup';
 import { Logo } from '@components/Logo';
 import { AvatarMenu } from '@components/AvatarMenu';
+import { NavMenu } from '@components/NavMenu';
 
 export function MainToolbar() {
   const { data: session } = useSession();
+
+  const NavLinks = () => (
+    <>
+    <Link href="/demo/components">
+      <a className="text-button">
+        Components
+      </a>
+    </Link>
+
+    <Link href="/demo/pages">
+      <a className="text-button">
+        Pages
+      </a>
+    </Link>
+
+    <a
+      className="text-button"
+      href="https://github.com/FreedCapybara/nextjs-template"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      GitHub <FiExternalLink />
+    </a>
+    </>
+  );
+
+  const AccountActions = () => (
+    <>
+    <Link href="/account">
+      <a>Account</a>
+    </Link>
+    <button onClick={signOut}>
+      Logout
+    </button>
+    </>
+  );
+
+  const SignInButtons = () => (
+    <>
+    <button className="text-button" onClick={signIn}>
+      Sign in
+    </button>
+    <Link href="/signup">
+      <a className="button">
+        Sign up
+      </a>
+    </Link>
+    </>
+  );
 
   return (
     <Toolbar>
@@ -29,52 +79,33 @@ export function MainToolbar() {
         </Link>
       </ToolbarGroup>
 
-      <ToolbarGroup>
-        <Link href="/demo/components">
-          <a className="text-button">
-            Components
-          </a>
-        </Link>
+      <div className="hide-desktop">
+        <ToolbarGroup>
+          <NavLinks />
 
-        <Link href="/demo/pages">
-          <a className="text-button">
-            Pages
-          </a>
-        </Link>
+          {session ? (
+            <AvatarMenu email={session.user.email} align="right">
+              <AccountActions />
+            </AvatarMenu>
+          ) : (
+            <SignInButtons />
+          )}
+        </ToolbarGroup>
+      </div>
 
-        <a
-          className="text-button"
-          href="https://github.com/FreedCapybara/nextjs-template"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GitHub <FiExternalLink />
-        </a>
-
+      <div className="show-desktop">
         {session ? (
-          <>
           <AvatarMenu email={session.user.email} align="right">
-            <Link href="/account">
-              <a>Account</a>
-            </Link>
-            <button onClick={signOut}>
-              Logout
-            </button>
+            <NavLinks />
+            <AccountActions />
           </AvatarMenu>
-          </>
         ) : (
-          <>
-          <button className="text-button" onClick={signIn}>
-            Sign in
-          </button>
-          <Link href="/signup">
-            <a className="button">
-              Sign up
-            </a>
-          </Link>
-          </>
+          <NavMenu align="right">
+            <NavLinks />
+            <SignInButtons />
+          </NavMenu>
         )}
-      </ToolbarGroup>
+      </div>
     </Toolbar>
   );
 }

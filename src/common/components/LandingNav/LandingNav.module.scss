@@ -1,9 +1,18 @@
+@import '@styles/variables';
 
 .nav-wrapper {
   position: absolute;
   max-width: 1600px;
   margin: 0 auto;
-  padding: 40px 80px;
+  padding: 20px;
   width: 100%;
+
+  @media(min-width: $desktop-breakpoint) {
+    padding: 20px 60px;
+  }
+
+  @media(min-width: $desktop-hd-breakpoint) {
+    padding: 40px 80px;
+  }
 }
 
