@@ -389,7 +389,7 @@ export function ComponentsDemo(props) {
                 className="button"
                 onClick={() => setModalOpen(true)}
               >
-                Open modal
+                Show modal
               </button>
               {modalOpen && (
                 <Modal

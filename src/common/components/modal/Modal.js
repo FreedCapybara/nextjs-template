@@ -6,7 +6,7 @@ import { modalUtils } from '@utils/modal';
 import { FiX } from 'react-icons/fi';
 
 export function Modal(props) {
-  const { title, onClose } = props;
+  const { title, onClose, modalStyle } = props;
 
   function consumeEvent(e) {
     e.stopPropagation();
@@ -21,7 +21,7 @@ export function Modal(props) {
 
   return (
     <div className={styles.wrapper} onClick={close}>
-      <div className={styles.card} onClick={consumeEvent}>
+      <div className={styles.card} style={modalStyle} onClick={consumeEvent}>
         <div className={styles.cardHeader}>
           <span className={styles.cardTitle}>
             {title}
@@ -42,6 +42,7 @@ export function Modal(props) {
 
 Modal.propTypes = {
   title: PropTypes.string,
+  modalStyle: PropTypes.object,
   onClose: PropTypes.func,
   children: PropTypes.node
 };

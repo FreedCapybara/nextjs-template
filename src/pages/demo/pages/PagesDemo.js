@@ -2,8 +2,14 @@ import styles from './PagesDemo.module.scss';
 
 import { CenteredLayout } from '@components/CenteredLayout';
 import { Logo } from '@components/Logo';
+import { Modal } from '@components/Modal';
 
 export function PagesDemo(props) {
+  const bigModalStyle = {
+    maxWidth: '100%',
+    height: 'calc(100vh - 40px)'
+  };
+
   return (
     <CenteredLayout
       title="Components"
@@ -22,6 +28,11 @@ export function PagesDemo(props) {
             Some of them aren't used in this demo app (like forgot/reset password), but they're all ready to go!
             Otherwise you can simply delete the ones you won't need.
           </p>
+
+          <Modal
+            title="Example page"
+            modalStyle={bigModalStyle}
+          />
         </div>
       </div>
     </CenteredLayout>
