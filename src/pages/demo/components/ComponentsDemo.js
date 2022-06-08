@@ -28,10 +28,21 @@ import { ToggleSwitch } from '@components/ToggleSwitch';
 import { ValidatedInput } from '@components/ValidatedInput';
 
 export function ComponentsDemo(props) {
+
+  // FileDrop
   const [fileDragging, setFileDragging] = useState(false);
   const [fileData, setFileData] = useState(null);
+
+  // FilePicker
   const [fileData2, setFileData2] = useState(null);
+
+  // Modal
+  const [modalOpen, setModalOpen] = useState(false);
+
+  // ToggleSwitch
   const [toggleValue, setToggleValue] = useState(false);
+
+  // ValidatedInput
   const [validatedInputValue, setValidatedInputValue] = useState('');
 
   // example modal
@@ -368,6 +379,26 @@ export function ComponentsDemo(props) {
               >
                 Open async modal
               </button>
+              <p>
+                You don't have to use modalUtils if you don't want to.
+                It comes with a few caveats, such as that links created with next/link won't work well in your modals.
+                So as an alternative, you can always just place a modal directly on the page!
+              </p>
+              <button
+                type="button"
+                className="button"
+                onClick={() => setModalOpen(true)}
+              >
+                Open modal
+              </button>
+              {modalOpen && (
+                <Modal
+                  title="Example modal!"
+                  onClose={() => setModalOpen(false)}
+                >
+                  <p>Opened with component state!</p>
+                </Modal>
+              )}
             </div>
           </div>
 
