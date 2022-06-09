@@ -9,6 +9,7 @@ import { selectLoading } from '@features/app';
 
 import { LoadingSpinner } from '@components/LoadingSpinner';
 import { BackButtonToolbar } from '@components/BackButtonToolbar';
+import { Footer } from '@components/Footer';
 
 export function CenteredLayout(props) {
   const { title, section, backRoute, backText } = props;
@@ -16,6 +17,7 @@ export function CenteredLayout(props) {
   const loading = useSelector(selectLoading);
 
   return (
+    <>
     <div className={styles.wrapper}>
       <Head>
         <title>
@@ -38,6 +40,9 @@ export function CenteredLayout(props) {
         props.children
       )}
     </div>
+
+    <Footer />
+    </>
   );
 }
 
