@@ -10,18 +10,18 @@ $breakpoints: (
 // Generates show/hide classes for each of the breakpoints above.
 // Example: mobile breakpoint 360px
 //
-//   .hide-mobile -> hides the element for 0 - 359px and displays it at 360px and above
-//   .show-mobile -> displays the element for 0 - 359px and hides it at 360px and above
+//   .hide-below-mobile -> hides the element for 0 - 359px and displays it at 360px and above
+//   .hide-above-mobile -> displays the element for 0 - 359px and hides it at 360px and above
 //
 @mixin generate-responsive-classes() {
   @each $name, $breakpoint in $breakpoints {
-    .hide-#{$name} {
+    .hide-below-#{$name} {
       @media (max-width: calc($breakpoint - 1px)) {
         display: none;
       }
     }
 
-    .show-#{$name} {
+    .hide-above-#{$name} {
       @media (min-width: $breakpoint) {
         display: none;
       }
