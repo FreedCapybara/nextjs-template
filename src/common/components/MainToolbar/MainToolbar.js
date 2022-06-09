@@ -15,6 +15,12 @@ import { NavMenu } from '@components/NavMenu';
 export function MainToolbar() {
   const { data: session } = useSession();
 
+  /*
+   * Group nav links into mini components for re-use between the mobile and desktop layouts.
+   * They don't seem quite large or separate enough to warrant their own files,
+   * but they help avoid duplicate code and don't impact readability or maintainability too much.
+   */
+
   const NavLinks = () => (
     <>
     <Link href="/demo/components">
@@ -45,6 +51,7 @@ export function MainToolbar() {
     <Link href="/account">
       <a>Account</a>
     </Link>
+
     <button onClick={signOut}>
       Logout
     </button>
@@ -56,6 +63,7 @@ export function MainToolbar() {
     <button className="text-button" onClick={signIn}>
       Sign in
     </button>
+
     <Link href="/signup">
       <a className="button">
         Sign up
