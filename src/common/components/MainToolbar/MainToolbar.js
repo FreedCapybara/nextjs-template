@@ -79,21 +79,8 @@ export function MainToolbar() {
         </Link>
       </ToolbarGroup>
 
-      <div className="hide-desktop">
-        <ToolbarGroup>
-          <NavLinks />
-
-          {session ? (
-            <AvatarMenu email={session.user.email} align="right">
-              <AccountActions />
-            </AvatarMenu>
-          ) : (
-            <SignInButtons />
-          )}
-        </ToolbarGroup>
-      </div>
-
-      <div className="show-desktop">
+      {/* mobile */}
+      <div className="hide-above-desktop">
         {session ? (
           <AvatarMenu email={session.user.email} align="right">
             <NavLinks />
@@ -105,6 +92,20 @@ export function MainToolbar() {
             <SignInButtons />
           </NavMenu>
         )}
+      </div>
+
+      {/* desktop */}
+      <div className="hide-below-desktop">
+        <ToolbarGroup>
+          <NavLinks />
+          {session ? (
+            <AvatarMenu email={session.user.email} align="right">
+              <AccountActions />
+            </AvatarMenu>
+          ) : (
+            <SignInButtons />
+          )}
+        </ToolbarGroup>
       </div>
     </Toolbar>
   );
