@@ -11,7 +11,7 @@ export function ServerError() {
         <Logo />
 
         <h2>
-          Server error!
+          Server error
         </h2>
 
         <p className={styles.description}>

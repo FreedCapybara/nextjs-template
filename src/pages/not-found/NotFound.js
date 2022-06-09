@@ -11,7 +11,7 @@ export function NotFound() {
         <Logo />
 
         <h2>
-          Not found!
+          Not found
         </h2>
 
         <p className={styles.description}>
