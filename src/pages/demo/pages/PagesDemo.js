@@ -17,6 +17,8 @@ import { EditProfile } from '@pages/account/edit-profile/EditProfile';
 import { ForgotPassword } from '@pages/account/forgot-password/ForgotPassword';
 import { ResetPassword } from '@pages/account/reset-password/ResetPassword';
 import { Sandbox } from '@pages/sandbox/Sandbox';
+import { PrivacyPolicy } from '@pages/legal/privacy-policy/PrivacyPolicy';
+import { TermsAndConditions } from '@pages/legal/terms-and-conditions/TermsAndConditions';
 import { NotFound } from '@pages/not-found/NotFound';
 import { ServerError } from '@pages/server-error/ServerError';
 
@@ -306,6 +308,58 @@ export function PagesDemo(props) {
             >
               <div className={`${styles.pageComponentWrapper} ${styles.pageMarginFix}`}>
                 <Sandbox />
+              </div>
+            </Modal>
+          )}
+
+          {/* PrivacyPolicy */}
+          <div className={styles.section}>
+            <h3>&lt;PrivacyPolicy /&gt;</h3>
+            <p>Privacy policy page.</p>
+            <div
+              className={styles.pagePreview}
+              onClick={() => setPage('privacy-policy')}
+            >
+              <div className={styles.pageComponentWrapper}>
+                <PrivacyPolicy />
+              </div>
+            </div>
+          </div>
+
+          {page === 'privacy-policy' && (
+            <Modal
+              title="PrivacyPolicy"
+              modalStyle={bigModalStyle}
+              onClose={() => setPage(null)}
+            >
+              <div className={`${styles.pageComponentWrapper} ${styles.pageMarginFix}`}>
+                <PrivacyPolicy />
+              </div>
+            </Modal>
+          )}
+
+          {/* TermsAndConditions */}
+          <div className={styles.section}>
+            <h3>&lt;TermsAndConditions /&gt;</h3>
+            <p>Terms and conditions page.</p>
+            <div
+              className={styles.pagePreview}
+              onClick={() => setPage('terms-and-conditions')}
+            >
+              <div className={styles.pageComponentWrapper}>
+                <TermsAndConditions />
+              </div>
+            </div>
+          </div>
+
+          {page === 'terms-and-conditions' && (
+            <Modal
+              title="TermsAndConditions"
+              modalStyle={bigModalStyle}
+              onClose={() => setPage(null)}
+            >
+              <div className={`${styles.pageComponentWrapper} ${styles.pageMarginFix}`}>
+                <TermsAndConditions />
               </div>
             </Modal>
           )}
