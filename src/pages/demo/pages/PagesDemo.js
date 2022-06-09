@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import Link from 'next/link';
 import styles from './PagesDemo.module.scss';
 
+import { FiArrowLeft } from 'react-icons/fi';
 import { CenteredLayout } from '@components/CenteredLayout';
 import { Logo } from '@components/Logo';
 import { Modal } from '@components/Modal';
@@ -109,7 +111,7 @@ export function PagesDemo(props) {
               onClick={() => setPage('login')}
             >
               <div className={styles.pageComponentWrapper}>
-                <Login providers={[{ name: 'GitHub' }]} />
+                <Login providers={[{ id: 'github', name: 'GitHub' }]} />
               </div>
             </div>
           </div>
@@ -121,7 +123,7 @@ export function PagesDemo(props) {
               onClose={() => setPage(null)}
             >
               <div className={`${styles.pageComponentWrapper} ${styles.pageMarginFix}`}>
-                <Login providers={[{ name: 'GitHub' }]} />
+                <Login providers={[{ id: 'github', name: 'GitHub' }]} />
               </div>
             </Modal>
           )}
@@ -360,6 +362,16 @@ export function PagesDemo(props) {
             </Modal>
           )}
         </div>
+      </div>
+
+      <div className={styles.returnButtonWrapper}>
+        <Link href="/">
+          <a className="big-button">
+            <span className={styles.returnButtonContent}>
+              <FiArrowLeft />&nbsp;Back to home
+            </span>
+          </a>
+        </Link>
       </div>
     </CenteredLayout>
   );

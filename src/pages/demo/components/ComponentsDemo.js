@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import Link from 'next/link';
 import styles from './ComponentsDemo.module.scss';
 import { range } from 'lodash-es';
 
+import { FiArrowLeft } from 'react-icons/fi';
 import { CenteredLayout } from '@components/CenteredLayout';
 import { modalUtils } from '@utils/modal';
 
@@ -570,6 +572,16 @@ export function ComponentsDemo(props) {
             </p>
           </div>
         </div>
+      </div>
+
+      <div className={styles.returnButtonWrapper}>
+        <Link href="/">
+          <a className="big-button">
+            <span className={styles.returnButtonContent}>
+              <FiArrowLeft />&nbsp;Back to home
+            </span>
+          </a>
+        </Link>
       </div>
     </CenteredLayout>
   );
