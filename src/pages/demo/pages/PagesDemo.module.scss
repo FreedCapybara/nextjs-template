@@ -33,3 +33,8 @@
   pointer-events: none;
 }
 
+.page-margin-fix {
+  // apply a negative margin to negate the padding from the modal
+  margin: -20px;
+}
+
