@@ -23,7 +23,7 @@ export function TwoPaneLayout(props) {
     <div className={styles.wrapper}>
       <Head>
         <title>
-          {title} {section ? `| ${section}` : null} | {theme.appName}
+          {`${title} ${section ? `| ${section}` : null} | ${theme.appName}`}
         </title>
       </Head>
 
