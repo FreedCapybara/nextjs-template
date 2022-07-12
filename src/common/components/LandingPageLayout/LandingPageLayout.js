@@ -13,7 +13,7 @@ export function LandingPageLayout(props) {
     <div className={styles.wrapper}>
       <Head>
         <title>
-          {`${title} ${section ? `| ${section}` : null} | ${theme.appName}`}
+          {`${title} ${section ? `| ${section}` : ''} | ${theme.appName}`}
         </title>
       </Head>
 
