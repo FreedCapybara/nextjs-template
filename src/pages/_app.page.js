@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { Provider } from 'react-redux';
 import { SessionProvider } from 'next-auth/react';
 import { wrapper } from '@app/store';
 import '@styles/globals.scss';
