@@ -29,7 +29,7 @@ export function Landing() {
         <h1>Section 1</h1>
       </LandingPageSection>
     </LandingPageLayout>
-  )
+  );
 }
 
 export async function getServerSideProps(context) {
