@@ -23,16 +23,16 @@ export function MainToolbar() {
 
   const NavLinks = () => (
     <>
-    <Link href="/demo/components">
-      <a className="text-button">
+    <Link href="/demo/components" className="text-button">
+      
         Components
-      </a>
+      
     </Link>
 
-    <Link href="/demo/pages">
-      <a className="text-button">
+    <Link href="/demo/pages" className="text-button">
+      
         Pages
-      </a>
+      
     </Link>
 
     <a
@@ -49,7 +49,7 @@ export function MainToolbar() {
   const AccountActions = () => (
     <>
     <Link href="/account">
-      <a>Account</a>
+      Account
     </Link>
 
     <button onClick={signOut}>
@@ -64,10 +64,10 @@ export function MainToolbar() {
       Sign in
     </button>
 
-    <Link href="/signup">
-      <a className="button">
+    <Link href="/signup" className="button">
+      
         Sign up
-      </a>
+      
     </Link>
     </>
   );
@@ -76,14 +76,14 @@ export function MainToolbar() {
     <Toolbar>
       <ToolbarGroup>
         <Link href="/">
-          <a>
-            <Logo />
-          </a>
+
+          <Logo />
+
         </Link>
-        <Link href="/">
-          <a className={styles.appTitle}>
-            {theme.appName}
-          </a>
+        <Link href="/" className={styles.appTitle}>
+
+          {theme.appName}
+
         </Link>
       </ToolbarGroup>
 

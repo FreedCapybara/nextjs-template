@@ -17,29 +17,29 @@ export function Footer(props) {
         <div className={styles.footerContent}>
           <div className={styles.footerTitleWrapper}>
             <Link href="/">
-              <a>
-                <Logo />
-              </a>
+
+              <Logo />
+
             </Link>
-            <Link href="/">
-              <a className={styles.appTitle}>
-                {theme.appName}
-              </a>
+            <Link href="/" className={styles.appTitle}>
+
+              {theme.appName}
+
             </Link>
           </div>
         </div>
 
         <div className={styles.footerContent}>
-          <Link href="/demo/components">
-            <a className="text-button">
+          <Link href="/demo/components" className="text-button">
+            
               Components
-            </a>
+            
           </Link>
 
-          <Link href="/demo/pages">
-            <a className="text-button">
+          <Link href="/demo/pages" className="text-button">
+            
               Pages
-            </a>
+            
           </Link>
 
           <a
@@ -57,17 +57,17 @@ export function Footer(props) {
               Sign in
             </button>
 
-            <Link href="/signup">
-              <a className="text-button">
+            <Link href="/signup" className="text-button">
+              
                 Sign up
-              </a>
+              
             </Link>
             </>
           ) : (
-            <Link href="/account">
-              <a className="text-button">
+            <Link href="/account" className="text-button">
+              
                 Account
-              </a>
+              
             </Link>
           )}
         </div>
@@ -92,14 +92,14 @@ export function Footer(props) {
 
         <div className={styles.footerContent}>
           <Link href="/legal/terms-and-conditions">
-            <a>
+            
               Terms &amp; conditions
-            </a>
+            
           </Link>
           <Link href="/legal/privacy-policy">
-            <a>
+            
               Privacy policy
-            </a>
+            
           </Link>
         </div>
       </div>

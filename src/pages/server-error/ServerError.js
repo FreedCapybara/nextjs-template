@@ -18,10 +18,10 @@ export function ServerError() {
           The page encountered an error!
         </p>
 
-        <Link href="/" passHref>
-          <a className="button">
+        <Link href="/" passHref className="button">
+          
             Back to home
-          </a>
+          
         </Link>
       </div>
     </CenteredLayout>

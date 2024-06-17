@@ -13,13 +13,13 @@ export function BackButtonToolbar(props) {
     <div className={styles.toolbarWrapper}>
       <Toolbar>
         <ToolbarGroup>
-          <Link href={backRoute || '/'}>
-            <a className="icon-button">
-              <FiArrowLeft />
-              {!!backText && (
-                <span>{backText}</span>
-              )}
-            </a>
+          <Link href={backRoute || '/'} className="icon-button">
+
+            <FiArrowLeft />
+            {!!backText && (
+              <span>{backText}</span>
+            )}
+
           </Link>
         </ToolbarGroup>
       </Toolbar>

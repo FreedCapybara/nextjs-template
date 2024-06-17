@@ -419,12 +419,12 @@ export function PagesDemo(props) {
       </div>
 
       <div className={styles.returnButtonWrapper}>
-        <Link href="/">
-          <a className="big-button">
-            <span className={styles.returnButtonContent}>
-              <FiArrowLeft />&nbsp;Back to home
-            </span>
-          </a>
+        <Link href="/" className="big-button">
+
+          <span className={styles.returnButtonContent}>
+            <FiArrowLeft />&nbsp;Back to home
+          </span>
+
         </Link>
       </div>
     </CenteredLayout>

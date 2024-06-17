@@ -23,11 +23,11 @@ export function Tab(props) {
     styles.tab;
 
   return (
-    <Link href={path}>
-      <a className={tabClass}>
-        {props.children}
-      </a>
-    </Link>
+    (<Link href={path} className={tabClass}>
+
+      {props.children}
+
+    </Link>)
   );
 }
 
