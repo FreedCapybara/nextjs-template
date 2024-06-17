@@ -1,9 +1,11 @@
 import Head from 'next/head';
 import { SessionProvider } from 'next-auth/react';
+import { Provider } from 'react-redux';
 import { wrapper } from '@app/store';
 import '@styles/globals.scss';
 
 function App({ Component, pageProps }) {
+  const { store, props } = wrapper.useWrappedStore(pageProps)
   const { session } = pageProps;
 
   return (
@@ -18,11 +20,13 @@ function App({ Component, pageProps }) {
       <meta name="theme-color" content="#ffffff" />
     </Head>
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <Component {...props.pageProps} />
+      </Provider>
     </SessionProvider>
     </>
   );
 }
 
-export default wrapper.withRedux(App);
+export default App;
 
