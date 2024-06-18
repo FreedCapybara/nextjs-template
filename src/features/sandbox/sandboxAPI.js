@@ -5,6 +5,6 @@ export const sandboxAPI = {
 };
 
 function sandboxRequest(ssrContext) {
-  return http.get('/sandbox/statuscode', null, ssrContext);
+  return http.get('/api/sandbox/auth-test', null, ssrContext);
 }
 

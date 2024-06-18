@@ -34,7 +34,7 @@ export function Sandbox(props) {
     <MainLayout title="Sandbox">
       <h1>hi {user.email}</h1>
       <button onClick={() => dispatch(wait())}>Load something</button>
-      <button onClick={() => dispatch(sandboxRequest())}>Status code</button>
+      <button onClick={() => dispatch(sandboxRequest({ context: null }))}>Status code</button>
     </MainLayout>
   );
 }

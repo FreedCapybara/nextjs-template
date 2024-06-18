@@ -1,7 +1,9 @@
-import { getSession } from 'next-auth/react'
+import { getServerSession } from 'next-auth/next'
+
+import { authOptions } from '@app/auth';
 
 export default async function handler(req, res) {
-  const session = await getSession({ req });
+  const session = await getServerSession(req, res, authOptions);
 
   if (session) {
     res.send({
