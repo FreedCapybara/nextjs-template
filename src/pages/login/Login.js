@@ -7,7 +7,7 @@ import { FaGithub } from 'react-icons/fa6';
 import { TwoPaneLayout } from '@components/TwoPaneLayout';
 
 export function Login(props) {
-  const { providers } = props;
+  const { providers = {} } = props;
 
   const iconMap = {
     'github': <FaGithub />

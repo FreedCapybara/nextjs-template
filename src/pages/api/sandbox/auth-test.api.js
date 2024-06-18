@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     });
   } else {
     res.send({
-      content: "You must be sign in to view the protected content on this page."
+      content: "You must be signed in to view the protected content on this page."
     });
   }
 }

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { wrapper } from '@app/store';
 import '@styles/globals.scss';
 
-function App({ Component, pageProps }) {
+function App({ Component, ...pageProps }) {
   const { store, props } = wrapper.useWrappedStore(pageProps)
   const { session } = pageProps;
 
