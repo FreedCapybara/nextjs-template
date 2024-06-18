@@ -1,3 +1,3 @@
 
-export { EmailConfirmation as default, getServerSideProps } from './AccountConfirmation';
+export { AccountConfirmation as default, getServerSideProps } from './AccountConfirmation';
 

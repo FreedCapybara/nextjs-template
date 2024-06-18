@@ -3,14 +3,14 @@ import styles from './Login.module.scss';
 
 import { nextjsUtils } from '@utils/nextjs';
 
-import { GoMarkGithub } from 'react-icons/go';
+import { FaGithub } from 'react-icons/fa6';
 import { TwoPaneLayout } from '@components/TwoPaneLayout';
 
 export function Login(props) {
   const { providers } = props;
 
   const iconMap = {
-    'github': <GoMarkGithub />
+    'github': <FaGithub />
   };
 
   return (
