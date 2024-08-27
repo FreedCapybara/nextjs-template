@@ -17,6 +17,10 @@ function request(url, method, body, options, ssrContext) {
   const requestOptions = {
     ...defaultOptions,
     ...options,
+    headers: {
+      ...defaultOptions.headers,
+      ...(options || {}).headers
+    },
     method,
     body
   };
