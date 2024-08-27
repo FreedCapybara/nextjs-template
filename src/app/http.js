@@ -16,6 +16,11 @@ export function createDefaultHttpOptions(url, method, body, ssrContext) {
   // application/json by default
   options.headers['Content-Type'] = 'application/json';
 
+  // include cookies
+  if (ssrContext) {
+    options.headers['Cookie'] = ssrContext.req.headers.cookie;
+  }
+
   // fix Node "unable to verify the first certificate" errors during SSR in dev
   if (dev && req) {
     const https = require('https');
